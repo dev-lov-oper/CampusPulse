@@ -1,7 +1,7 @@
 """
 CampusPredict - Student Placement Prediction Platform
 ======================================================
-Streamlit Web Application for Machine Learning Placement Prediction,
+Modern Academic SaaS Theme Web Application for Machine Learning Placement Prediction,
 Multi-Model Comparison, Exploratory Data Analysis, and Performance Metrics.
 """
 
@@ -15,111 +15,164 @@ import plotly.express as px
 import plotly.graph_objects as go
 
 # -----------------------------------------------------------------------------
-# 1. PAGE CONFIGURATION & THEME STYLING
+# 1. PAGE CONFIGURATION & MODERN ACADEMIC SAAS THEME
 # -----------------------------------------------------------------------------
 st.set_page_config(
-    page_title="CampusPredict | AI Student Placement Platform",
+    page_title="CampusPredict AI | Academic Placement SaaS",
     page_icon="🎓",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for rich aesthetics
+# Custom CSS for Modern Academic SaaS Theme
 st.markdown("""
 <style>
-    /* Global styles */
-    .main {
-        background-color: #0f172a;
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+    
+    html, body, [class*="css"] {
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    .stApp {
+        background-color: #070a12;
+        background-image: 
+            radial-gradient(circle at 85% 10%, rgba(99, 102, 241, 0.14), transparent 45%),
+            radial-gradient(circle at 15% 85%, rgba(14, 165, 233, 0.10), transparent 40%);
         color: #f8fafc;
     }
     
-    /* Header card */
+    /* Academic Hero Banner */
     .hero-container {
-        background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%);
-        padding: 2rem;
-        border-radius: 1rem;
-        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+        background: linear-gradient(135deg, rgba(31, 41, 61, 0.9) 0%, rgba(17, 24, 39, 0.95) 100%);
+        padding: 2.2rem 2.5rem;
+        border-radius: 1.5rem;
+        box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
         margin-bottom: 2rem;
-        border: 1px solid #6366f1;
+        border: 1px solid rgba(99, 102, 241, 0.3);
+        backdrop-filter: blur(16px);
+        position: relative;
+        overflow: hidden;
+    }
+    .hero-container::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; height: 3px;
+        background: linear-gradient(90deg, #6366f1, #0ea5e9, #10b981);
+    }
+    .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(99, 102, 241, 0.15);
+        color: #818cf8;
+        border: 1px solid rgba(99, 102, 241, 0.3);
+        padding: 4px 12px;
+        border-radius: 99px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 0.8rem;
     }
     .hero-title {
         color: #ffffff;
-        font-size: 2.3rem;
+        font-size: 2.4rem;
         font-weight: 800;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.6rem;
+        letter-spacing: -0.03em;
     }
     .hero-subtitle {
-        color: #c7d2fe;
-        font-size: 1.1rem;
+        color: #94a3b8;
+        font-size: 1.05rem;
+        line-height: 1.6;
         margin-bottom: 0;
+        max-width: 850px;
     }
     
-    /* Cards & Containers */
+    /* SaaS Metric Cards */
     .metric-card {
-        background-color: #1e293b;
-        border: 1px solid #334155;
-        border-radius: 0.75rem;
-        padding: 1.25rem;
+        background: linear-gradient(135deg, rgba(17, 24, 39, 0.9), rgba(11, 15, 25, 0.95));
+        border: 1px solid rgba(99, 102, 241, 0.2);
+        border-radius: 1.25rem;
+        padding: 1.4rem;
         text-align: center;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(10px);
     }
     .metric-value {
-        font-size: 1.8rem;
-        font-weight: 700;
+        font-size: 2rem;
+        font-weight: 800;
         color: #38bdf8;
+        letter-spacing: -0.02em;
     }
     .metric-label {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
+        font-weight: 600;
         color: #94a3b8;
+        margin-top: 4px;
     }
 
-    /* Prediction Badges */
+    /* Prediction Outcome Badges */
     .status-badge-placed {
-        background: linear-gradient(135deg, #065f46 0%, #047857 100%);
+        background: linear-gradient(135deg, rgba(6, 95, 70, 0.8) 0%, rgba(4, 120, 87, 0.9) 100%);
         color: #ecfdf5;
-        padding: 1rem 1.5rem;
-        border-radius: 0.75rem;
-        font-size: 1.8rem;
+        padding: 1.2rem 1.8rem;
+        border-radius: 1.25rem;
+        font-size: 2rem;
         font-weight: 800;
         text-align: center;
         border: 1px solid #10b981;
-        box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.39);
+        box-shadow: 0 0 25px rgba(16, 185, 129, 0.35);
+        letter-spacing: 0.05em;
     }
     .status-badge-not-placed {
-        background: linear-gradient(135deg, #991b1b 0%, #b91c1c 100%);
+        background: linear-gradient(135deg, rgba(153, 27, 27, 0.8) 0%, rgba(185, 28, 28, 0.9) 100%);
         color: #fef2f2;
-        padding: 1rem 1.5rem;
-        border-radius: 0.75rem;
-        font-size: 1.8rem;
+        padding: 1.2rem 1.8rem;
+        border-radius: 1.25rem;
+        font-size: 2rem;
         font-weight: 800;
         text-align: center;
-        border: 1px solid #ef4444;
-        box-shadow: 0 4px 14px 0 rgba(239, 68, 68, 0.39);
+        border: 1px solid #f43f5e;
+        box-shadow: 0 0 25px rgba(244, 63, 94, 0.35);
+        letter-spacing: 0.05em;
     }
     
-    /* Recommendations Box */
+    /* Recommendations Container */
     .rec-box {
-        background-color: #1e293b;
+        background: rgba(17, 24, 39, 0.85);
         border-left: 4px solid #6366f1;
-        padding: 1rem;
-        border-radius: 0 0.5rem 0.5rem 0;
-        margin-top: 1rem;
+        border-right: 1px solid rgba(255, 255, 255, 0.08);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 1.1rem;
+        border-radius: 0 0.8rem 0.8rem 0;
+        margin-top: 0.8rem;
+        color: #e2e8f0;
+        font-size: 0.95rem;
+        line-height: 1.6;
     }
 
-    /* Tabs styling */
+    /* Tabs Styling */
     .stTabs [data-baseweb="tab-list"] {
-        gap: 8px;
+        gap: 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 4px;
     }
     .stTabs [data-baseweb="tab"] {
-        height: 50px;
+        height: 48px;
         white-space: pre-wrap;
-        background-color: #1e293b;
-        border-radius: 8px 8px 0px 0px;
+        background-color: rgba(17, 24, 39, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 12px 12px 0px 0px;
         color: #94a3b8;
+        font-weight: 600;
+        font-size: 0.9rem;
     }
     .stTabs [aria-selected="true"] {
-        background-color: #4338ca !important;
+        background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(67, 56, 202, 0.4)) !important;
         color: #ffffff !important;
+        border-color: rgba(99, 102, 241, 0.5) !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -253,15 +306,15 @@ if "history" not in st.session_state:
 # -----------------------------------------------------------------------------
 # 4. SIDEBAR NAVIGATION & PRESETS
 # -----------------------------------------------------------------------------
-st.sidebar.image("https://img.icons8.com/isometric-folders/100/graduation-cap.png", width=70)
+st.sidebar.image("https://img.icons8.com/isometric-folders/100/graduation-cap.png", width=65)
 st.sidebar.title("CampusPredict AI")
-st.sidebar.caption("Machine Learning Placement Intelligence")
+st.sidebar.caption("Modern Academic SaaS Platform")
 
 st.sidebar.markdown("---")
-st.sidebar.subheader("⚙️ App Controls")
+st.sidebar.subheader("⚙️ Model Architecture")
 
 selected_model_key = st.sidebar.selectbox(
-    "Select ML Algorithm",
+    "Active ML Classifier",
     options=["logistic_regression", "knn", "decision_tree", "svm_linear", "all_models"],
     format_func=lambda x: {
         "logistic_regression": "Logistic Regression (StandardScaler)",
@@ -273,16 +326,16 @@ selected_model_key = st.sidebar.selectbox(
 )
 
 st.sidebar.markdown("---")
-st.sidebar.subheader("👤 Quick Presets")
+st.sidebar.subheader("👤 Profile Presets")
 
 preset_choice = st.sidebar.radio(
-    "Load Example Student Profile:",
-    options=["Custom Input", "High Performer", "Average Student", "At-Risk Student"],
+    "Autofill Candidate Profile:",
+    options=["Custom Input", "Top Scholar", "Average Student", "At-Risk Candidate"],
     index=0
 )
 
 # Preset values
-if preset_choice == "High Performer":
+if preset_choice == "Top Scholar":
     p_cgpa, p_backlogs, p_coding, p_apt, p_log, p_mock, p_comm = 8.9, 0, 88.0, 85.0, 90.0, 85.0, 82.0
     p_intern, p_proj, p_hack, p_cert, p_git, p_link = 2, 4, 3, 3, 12, 350
     p_attend, p_extra, p_lead, p_sleep, p_study = 94.0, 80.0, 85.0, 7.5, 6.0
@@ -290,7 +343,7 @@ elif preset_choice == "Average Student":
     p_cgpa, p_backlogs, p_coding, p_apt, p_log, p_mock, p_comm = 7.2, 0, 65.0, 68.0, 70.0, 65.0, 70.0
     p_intern, p_proj, p_hack, p_cert, p_git, p_link = 1, 2, 1, 1, 4, 120
     p_attend, p_extra, p_lead, p_sleep, p_study = 82.0, 50.0, 45.0, 7.0, 4.0
-elif preset_choice == "At-Risk Student":
+elif preset_choice == "At-Risk Candidate":
     p_cgpa, p_backlogs, p_coding, p_apt, p_log, p_mock, p_comm = 5.8, 2, 42.0, 48.0, 45.0, 40.0, 50.0
     p_intern, p_proj, p_hack, p_cert, p_git, p_link = 0, 1, 0, 0, 1, 45
     p_attend, p_extra, p_lead, p_sleep, p_study = 68.0, 30.0, 25.0, 5.5, 2.0
@@ -305,9 +358,10 @@ else:
 # -----------------------------------------------------------------------------
 st.markdown("""
 <div class="hero-container">
-    <div class="hero-title">🎓 CampusPredict - Placement Prediction System</div>
+    <div class="hero-badge">🎓 Institutional Academic SaaS Portal • v2.4</div>
+    <div class="hero-title">CampusPredict Intelligence Platform</div>
     <div class="hero-subtitle">
-        Predict student placement outcomes using calibrated Machine Learning models, domain-engineered metrics, and real-time comparative analysis.
+        Predict student placement probabilities with high-precision calibrated Machine Learning models, domain-engineered metrics, real-time multi-model benchmarks, and institutional analytics.
     </div>
 </div>
 """, unsafe_allow_html=True)
@@ -317,11 +371,11 @@ st.markdown("""
 # 6. MAIN APPLICATION TABS
 # -----------------------------------------------------------------------------
 tab1, tab2, tab3, tab4, tab5 = st.tabs([
-    "🎯 Single Prediction",
+    "🎯 Placement Predictor",
     "⚖️ Multi-Model Consensus",
-    "📊 Exploratory Data Analysis",
-    "🧠 Model Performance",
-    "📜 History & Export"
+    "📊 Institutional EDA",
+    "🧠 Model Benchmarks",
+    "📜 History & CSV Export"
 ])
 
 
@@ -366,7 +420,7 @@ with tab1:
             sleep_hours = st.slider("Daily Sleep Hours", 3.0, 10.0, float(p_sleep), 0.5)
             study_hours_per_day = st.slider("Daily Study Hours", 0.5, 10.0, float(p_study), 0.5)
 
-        submit_button = st.form_submit_button(label="🚀 Generate Placement Prediction", use_container_width=True)
+        submit_button = st.form_submit_button(label="🚀 Execute Placement Prediction", use_container_width=True)
 
     if submit_button:
         payload = {
@@ -430,13 +484,13 @@ with tab1:
                 title={'text': "Estimated Placement Probability", 'font': {'size': 18, 'color': '#c7d2fe'}},
                 gauge={
                     'axis': {'range': [0, 100], 'tickwidth': 1, 'tickcolor': "#64748b"},
-                    'bar': {'color': "#6366f1" if prob >= 50 else "#ef4444"},
-                    'bgcolor': "#1e293b",
+                    'bar': {'color': "#6366f1" if prob >= 50 else "#f43f5e"},
+                    'bgcolor': "#111827",
                     'borderwidth': 2,
-                    'bordercolor': "#334155",
+                    'bordercolor': "#374151",
                     'steps': [
-                        {'range': [0, 50], 'color': 'rgba(239, 68, 68, 0.2)'},
-                        {'range': [50, 75], 'color': 'rgba(234, 179, 8, 0.2)'},
+                        {'range': [0, 50], 'color': 'rgba(244, 63, 94, 0.2)'},
+                        {'range': [50, 75], 'color': 'rgba(245, 158, 11, 0.2)'},
                         {'range': [75, 100], 'color': 'rgba(16, 185, 129, 0.2)'}
                     ],
                 }
@@ -463,7 +517,7 @@ with tab1:
                 st.markdown(f'<div class="metric-card"><div class="metric-value">{exp_index:.1f}</div><div class="metric-label">Experience Index</div></div>', unsafe_allow_html=True)
 
         # Actionable Insights & Recommendations
-        st.markdown("#### 💡 Actionable Recommendations & Analysis")
+        st.markdown("#### 💡 Actionable Insights & Strategic Recommendations")
         recs = []
         if backlogs > 0:
             recs.append(f"⚠️ **Clear Active Backlogs**: You currently have **{backlogs} backlogs**. Clearing active backlogs significantly improves academic clearance score and eligibility.")
@@ -485,11 +539,10 @@ with tab1:
 # =============================================================================
 with tab2:
     st.subheader("⚖️ Multi-Model Consensus & Comparison")
-    st.write("Evaluate student input simultaneously across all 4 calibrated Machine Learning models.")
+    st.write("Evaluate candidate attributes simultaneously across all 4 calibrated Machine Learning classifiers.")
 
     c_col1, c_col2 = st.columns([1, 1])
 
-    # Default profile for evaluation
     payload_comp = {
         "age": 21, "gender": "Male", "cgpa": float(p_cgpa), "branch": "CSE", "college_tier": "Tier 2",
         "internships_count": int(p_intern), "projects_count": int(p_proj), "certifications_count": int(p_cert),
@@ -529,7 +582,7 @@ with tab2:
             x="Model Name",
             y="Probability (%)",
             color="Prediction",
-            color_discrete_map={"Placed": "#10b981", "Not Placed": "#ef4444"},
+            color_discrete_map={"Placed": "#10b981", "Not Placed": "#f43f5e"},
             text="Probability (%)",
             title="Estimated Probability Across Models"
         )
@@ -541,41 +594,39 @@ with tab2:
 # TAB 3: EXPLORATORY DATA ANALYSIS (EDA)
 # =============================================================================
 with tab3:
-    st.subheader("📊 Exploratory Data Analysis & Feature Distributions")
+    st.subheader("📊 Institutional Data Analytics & Distributions")
 
     if raw_df is not None:
-        st.write(f"Dataset Dimensions: **{raw_df.shape[0]} Rows, {raw_df.shape[1]} Columns**")
+        st.write(f"Dataset Dimensions: **{raw_df.shape[0]} Instances, {raw_df.shape[1]} Predictor Columns**")
 
         eda_col1, eda_col2 = st.columns(2)
 
         with eda_col1:
-            # Boxplot CGPA vs Placement
             fig_box1 = px.box(
                 raw_df,
                 x="placement_status",
                 y="cgpa",
                 color="placement_status",
                 title="CGPA Distribution by Placement Status",
-                color_discrete_map={"Placed": "#10b981", "Not Placed": "#ef4444"}
+                color_discrete_map={"Placed": "#10b981", "Not Placed": "#f43f5e"}
             )
             fig_box1.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)", font_color="#f8fafc")
             st.plotly_chart(fig_box1, use_container_width=True)
 
         with eda_col2:
-            # Coding score vs Aptitude score scatter
             fig_scat = px.scatter(
                 raw_df,
                 x="coding_skill_score",
                 y="aptitude_score",
                 color="placement_status",
-                title="Coding Score vs Aptitude Score",
-                color_discrete_map={"Placed": "#10b981", "Not Placed": "#ef4444"},
+                title="Coding Skill vs Aptitude Assessment",
+                color_discrete_map={"Placed": "#10b981", "Not Placed": "#f43f5e"},
                 opacity=0.7
             )
             fig_scat.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)", font_color="#f8fafc")
             st.plotly_chart(fig_scat, use_container_width=True)
 
-        st.markdown("#### 🏢 Placement Rate by Academic Branch & College Tier")
+        st.markdown("#### 🏢 Placement Rates across Academic Branches & Tiers")
         eda_col3, eda_col4 = st.columns(2)
 
         with eda_col3:
@@ -585,9 +636,9 @@ with tab3:
                 x="branch",
                 y="count",
                 color="placement_status",
-                title="Placement Outcomes across Academic Branches",
+                title="Placement Distribution by Academic Branch",
                 barmode="group",
-                color_discrete_map={"Placed": "#10b981", "Not Placed": "#ef4444"}
+                color_discrete_map={"Placed": "#10b981", "Not Placed": "#f43f5e"}
             )
             fig_branch.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)", font_color="#f8fafc")
             st.plotly_chart(fig_branch, use_container_width=True)
@@ -601,7 +652,7 @@ with tab3:
                 color="placement_status",
                 title="Placement Outcomes by College Tier",
                 barmode="group",
-                color_discrete_map={"Placed": "#10b981", "Not Placed": "#ef4444"}
+                color_discrete_map={"Placed": "#10b981", "Not Placed": "#f43f5e"}
             )
             fig_tier.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)", font_color="#f8fafc")
             st.plotly_chart(fig_tier, use_container_width=True)
@@ -611,11 +662,11 @@ with tab3:
 
 
 # =============================================================================
-# TAB 4: MODEL PERFORMANCE & BENCHMARKS
+# TAB 4: MODEL BENCHMARKS & METRICS
 # =============================================================================
 with tab4:
-    st.subheader("🧠 Machine Learning Model Evaluation & Metrics")
-    st.write("Performance evaluation metrics calculated on a stratified 80/20 test split (600 test instances).")
+    st.subheader("🧠 Machine Learning Benchmark Evaluation")
+    st.write("Validation metrics evaluated on a stratified 80/20 test split (600 test instances).")
 
     metrics_data = [
         {"Model": "Logistic Regression", "Accuracy (%)": 90.67, "Precision (%)": 90.96, "Recall (%)": 92.07, "F1 Score (%)": 91.52, "ROC-AUC (%)": 96.08, "Scaler / Calibration": "StandardScaler"},
@@ -634,18 +685,10 @@ with tab4:
         y=["Accuracy (%)", "Precision (%)", "Recall (%)", "F1 Score (%)", "ROC-AUC (%)"],
         barmode="group",
         title="Comprehensive Performance Comparison across Evaluation Metrics",
-        color_discrete_sequence=["#6366f1", "#38bdf8", "#10b981", "#f59e0b", "#ec4899"]
+        color_discrete_sequence=["#6366f1", "#0ea5e9", "#10b981", "#f59e0b", "#a855f7"]
     )
     fig_metrics.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)", font_color="#f8fafc")
     st.plotly_chart(fig_metrics, use_container_width=True)
-
-    with st.expander("ℹ️ Model Architecture & Methodology Details"):
-        st.markdown("""
-        - **Logistic Regression**: Linear baseline using `StandardScaler` feature normalization. Provides smooth probability outputs.
-        - **KNN (K-Nearest Neighbors)**: Non-parametric classifier using distance-weighted voting ($k=13$, Manhattan distance $p=1$) with `RobustScaler` to diminish outlier impact.
-        - **Decision Tree**: Entropy-based decision tree with depth limit (`max_depth=6`) and Cost-Complexity Pruning (`ccp_alpha=0.005`) to prevent overfitting.
-        - **Linear SVM (Support Vector Machine)**: Linear SVC calibrated via **Platt Scaling (Sigmoid CalibratedClassifierCV)** to output true posterior probability distributions.
-        """)
 
 
 # =============================================================================
@@ -667,4 +710,4 @@ with tab5:
             use_container_width=True
         )
     else:
-        st.info("No predictions recorded in current session yet. Run a prediction in the 'Single Prediction' tab to populate history.")
+        st.info("No predictions recorded in current session yet. Run a prediction in the 'Placement Predictor' tab to populate history.")
