@@ -29,24 +29,86 @@ st.markdown("""
     @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
     
     html, body, [class*="css"], .stApp {
-        font-family: 'Outfit', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-        font-size: 16px;
+        font-family: 'Outfit', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+        font-size: 16px !important;
         line-height: 1.55;
     }
     
     .stApp {
-        background-color: #f8fafc;
+        background-color: #f8fafc !important;
         background-image: 
             radial-gradient(circle at 14% 10%, rgba(99, 102, 241, 0.08) 0%, transparent 45%),
             radial-gradient(circle at 86% 14%, rgba(6, 182, 212, 0.07) 0%, transparent 42%),
             radial-gradient(circle at 50% 88%, rgba(168, 85, 247, 0.06) 0%, transparent 50%),
-            radial-gradient(rgba(148, 163, 184, 0.15) 1px, transparent 1px);
-        background-size: 100% 100%, 100% 100%, 100% 100%, 32px 32px;
-        background-attachment: fixed;
-        color: #0f172a;
+            radial-gradient(rgba(148, 163, 184, 0.15) 1px, transparent 1px) !important;
+        background-size: 100% 100%, 100% 100%, 100% 100%, 32px 32px !important;
+        background-attachment: fixed !important;
+        color: #0f172a !important;
+    }
+
+    /* Hide ugly Streamlit header anchor links */
+    [data-testid="stHeaderActionElements"], .stHeading a, a[href^="#"] {
+        display: none !important;
     }
     
-    /* Typography Enlargement & Contrast */
+    /* Clean Sidebar Styling */
+    [data-testid="stSidebar"] {
+        background: rgba(255, 255, 255, 0.88) !important;
+        backdrop-filter: blur(28px) !important;
+        -webkit-backdrop-filter: blur(28px) !important;
+        border-right: 1px solid rgba(226, 232, 240, 0.9) !important;
+        min-width: 300px !important;
+    }
+    
+    /* Transform Sidebar Radio into Modern Crystal Nav Dock */
+    [data-testid="stSidebar"] [data-baseweb="radio"] input {
+        display: none !important;
+    }
+    [data-testid="stSidebar"] [data-baseweb="radio"] div:first-child {
+        display: none !important;
+    }
+    [data-testid="stSidebar"] [data-baseweb="radio"] {
+        background: transparent !important;
+        padding: 10px 14px !important;
+        border-radius: 14px !important;
+        margin-bottom: 5px !important;
+        border: 1px solid transparent !important;
+        transition: all 0.25s ease !important;
+        width: 100% !important;
+    }
+    [data-testid="stSidebar"] [data-baseweb="radio"]:hover {
+        background: rgba(241, 245, 249, 0.85) !important;
+        border-color: rgba(203, 213, 225, 0.8) !important;
+        transform: translateX(3px) !important;
+    }
+    [data-testid="stSidebar"] [data-baseweb="radio"] p {
+        font-size: 0.95rem !important;
+        font-weight: 600 !important;
+        color: #334155 !important;
+    }
+    [data-testid="stSidebar"] [data-baseweb="radio"][aria-checked="true"],
+    [data-testid="stSidebar"] div[data-checked="true"] {
+        background: linear-gradient(135deg, rgba(79, 70, 229, 0.12) 0%, rgba(147, 51, 234, 0.08) 100%) !important;
+        border: 1px solid rgba(99, 102, 241, 0.35) !important;
+        box-shadow: 0 4px 14px rgba(79, 70, 229, 0.1) !important;
+    }
+    [data-testid="stSidebar"] [data-baseweb="radio"][aria-checked="true"] p,
+    [data-testid="stSidebar"] div[data-checked="true"] p {
+        color: #4338ca !important;
+        font-weight: 700 !important;
+    }
+
+    /* Container Border Wrappers -> True White Crystal Cards */
+    div[data-testid="stVerticalBlockBorderWrapper"] {
+        background: #ffffff !important;
+        border: 1px solid rgba(226, 232, 240, 0.95) !important;
+        border-radius: 24px !important;
+        box-shadow: 0 14px 34px -6px rgba(15, 23, 42, 0.06), inset 0 1px 1px rgba(255, 255, 255, 1) !important;
+        padding: 26px 30px !important;
+        margin-bottom: 20px !important;
+    }
+
+    /* Typography & Contrast */
     h1 {
         font-size: 2.35rem !important;
         font-weight: 850 !important;
@@ -69,16 +131,13 @@ st.markdown("""
         font-weight: 700 !important;
         color: #334155 !important;
     }
-    p, span, label, div {
-        color: #1e293b;
-    }
     
     /* Form Label Enlargement */
     .stNumberInput label, .stSelectbox label, .stSlider label, .stTextInput label, .stRadio label {
         font-size: 0.92rem !important;
         font-weight: 700 !important;
         color: #334155 !important;
-        letter-spacing: 0.03em !important;
+        letter-spacing: 0.04em !important;
         text-transform: uppercase !important;
     }
     
@@ -137,7 +196,7 @@ st.markdown("""
     }
     
     /* Luminous Spatial Cards */
-    .metric-card, .leader-card, .driver-card, .glossary-card, .step-card {
+    .metric-card, .leader-card, .driver-card, .glossary-card {
         background: #ffffff;
         border: 1px solid rgba(226, 232, 240, 0.95);
         border-radius: 1.4rem;
@@ -207,29 +266,12 @@ st.markdown("""
         line-height: 1.65;
         box-shadow: 0 6px 18px -4px rgba(15, 23, 42, 0.05);
     }
-    
-    /* Wizard Steps Nav Pills */
-    .step-badge {
-        display: inline-block;
-        padding: 6px 14px;
-        border-radius: 999px;
-        font-size: 0.85rem;
-        font-weight: 700;
-        margin-right: 8px;
-        background: #e2e8f0;
-        color: #475569;
-    }
-    .step-badge.active {
-        background: #4f46e5;
-        color: #ffffff;
-        box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
-    }
 
     /* Buttons */
     .stButton>button {
         font-size: 1.02rem !important;
         font-weight: 700 !important;
-        padding: 0.65rem 1.5rem !important;
+        padding: 0.65rem 1.4rem !important;
         border-radius: 14px !important;
         transition: all 0.25s ease !important;
     }
@@ -362,7 +404,7 @@ def predict_student(model_name: str, payload: dict):
 
 
 # -----------------------------------------------------------------------------
-# 4. SESSION STATE INITIALIZATION (WIZARD & CANDIDATE DATA)
+# 4. SESSION STATE INITIALIZATION
 # -----------------------------------------------------------------------------
 if "history" not in st.session_state:
     st.session_state.history = []
@@ -415,18 +457,18 @@ st.sidebar.markdown("""
 """, unsafe_allow_html=True)
 
 st.sidebar.markdown("---")
-st.sidebar.markdown("<p style='font-size:0.8rem; font-weight:800; color:#64748b; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:6px;'>WORKSPACE NAVIGATION</p>", unsafe_allow_html=True)
+st.sidebar.markdown("<p style='font-size:0.8rem; font-weight:800; color:#64748b; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:6px;'>WORKSPACE</p>", unsafe_allow_html=True)
 
-active_page = st.sidebar.radio(
+nav_page = st.sidebar.radio(
     "Navigation Menu",
     options=[
-        "🔮 Predict Placement (Step Wizard)",
-        "📊 Workspace Dashboard",
-        "⚖️ Multi-Model Consensus",
-        "🧠 Model Performance & Benchmarks",
-        "📜 Placement History",
-        "🏢 Institutional Data Analytics",
-        "ℹ️ About Platform"
+        "🔮 Predict Placement",
+        "📊 Dashboard",
+        "⚖️ Model Consensus",
+        "🧠 Model Performance",
+        "📜 History",
+        "🏢 Institutional Analytics",
+        "ℹ️ About"
     ],
     index=0,
     label_visibility="collapsed"
@@ -436,27 +478,27 @@ st.sidebar.markdown("---")
 st.sidebar.markdown("<p style='font-size:0.8rem; font-weight:800; color:#64748b; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:6px;'>ACTIVE CLASSIFIER</p>", unsafe_allow_html=True)
 
 selected_model_key = st.sidebar.selectbox(
-    "Inference Engine:",
+    "Classifier Model:",
     options=["logistic_regression", "svm_linear", "decision_tree", "knn"],
     format_func=lambda x: {
-        "logistic_regression": "Logistic Regression (94.05% Acc)",
-        "svm_linear": "Linear SVM (94.04% Acc)",
-        "decision_tree": "Decision Tree (91.36% Acc)",
-        "knn": "K-Nearest Neighbors (90.38% Acc)"
+        "logistic_regression": "Logistic Regression (94.0%)",
+        "svm_linear": "Linear SVM (94.0%)",
+        "decision_tree": "Decision Tree (91.4%)",
+        "knn": "K-NN Classifier (90.4%)"
     }[x],
     index=0
 )
 
 st.sidebar.markdown("---")
-st.sidebar.markdown("<p style='font-size:0.8rem; font-weight:800; color:#64748b; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:6px;'>CANDIDATE PRESETS</p>", unsafe_allow_html=True)
+st.sidebar.markdown("<p style='font-size:0.8rem; font-weight:800; color:#64748b; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:6px;'>PROFILES PRESET</p>", unsafe_allow_html=True)
 
 preset_choice = st.sidebar.radio(
-    "Load Preset Profile:",
-    options=["Standard Balanced", "Top Scholar (High Placement)", "Average Student", "At-Risk Candidate"],
+    "Autofill Candidate Profile:",
+    options=["Balanced Candidate", "Top Scholar (High Placement)", "Average Student", "At-Risk Candidate"],
     index=0
 )
 
-if st.sidebar.button("Apply Preset to Wizard", use_container_width=True):
+if st.sidebar.button("Load Profile to Wizard", use_container_width=True):
     if preset_choice == "Top Scholar (High Placement)":
         st.session_state.candidate_data.update({
             "cgpa": 8.9, "backlogs": 0, "coding_skill_score": 88.0, "aptitude_score": 85.0,
@@ -490,269 +532,272 @@ if st.sidebar.button("Apply Preset to Wizard", use_container_width=True):
             "extracurricular_score": 70.0, "leadership_score": 68.0, "sleep_hours": 7.0, "study_hours_per_day": 4.5
         })
     st.session_state.last_result = None
-    st.success("Preset profile attributes applied to Wizard!")
+    st.success("Candidate attributes loaded!")
 
 
 # =============================================================================
-# PAGE: 🔮 PREDICT PLACEMENT (MULTI-STEP WIZARD MATCHING SPATIAL REACT UI)
+# PAGE: 🔮 PREDICT PLACEMENT (SPATIAL 2-COLUMN WIZARD MATCHING REACT UI)
 # =============================================================================
-if active_page == "🔮 Predict Placement (Step Wizard)":
+if nav_page == "🔮 Predict Placement":
     st.markdown("""
-    <div style="margin-bottom: 24px;">
+    <div style="margin-bottom: 22px;">
         <span class="hero-badge">PREDICTION WORKSPACE</span>
         <h1 style="margin: 6px 0 8px;">Predict Placement</h1>
-        <p style="color: #475569; font-size: 1.08rem; margin: 0;">Enter the 23 student attributes across 6 structured steps used by the supplied trained models.</p>
+        <p style="color: #475569; font-size: 1.08rem; margin: 0;">Enter the 23 student attributes used by the supplied trained models.</p>
     </div>
     """, unsafe_allow_html=True)
 
-    # Step Names
-    step_titles = [
-        "Personal Information",
-        "Academic Standing",
-        "Technical Competency",
-        "Experience & Practical Work",
-        "Professional Footprint",
-        "Habits & Lifestyle"
+    step_info = [
+        ("Personal", "Personal Information"),
+        ("Academic", "Academic Standing & Clearance"),
+        ("Technical", "Technical Assessment & Mastery"),
+        ("Experience", "Internships, Projects & Hackathons"),
+        ("Professional", "Professional Footprint & Leadership"),
+        ("Lifestyle", "Habits, Study & Lifestyle")
     ]
 
     current_step = st.session_state.wizard_step
 
-    # Step Indicator Pills Row
-    pill_cols = st.columns(6)
-    for idx, (col, title) in enumerate(zip(pill_cols, step_titles), start=1):
-        with col:
+    # Spatial 2-Column Wizard Layout: Left Step Navigation Dock, Right Card
+    col_nav, col_body = st.columns([1, 2.8], gap="large")
+
+    # Column 1: Step Navigation List (matches React UI sidebar dock)
+    with col_nav:
+        st.markdown("<p style='font-size:0.8rem; font-weight:800; color:#64748b; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:10px;'>STEPS</p>", unsafe_allow_html=True)
+        for idx, (short_name, _) in enumerate(step_info, start=1):
             is_active = (idx == current_step)
-            badge_class = "step-badge active" if is_active else "step-badge"
-            st.markdown(f'<div class="{badge_class}" style="width:100%; text-align:center; margin-bottom:12px;">{idx}. {title.split()[0]}</div>', unsafe_allow_html=True)
-
-    # Progress bar
-    st.progress(current_step / 6.0)
-    st.write("")
-
-    # Form Step Card
-    with st.container():
-        st.markdown(f"""
-        <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:24px; padding:28px 32px; box-shadow:0 12px 32px -6px rgba(15,23,42,0.06); margin-bottom:24px;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; border-bottom:1px solid #f1f5f9; padding-bottom:14px;">
-                <div>
-                    <span style="font-size:0.82rem; font-weight:800; color:#4f46e5; letter-spacing:0.12em; text-transform:uppercase;">STEP {current_step} OF 6</span>
-                    <h2 style="margin:4px 0 0; font-size:1.65rem; color:#0f172a;">{step_titles[current_step - 1]}</h2>
-                </div>
-                <div style="font-size:0.95rem; font-weight:700; color:#64748b; background:#f8fafc; padding:6px 14px; border-radius:999px; border:1px solid #e2e8f0;">
-                    {current_step} / 6
-                </div>
-            </div>
-        """, unsafe_allow_html=True)
-
-        col_left, col_right = st.columns(2)
-
-        if current_step == 1:
-            with col_left:
-                st.session_state.candidate_data["age"] = st.number_input(
-                    "Age (Years)",
-                    min_value=18, max_value=28,
-                    value=int(st.session_state.candidate_data.get("age", 21)),
-                    step=1
-                )
-            with col_right:
-                g_options = ["Male", "Female"]
-                g_idx = g_options.index(st.session_state.candidate_data.get("gender", "Male")) if st.session_state.candidate_data.get("gender", "Male") in g_options else 0
-                st.session_state.candidate_data["gender"] = st.selectbox(
-                    "Gender",
-                    options=g_options,
-                    index=g_idx
-                )
-
-        elif current_step == 2:
-            with col_left:
-                st.session_state.candidate_data["cgpa"] = st.number_input(
-                    "Cumulative GPA (CGPA out of 10.0)",
-                    min_value=4.5, max_value=10.0,
-                    value=float(st.session_state.candidate_data.get("cgpa", 8.2)),
-                    step=0.1
-                )
-                st.session_state.candidate_data["backlogs"] = st.number_input(
-                    "Active Backlogs Count",
-                    min_value=0, max_value=6,
-                    value=int(st.session_state.candidate_data.get("backlogs", 0)),
-                    step=1
-                )
-                st.session_state.candidate_data["attendance_percentage"] = st.slider(
-                    "Attendance Percentage (%)",
-                    min_value=50.0, max_value=100.0,
-                    value=float(st.session_state.candidate_data.get("attendance_percentage", 88.0)),
-                    step=1.0
-                )
-            with col_right:
-                b_opts = ["CSE", "IT", "ECE", "EEE", "Mechanical", "Civil"]
-                b_idx = b_opts.index(st.session_state.candidate_data.get("branch", "CSE")) if st.session_state.candidate_data.get("branch", "CSE") in b_opts else 0
-                st.session_state.candidate_data["branch"] = st.selectbox(
-                    "Engineering Branch",
-                    options=b_opts,
-                    index=b_idx
-                )
-                t_opts = ["Tier 1", "Tier 2", "Tier 3"]
-                t_idx = t_opts.index(st.session_state.candidate_data.get("college_tier", "Tier 1")) if st.session_state.candidate_data.get("college_tier", "Tier 1") in t_opts else 0
-                st.session_state.candidate_data["college_tier"] = st.selectbox(
-                    "College Tier",
-                    options=t_opts,
-                    index=t_idx
-                )
-
-        elif current_step == 3:
-            with col_left:
-                st.session_state.candidate_data["coding_skill_score"] = st.slider(
-                    "Coding Assessment Score (0-100)",
-                    min_value=20.0, max_value=100.0,
-                    value=float(st.session_state.candidate_data.get("coding_skill_score", 82.0)),
-                    step=1.0
-                )
-                st.session_state.candidate_data["aptitude_score"] = st.slider(
-                    "General Aptitude Score (0-100)",
-                    min_value=20.0, max_value=100.0,
-                    value=float(st.session_state.candidate_data.get("aptitude_score", 76.0)),
-                    step=1.0
-                )
-            with col_right:
-                st.session_state.candidate_data["logical_reasoning_score"] = st.slider(
-                    "Logical Reasoning Score (0-100)",
-                    min_value=20.0, max_value=100.0,
-                    value=float(st.session_state.candidate_data.get("logical_reasoning_score", 80.0)),
-                    step=1.0
-                )
-                st.session_state.candidate_data["mock_interview_score"] = st.slider(
-                    "Mock Technical Interview Score (0-100)",
-                    min_value=20.0, max_value=100.0,
-                    value=float(st.session_state.candidate_data.get("mock_interview_score", 75.0)),
-                    step=1.0
-                )
-
-        elif current_step == 4:
-            with col_left:
-                st.session_state.candidate_data["internships_count"] = st.number_input(
-                    "Completed Industrial Internships",
-                    min_value=0, max_value=10,
-                    value=int(st.session_state.candidate_data.get("internships_count", 1)),
-                    step=1
-                )
-                st.session_state.candidate_data["projects_count"] = st.number_input(
-                    "Full-Stack Software Projects",
-                    min_value=0, max_value=20,
-                    value=int(st.session_state.candidate_data.get("projects_count", 3)),
-                    step=1
-                )
-            with col_right:
-                st.session_state.candidate_data["hackathons_participated"] = st.number_input(
-                    "Hackathons Participated",
-                    min_value=0, max_value=20,
-                    value=int(st.session_state.candidate_data.get("hackathons_participated", 2)),
-                    step=1
-                )
-                st.session_state.candidate_data["certifications_count"] = st.number_input(
-                    "Technical Certifications (AWS, GCP, etc.)",
-                    min_value=0, max_value=20,
-                    value=int(st.session_state.candidate_data.get("certifications_count", 2)),
-                    step=1
-                )
-
-        elif current_step == 5:
-            with col_left:
-                st.session_state.candidate_data["github_repos"] = st.number_input(
-                    "Public GitHub Repositories",
-                    min_value=0, max_value=100,
-                    value=int(st.session_state.candidate_data.get("github_repos", 8)),
-                    step=1
-                )
-                st.session_state.candidate_data["linkedin_connections"] = st.number_input(
-                    "LinkedIn Network Connections",
-                    min_value=0, max_value=5000,
-                    value=int(st.session_state.candidate_data.get("linkedin_connections", 320)),
-                    step=10
-                )
-            with col_right:
-                st.session_state.candidate_data["communication_skill_score"] = st.slider(
-                    "Verbal Communication Score (0-100)",
-                    min_value=20.0, max_value=100.0,
-                    value=float(st.session_state.candidate_data.get("communication_skill_score", 78.0)),
-                    step=1.0
-                )
-                st.session_state.candidate_data["leadership_score"] = st.slider(
-                    "Leadership & Initiative Score (0-100)",
-                    min_value=0.0, max_value=100.0,
-                    value=float(st.session_state.candidate_data.get("leadership_score", 68.0)),
-                    step=1.0
-                )
-
-        elif current_step == 6:
-            with col_left:
-                st.session_state.candidate_data["study_hours_per_day"] = st.slider(
-                    "Daily Focused Study Hours",
-                    min_value=0.5, max_value=10.0,
-                    value=float(st.session_state.candidate_data.get("study_hours_per_day", 4.5)),
-                    step=0.5
-                )
-                st.session_state.candidate_data["sleep_hours"] = st.slider(
-                    "Average Daily Sleep Hours",
-                    min_value=4.0, max_value=10.0,
-                    value=float(st.session_state.candidate_data.get("sleep_hours", 7.0)),
-                    step=0.5
-                )
-            with col_right:
-                st.session_state.candidate_data["extracurricular_score"] = st.slider(
-                    "Extracurricular Activity Score (0-100)",
-                    min_value=0.0, max_value=100.0,
-                    value=float(st.session_state.candidate_data.get("extracurricular_score", 70.0)),
-                    step=1.0
-                )
-                v_opts = ["Yes", "No"]
-                v_idx = v_opts.index(st.session_state.candidate_data.get("volunteer_experience", "Yes")) if st.session_state.candidate_data.get("volunteer_experience", "Yes") in v_opts else 0
-                st.session_state.candidate_data["volunteer_experience"] = st.selectbox(
-                    "Community / Volunteer Experience",
-                    options=v_opts,
-                    index=v_idx
-                )
-
-        st.markdown("</div>", unsafe_allow_html=True)
-
-    # Navigation Buttons Row
-    btn_prev, btn_space, btn_next = st.columns([1, 2, 1])
-
-    with btn_prev:
-        if current_step > 1:
-            if st.button("⬅️ Previous Step", use_container_width=True):
-                st.session_state.wizard_step -= 1
+            btn_label = f"{'👉 ' if is_active else '     '}{idx}.  {short_name}"
+            btn_type = "primary" if is_active else "secondary"
+            if st.button(btn_label, key=f"step_btn_{idx}", type=btn_type, use_container_width=True):
+                st.session_state.wizard_step = idx
                 st.rerun()
 
-    with btn_next:
-        if current_step < 6:
-            if st.button("Next Step ➡️", use_container_width=True):
-                st.session_state.wizard_step += 1
-                st.rerun()
-        else:
-            if st.button("🔮 Run Placement Prediction", type="primary", use_container_width=True):
-                with st.spinner("Running calibrated model inference across 33 domain features..."):
-                    lbl, pr, processed_feat = predict_student(selected_model_key, st.session_state.candidate_data)
-                    st.session_state.last_result = {
-                        "label": lbl,
-                        "prob": pr,
-                        "features": processed_feat,
-                        "model": selected_model_key
-                    }
-                    st.session_state.history.append({
-                        "Timestamp": pd.Timestamp.now().strftime("%Y-%m-%d %H:%M:%S"),
-                        "Model": selected_model_key,
-                        "Prediction": lbl,
-                        "Probability (%)": round(pr, 2),
-                        "CGPA": st.session_state.candidate_data["cgpa"],
-                        "Backlogs": st.session_state.candidate_data["backlogs"],
-                        "Coding Score": st.session_state.candidate_data["coding_skill_score"],
-                        "Branch": st.session_state.candidate_data["branch"]
-                    })
-                st.rerun()
+    # Column 2: The Main Card Container with Form Elements Inside It
+    with col_body:
+        with st.container(border=True):
+            # Step Card Header
+            h_left, h_right = st.columns([3, 1])
+            with h_left:
+                st.markdown(f"<span style='font-size:0.82rem; font-weight:800; color:#4f46e5; letter-spacing:0.12em; text-transform:uppercase;'>STEP {current_step}</span>", unsafe_allow_html=True)
+                st.markdown(f"<h2 style='margin:4px 0 12px; font-size:1.75rem; color:#0f172a;'>{step_info[current_step - 1][1]}</h2>", unsafe_allow_html=True)
+            with h_right:
+                st.markdown(f"<div style='text-align:right; font-size:0.95rem; font-weight:700; color:#64748b; margin-top:12px;'>{current_step} / 6</div>", unsafe_allow_html=True)
+                st.progress(current_step / 6.0)
 
-    # If Prediction Exists: Show Modern Outcome Verdict Cards
+            st.write("")
+
+            # 2-Column Form Fields Inside Card Container
+            c_left, c_right = st.columns(2)
+
+            if current_step == 1:
+                with c_left:
+                    st.session_state.candidate_data["age"] = st.number_input(
+                        "Age (Years)",
+                        min_value=18, max_value=28,
+                        value=int(st.session_state.candidate_data.get("age", 21)),
+                        step=1
+                    )
+                with c_right:
+                    g_options = ["Male", "Female"]
+                    g_idx = g_options.index(st.session_state.candidate_data.get("gender", "Male")) if st.session_state.candidate_data.get("gender", "Male") in g_options else 0
+                    st.session_state.candidate_data["gender"] = st.selectbox(
+                        "Gender",
+                        options=g_options,
+                        index=g_idx
+                    )
+
+            elif current_step == 2:
+                with c_left:
+                    st.session_state.candidate_data["cgpa"] = st.number_input(
+                        "Cumulative GPA (CGPA out of 10.0)",
+                        min_value=4.5, max_value=10.0,
+                        value=float(st.session_state.candidate_data.get("cgpa", 8.2)),
+                        step=0.1
+                    )
+                    st.session_state.candidate_data["backlogs"] = st.number_input(
+                        "Active Backlogs Count",
+                        min_value=0, max_value=6,
+                        value=int(st.session_state.candidate_data.get("backlogs", 0)),
+                        step=1
+                    )
+                    st.session_state.candidate_data["attendance_percentage"] = st.slider(
+                        "Attendance Percentage (%)",
+                        min_value=50.0, max_value=100.0,
+                        value=float(st.session_state.candidate_data.get("attendance_percentage", 88.0)),
+                        step=1.0
+                    )
+                with c_right:
+                    b_opts = ["CSE", "IT", "ECE", "EEE", "Mechanical", "Civil"]
+                    b_idx = b_opts.index(st.session_state.candidate_data.get("branch", "CSE")) if st.session_state.candidate_data.get("branch", "CSE") in b_opts else 0
+                    st.session_state.candidate_data["branch"] = st.selectbox(
+                        "Academic Branch",
+                        options=b_opts,
+                        index=b_idx
+                    )
+                    t_opts = ["Tier 1", "Tier 2", "Tier 3"]
+                    t_idx = t_opts.index(st.session_state.candidate_data.get("college_tier", "Tier 1")) if st.session_state.candidate_data.get("college_tier", "Tier 1") in t_opts else 0
+                    st.session_state.candidate_data["college_tier"] = st.selectbox(
+                        "College Tier",
+                        options=t_opts,
+                        index=t_idx
+                    )
+
+            elif current_step == 3:
+                with c_left:
+                    st.session_state.candidate_data["coding_skill_score"] = st.slider(
+                        "Coding Assessment Score (0-100)",
+                        min_value=20.0, max_value=100.0,
+                        value=float(st.session_state.candidate_data.get("coding_skill_score", 82.0)),
+                        step=1.0
+                    )
+                    st.session_state.candidate_data["aptitude_score"] = st.slider(
+                        "General Aptitude Score (0-100)",
+                        min_value=20.0, max_value=100.0,
+                        value=float(st.session_state.candidate_data.get("aptitude_score", 76.0)),
+                        step=1.0
+                    )
+                with c_right:
+                    st.session_state.candidate_data["logical_reasoning_score"] = st.slider(
+                        "Logical Reasoning Score (0-100)",
+                        min_value=20.0, max_value=100.0,
+                        value=float(st.session_state.candidate_data.get("logical_reasoning_score", 80.0)),
+                        step=1.0
+                    )
+                    st.session_state.candidate_data["mock_interview_score"] = st.slider(
+                        "Mock Interview Score (0-100)",
+                        min_value=20.0, max_value=100.0,
+                        value=float(st.session_state.candidate_data.get("mock_interview_score", 75.0)),
+                        step=1.0
+                    )
+
+            elif current_step == 4:
+                with c_left:
+                    st.session_state.candidate_data["internships_count"] = st.number_input(
+                        "Completed Industrial Internships",
+                        min_value=0, max_value=10,
+                        value=int(st.session_state.candidate_data.get("internships_count", 1)),
+                        step=1
+                    )
+                    st.session_state.candidate_data["projects_count"] = st.number_input(
+                        "Full-Stack Software Projects",
+                        min_value=0, max_value=20,
+                        value=int(st.session_state.candidate_data.get("projects_count", 3)),
+                        step=1
+                    )
+                with c_right:
+                    st.session_state.candidate_data["hackathons_participated"] = st.number_input(
+                        "Hackathons Participated",
+                        min_value=0, max_value=20,
+                        value=int(st.session_state.candidate_data.get("hackathons_participated", 2)),
+                        step=1
+                    )
+                    st.session_state.candidate_data["certifications_count"] = st.number_input(
+                        "Technical Certifications",
+                        min_value=0, max_value=20,
+                        value=int(st.session_state.candidate_data.get("certifications_count", 2)),
+                        step=1
+                    )
+
+            elif current_step == 5:
+                with c_left:
+                    st.session_state.candidate_data["github_repos"] = st.number_input(
+                        "Public GitHub Repositories",
+                        min_value=0, max_value=100,
+                        value=int(st.session_state.candidate_data.get("github_repos", 8)),
+                        step=1
+                    )
+                    st.session_state.candidate_data["linkedin_connections"] = st.number_input(
+                        "LinkedIn Connections",
+                        min_value=0, max_value=5000,
+                        value=int(st.session_state.candidate_data.get("linkedin_connections", 320)),
+                        step=10
+                    )
+                with c_right:
+                    st.session_state.candidate_data["communication_skill_score"] = st.slider(
+                        "Verbal Communication Score (0-100)",
+                        min_value=20.0, max_value=100.0,
+                        value=float(st.session_state.candidate_data.get("communication_skill_score", 78.0)),
+                        step=1.0
+                    )
+                    st.session_state.candidate_data["leadership_score"] = st.slider(
+                        "Leadership & Initiative Score (0-100)",
+                        min_value=0.0, max_value=100.0,
+                        value=float(st.session_state.candidate_data.get("leadership_score", 68.0)),
+                        step=1.0
+                    )
+
+            elif current_step == 6:
+                with c_left:
+                    st.session_state.candidate_data["study_hours_per_day"] = st.slider(
+                        "Daily Focused Study Hours",
+                        min_value=0.5, max_value=10.0,
+                        value=float(st.session_state.candidate_data.get("study_hours_per_day", 4.5)),
+                        step=0.5
+                    )
+                    st.session_state.candidate_data["sleep_hours"] = st.slider(
+                        "Average Sleep Hours",
+                        min_value=4.0, max_value=10.0,
+                        value=float(st.session_state.candidate_data.get("sleep_hours", 7.0)),
+                        step=0.5
+                    )
+                with c_right:
+                    st.session_state.candidate_data["extracurricular_score"] = st.slider(
+                        "Extracurricular Activity Score (0-100)",
+                        min_value=0.0, max_value=100.0,
+                        value=float(st.session_state.candidate_data.get("extracurricular_score", 70.0)),
+                        step=1.0
+                    )
+                    v_opts = ["Yes", "No"]
+                    v_idx = v_opts.index(st.session_state.candidate_data.get("volunteer_experience", "Yes")) if st.session_state.candidate_data.get("volunteer_experience", "Yes") in v_opts else 0
+                    st.session_state.candidate_data["volunteer_experience"] = st.selectbox(
+                        "Community / Volunteer Experience",
+                        options=v_opts,
+                        index=v_idx
+                    )
+
+            st.write("")
+            st.markdown("---")
+
+            # Navigation Controls Row Inside Card
+            b_prev, b_spacer, b_next = st.columns([1, 1.8, 1.2])
+
+            with b_prev:
+                if current_step > 1:
+                    if st.button("⬅️ Previous", use_container_width=True):
+                        st.session_state.wizard_step -= 1
+                        st.rerun()
+
+            with b_next:
+                if current_step < 6:
+                    if st.button("Next ➡️", type="primary", use_container_width=True):
+                        st.session_state.wizard_step += 1
+                        st.rerun()
+                else:
+                    if st.button("🔮 Predict Placement", type="primary", use_container_width=True):
+                        with st.spinner("Running calibrated model inference..."):
+                            lbl, pr, processed_feat = predict_student(selected_model_key, st.session_state.candidate_data)
+                            st.session_state.last_result = {
+                                "label": lbl,
+                                "prob": pr,
+                                "features": processed_feat,
+                                "model": selected_model_key
+                            }
+                            st.session_state.history.append({
+                                "Timestamp": pd.Timestamp.now().strftime("%Y-%m-%d %H:%M:%S"),
+                                "Model": selected_model_key,
+                                "Prediction": lbl,
+                                "Probability (%)": round(pr, 2),
+                                "CGPA": st.session_state.candidate_data["cgpa"],
+                                "Backlogs": st.session_state.candidate_data["backlogs"],
+                                "Coding Score": st.session_state.candidate_data["coding_skill_score"],
+                                "Branch": st.session_state.candidate_data["branch"]
+                            })
+                        st.rerun()
+
+    # Outcome Verdict Display
     if st.session_state.last_result:
         res = st.session_state.last_result
+        st.write("")
         st.markdown("---")
         st.subheader("🎯 Placement Prediction Verdict")
 
@@ -826,7 +871,7 @@ if active_page == "🔮 Predict Placement (Step Wizard)":
         for r in recs:
             st.markdown(f'<div class="rec-box">{r}</div>', unsafe_allow_html=True)
 
-        if st.button("🔄 Test Another Candidate Profile", use_container_width=False):
+        if st.button("🔄 Reset / Predict Another Candidate", use_container_width=False):
             st.session_state.wizard_step = 1
             st.session_state.last_result = None
             st.rerun()
@@ -835,7 +880,7 @@ if active_page == "🔮 Predict Placement (Step Wizard)":
 # =============================================================================
 # PAGE: 📊 WORKSPACE DASHBOARD
 # =============================================================================
-elif active_page == "📊 Workspace Dashboard":
+elif nav_page == "📊 Dashboard":
     st.markdown("""
     <div style="margin-bottom: 24px;">
         <span class="hero-badge">WORKSPACE TELEMETRY</span>
@@ -844,7 +889,6 @@ elif active_page == "📊 Workspace Dashboard":
     </div>
     """, unsafe_allow_html=True)
 
-    # 3 High-level stats
     st1, st2, st3 = st.columns(3)
     with st1:
         st.markdown("""
@@ -870,7 +914,6 @@ elif active_page == "📊 Workspace Dashboard":
 
     st.write("")
 
-    # Model Benchmark Graph
     st.markdown("### 🏆 100,000-Dataset Accuracy Benchmark")
     acc_df = pd.DataFrame([
         {"Model": "Logistic Regression", "Accuracy (%)": 94.05, "Recall (%)": 94.65, "ROC-AUC (%)": 98.95},
@@ -900,7 +943,7 @@ elif active_page == "📊 Workspace Dashboard":
 # =============================================================================
 # PAGE: ⚖️ MULTI-MODEL CONSENSUS
 # =============================================================================
-elif active_page == "⚖️ Multi-Model Consensus":
+elif nav_page == "⚖️ Model Consensus":
     st.markdown("""
     <div style="margin-bottom: 24px;">
         <span class="hero-badge">MULTI-MODEL MATRIX</span>
@@ -955,7 +998,7 @@ elif active_page == "⚖️ Multi-Model Consensus":
 # =============================================================================
 # PAGE: 🧠 MODEL PERFORMANCE & BENCHMARKS (100k DATASET)
 # =============================================================================
-elif active_page == "🧠 Model Performance & Benchmarks":
+elif nav_page == "🧠 Model Performance":
     st.markdown("""
     <div style="margin-bottom: 24px;">
         <span class="hero-badge">CALIBRATED ML BENCHMARKS</span>
@@ -964,7 +1007,6 @@ elif active_page == "🧠 Model Performance & Benchmarks":
     </div>
     """, unsafe_allow_html=True)
 
-    # 1. Leader Trophy Cards
     l_col1, l_col2, l_col3, l_col4 = st.columns(4)
     with l_col1:
         st.markdown("""
@@ -1005,7 +1047,6 @@ elif active_page == "🧠 Model Performance & Benchmarks":
 
     st.write("")
 
-    # Load metrics
     metrics_data = [
         {"Model": "Logistic Regression", "Accuracy (%)": 94.05, "Precision (%)": 94.53, "Recall (%)": 94.65, "F1 Score (%)": 94.59, "ROC-AUC (%)": 98.95},
         {"Model": "Linear SVM", "Accuracy (%)": 94.04, "Precision (%)": 94.54, "Recall (%)": 94.63, "F1 Score (%)": 94.58, "ROC-AUC (%)": 98.95},
@@ -1079,7 +1120,7 @@ elif active_page == "🧠 Model Performance & Benchmarks":
 # =============================================================================
 # PAGE: 📜 PLACEMENT HISTORY
 # =============================================================================
-elif active_page == "📜 Placement History":
+elif nav_page == "📜 History":
     st.markdown("""
     <div style="margin-bottom: 24px;">
         <span class="hero-badge">SESSION PREDICTIONS</span>
@@ -1107,7 +1148,7 @@ elif active_page == "📜 Placement History":
 # =============================================================================
 # PAGE: 🏢 INSTITUTIONAL DATA ANALYTICS
 # =============================================================================
-elif active_page == "🏢 Institutional Data Analytics":
+elif nav_page == "🏢 Institutional Analytics":
     st.markdown("""
     <div style="margin-bottom: 24px;">
         <span class="hero-badge">EXPLORATORY DATA ANALYSIS</span>
@@ -1151,7 +1192,7 @@ elif active_page == "🏢 Institutional Data Analytics":
 # =============================================================================
 # PAGE: ℹ️ ABOUT PLATFORM
 # =============================================================================
-elif active_page == "ℹ️ About Platform":
+elif nav_page == "ℹ️ About":
     st.markdown("""
     <div style="margin-bottom: 24px;">
         <span class="hero-badge">PLATFORM ARCHITECTURE</span>
