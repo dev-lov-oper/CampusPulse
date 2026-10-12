@@ -683,25 +683,41 @@ with tab3:
 # =============================================================================
 with tab4:
     st.subheader("🧠 Machine Learning Benchmark Evaluation")
-    st.write("Validation metrics evaluated on a stratified 80/20 test split (600 test instances).")
+    st.write("Validation metrics evaluated on a stratified 80/20 test split (20,000 test instances out of 100,000 students).")
 
-    metrics_data = [
-        {"Model": "Logistic Regression", "Accuracy (%)": 90.67, "Precision (%)": 90.96, "Recall (%)": 92.07, "F1 Score (%)": 91.52, "ROC-AUC (%)": 96.08, "Scaler / Calibration": "StandardScaler"},
-        {"Model": "K-Nearest Neighbors (KNN)", "Accuracy (%)": 91.67, "Precision (%)": 88.83, "Recall (%)": 96.95, "F1 Score (%)": 92.71, "ROC-AUC (%)": 96.93, "Scaler / Calibration": "RobustScaler"},
-        {"Model": "Decision Tree", "Accuracy (%)": 89.67, "Precision (%)": 89.35, "Recall (%)": 92.07, "F1 Score (%)": 90.69, "ROC-AUC (%)": 93.73, "Scaler / Calibration": "Cost-Complexity Pruned"},
-        {"Model": "Linear SVM", "Accuracy (%)": 90.67, "Precision (%)": 91.46, "Recall (%)": 91.46, "F1 Score (%)": 91.46, "ROC-AUC (%)": 96.17, "Scaler / Calibration": "Platt Sigmoid Calibration"}
-    ]
+    metrics_file = Path(__file__).resolve().parent / "CampusPredict-Integrated" / "model_metrics.csv"
+    if not metrics_file.exists():
+        metrics_file = Path(__file__).resolve().parent / "model_metrics.csv"
 
-    metrics_df = pd.DataFrame(metrics_data)
+    if metrics_file.exists():
+        metrics_df = pd.read_csv(metrics_file)
+        if "Accuracy" in metrics_df.columns and "Accuracy (%)" not in metrics_df.columns:
+            metrics_df = metrics_df.rename(columns={
+                "Accuracy": "Accuracy (%)",
+                "Precision": "Precision (%)",
+                "Recall": "Recall (%)",
+                "F1": "F1 Score (%)",
+                "ROC-AUC": "ROC-AUC (%)"
+            })
+    else:
+        metrics_data = [
+            {"Model": "Logistic Regression", "Accuracy (%)": 94.05, "Precision (%)": 94.53, "Recall (%)": 94.65, "F1 Score (%)": 94.59, "ROC-AUC (%)": 98.95},
+            {"Model": "Linear SVM", "Accuracy (%)": 94.04, "Precision (%)": 94.54, "Recall (%)": 94.63, "F1 Score (%)": 94.58, "ROC-AUC (%)": 98.95},
+            {"Model": "Decision Tree", "Accuracy (%)": 91.36, "Precision (%)": 92.15, "Recall (%)": 92.13, "F1 Score (%)": 92.14, "ROC-AUC (%)": 97.49},
+            {"Model": "KNN", "Accuracy (%)": 90.38, "Precision (%)": 90.25, "Recall (%)": 92.50, "F1 Score (%)": 91.36, "ROC-AUC (%)": 97.11}
+        ]
+        metrics_df = pd.DataFrame(metrics_data)
+
     st.dataframe(metrics_df, use_container_width=True)
 
     # Comparison plot
+    numeric_cols = [c for c in ["Accuracy (%)", "Precision (%)", "Recall (%)", "F1 Score (%)", "ROC-AUC (%)"] if c in metrics_df.columns]
     fig_metrics = px.bar(
         metrics_df,
         x="Model",
-        y=["Accuracy (%)", "Precision (%)", "Recall (%)", "F1 Score (%)", "ROC-AUC (%)"],
+        y=numeric_cols,
         barmode="group",
-        title="Comprehensive Performance Comparison across Evaluation Metrics",
+        title="Comprehensive Performance Comparison across Evaluation Metrics (100k Dataset)",
         color_discrete_sequence=["#6366f1", "#0ea5e9", "#10b981", "#f59e0b", "#a855f7"]
     )
     fig_metrics.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)", font_color="#f8fafc")
