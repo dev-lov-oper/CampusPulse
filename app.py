@@ -1,5 +1,5 @@
 """
-CampusPredict - Student Placement Prediction Platform
+CampusPulse - Student Placement Prediction Platform
 ======================================================
 Modern Academic SaaS Theme Web Application for Machine Learning Placement Prediction,
 Multi-Model Comparison, Exploratory Data Analysis, and Performance Metrics.
@@ -15,41 +15,45 @@ import plotly.express as px
 import plotly.graph_objects as go
 
 # -----------------------------------------------------------------------------
-# 1. PAGE CONFIGURATION & MODERN ACADEMIC SAAS THEME
+# 1. PAGE CONFIGURATION & SPATIAL UI THEME (VisionOS / Spatial Computing)
 # -----------------------------------------------------------------------------
 st.set_page_config(
-    page_title="CampusPredict AI | Academic Placement SaaS",
+    page_title="CampusPulse AI | Spatial Placement Intelligence",
     page_icon="🎓",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for Modern Academic SaaS Theme
+# Custom CSS for Luminous Spatial UI Theme
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
     
     html, body, [class*="css"] {
-        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        font-family: 'Outfit', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     }
     
     .stApp {
-        background-color: #070a12;
+        background-color: #f8fafc;
         background-image: 
-            radial-gradient(circle at 85% 10%, rgba(99, 102, 241, 0.14), transparent 45%),
-            radial-gradient(circle at 15% 85%, rgba(14, 165, 233, 0.10), transparent 40%);
-        color: #f8fafc;
+            radial-gradient(circle at 14% 10%, rgba(99, 102, 241, 0.08) 0%, transparent 45%),
+            radial-gradient(circle at 86% 14%, rgba(6, 182, 212, 0.07) 0%, transparent 42%),
+            radial-gradient(circle at 50% 88%, rgba(168, 85, 247, 0.06) 0%, transparent 50%),
+            radial-gradient(rgba(148, 163, 184, 0.15) 1px, transparent 1px);
+        background-size: 100% 100%, 100% 100%, 100% 100%, 32px 32px;
+        background-attachment: fixed;
+        color: #0f172a;
     }
     
-    /* Academic Hero Banner */
+    /* Luminous Glass Hero Banner */
     .hero-container {
-        background: linear-gradient(135deg, rgba(31, 41, 61, 0.9) 0%, rgba(17, 24, 39, 0.95) 100%);
-        padding: 2.2rem 2.5rem;
-        border-radius: 1.5rem;
-        box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.95) 100%);
+        padding: 2.4rem 2.8rem;
+        border-radius: 1.8rem;
+        box-shadow: 0 20px 48px -10px rgba(15, 23, 42, 0.08), inset 0 1px 1px rgba(255, 255, 255, 1);
         margin-bottom: 2rem;
-        border: 1px solid rgba(99, 102, 241, 0.3);
-        backdrop-filter: blur(16px);
+        border: 1px solid rgba(226, 232, 240, 0.9);
+        backdrop-filter: blur(32px);
         position: relative;
         overflow: hidden;
     }
@@ -57,122 +61,135 @@ st.markdown("""
         content: "";
         position: absolute;
         top: 0; left: 0; right: 0; height: 3px;
-        background: linear-gradient(90deg, #6366f1, #0ea5e9, #10b981);
+        background: linear-gradient(90deg, #4f46e5, #0284c7, #9333ea);
     }
     .hero-badge {
         display: inline-flex;
         align-items: center;
         gap: 6px;
-        background: rgba(99, 102, 241, 0.15);
-        color: #818cf8;
-        border: 1px solid rgba(99, 102, 241, 0.3);
-        padding: 4px 12px;
-        border-radius: 99px;
+        background: rgba(79, 70, 229, 0.08);
+        color: #4f46e5;
+        border: 1px solid rgba(79, 70, 229, 0.2);
+        padding: 5px 14px;
+        border-radius: 999px;
         font-size: 0.75rem;
         font-weight: 700;
-        letter-spacing: 0.08em;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
-        margin-bottom: 0.8rem;
+        margin-bottom: 0.9rem;
     }
     .hero-title {
-        color: #ffffff;
-        font-size: 2.4rem;
-        font-weight: 800;
+        color: #0f172a;
+        font-size: 2.6rem;
+        font-weight: 900;
         margin-bottom: 0.6rem;
         letter-spacing: -0.03em;
     }
     .hero-subtitle {
-        color: #94a3b8;
+        color: #475569;
         font-size: 1.05rem;
         line-height: 1.6;
         margin-bottom: 0;
         max-width: 850px;
     }
     
-    /* SaaS Metric Cards */
+    /* Luminous Glass Metric Cards */
     .metric-card {
-        background: linear-gradient(135deg, rgba(17, 24, 39, 0.9), rgba(11, 15, 25, 0.95));
-        border: 1px solid rgba(99, 102, 241, 0.2);
-        border-radius: 1.25rem;
-        padding: 1.4rem;
+        background: #ffffff;
+        border: 1px solid rgba(226, 232, 240, 0.9);
+        border-radius: 1.5rem;
+        padding: 1.5rem;
         text-align: center;
-        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
-        backdrop-filter: blur(10px);
+        box-shadow: 0 12px 30px -6px rgba(15, 23, 42, 0.06);
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .metric-card:hover {
+        transform: translateY(-4px) scale(1.02);
+        border-color: rgba(79, 70, 229, 0.3);
+        box-shadow: 0 20px 40px -8px rgba(15, 23, 42, 0.1);
     }
     .metric-value {
-        font-size: 2rem;
-        font-weight: 800;
-        color: #38bdf8;
+        font-size: 2.2rem;
+        font-weight: 900;
+        color: #4f46e5;
         letter-spacing: -0.02em;
     }
     .metric-label {
         font-size: 0.85rem;
         font-weight: 600;
-        color: #94a3b8;
-        margin-top: 4px;
+        color: #64748b;
+        margin-top: 6px;
+        letter-spacing: 0.02em;
     }
 
-    /* Prediction Outcome Badges */
+    /* Luminous Outcome Badges */
     .status-badge-placed {
-        background: linear-gradient(135deg, rgba(6, 95, 70, 0.8) 0%, rgba(4, 120, 87, 0.9) 100%);
-        color: #ecfdf5;
-        padding: 1.2rem 1.8rem;
-        border-radius: 1.25rem;
-        font-size: 2rem;
-        font-weight: 800;
+        background: linear-gradient(135deg, rgba(236, 253, 245, 0.95) 0%, rgba(209, 250, 229, 0.95) 100%);
+        color: #065f46;
+        padding: 1.4rem 2rem;
+        border-radius: 1.6rem;
+        font-size: 2.2rem;
+        font-weight: 900;
         text-align: center;
-        border: 1px solid #10b981;
-        box-shadow: 0 0 25px rgba(16, 185, 129, 0.35);
-        letter-spacing: 0.05em;
+        border: 1.5px solid rgba(5, 150, 105, 0.4);
+        box-shadow: 0 16px 36px -10px rgba(5, 150, 105, 0.15);
+        letter-spacing: 0.04em;
     }
     .status-badge-not-placed {
-        background: linear-gradient(135deg, rgba(153, 27, 27, 0.8) 0%, rgba(185, 28, 28, 0.9) 100%);
-        color: #fef2f2;
-        padding: 1.2rem 1.8rem;
-        border-radius: 1.25rem;
-        font-size: 2rem;
-        font-weight: 800;
+        background: linear-gradient(135deg, rgba(255, 241, 242, 0.95) 0%, rgba(254, 226, 226, 0.95) 100%);
+        color: #9f1239;
+        padding: 1.4rem 2rem;
+        border-radius: 1.6rem;
+        font-size: 2.2rem;
+        font-weight: 900;
         text-align: center;
-        border: 1px solid #f43f5e;
-        box-shadow: 0 0 25px rgba(244, 63, 94, 0.35);
-        letter-spacing: 0.05em;
+        border: 1.5px solid rgba(225, 29, 72, 0.4);
+        box-shadow: 0 16px 36px -10px rgba(225, 29, 72, 0.15);
+        letter-spacing: 0.04em;
     }
     
     /* Recommendations Container */
     .rec-box {
-        background: rgba(17, 24, 39, 0.85);
-        border-left: 4px solid #6366f1;
-        border-right: 1px solid rgba(255, 255, 255, 0.08);
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        padding: 1.1rem;
-        border-radius: 0 0.8rem 0.8rem 0;
-        margin-top: 0.8rem;
-        color: #e2e8f0;
+        background: #ffffff;
+        border-left: 4px solid #4f46e5;
+        border-right: 1px solid rgba(226, 232, 240, 0.9);
+        border-top: 1px solid rgba(226, 232, 240, 0.9);
+        border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+        padding: 1.3rem;
+        border-radius: 0 1.2rem 1.2rem 0;
+        margin-top: 1rem;
+        color: #334155;
         font-size: 0.95rem;
-        line-height: 1.6;
+        line-height: 1.65;
+        box-shadow: 0 8px 20px -4px rgba(15, 23, 42, 0.05);
     }
 
-    /* Tabs Styling */
+    /* Floating Tabs */
     .stTabs [data-baseweb="tab-list"] {
-        gap: 10px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        padding-bottom: 4px;
+        gap: 12px;
+        border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+        padding-bottom: 6px;
     }
     .stTabs [data-baseweb="tab"] {
-        height: 48px;
+        height: 50px;
         white-space: pre-wrap;
-        background-color: rgba(17, 24, 39, 0.8);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 12px 12px 0px 0px;
-        color: #94a3b8;
+        background-color: rgba(241, 245, 249, 0.7);
+        border: 1px solid rgba(226, 232, 240, 0.9);
+        border-radius: 14px 14px 0px 0px;
+        color: #64748b;
         font-weight: 600;
-        font-size: 0.9rem;
+        font-size: 0.92rem;
+        transition: all 0.25s ease;
+    }
+    .stTabs [data-baseweb="tab"]:hover {
+        background-color: #ffffff;
+        color: #0f172a;
     }
     .stTabs [aria-selected="true"] {
-        background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(67, 56, 202, 0.4)) !important;
-        color: #ffffff !important;
-        border-color: rgba(99, 102, 241, 0.5) !important;
+        background: #ffffff !important;
+        color: #4f46e5 !important;
+        border-color: rgba(99, 102, 241, 0.4) !important;
+        box-shadow: 0 4px 14px rgba(79, 70, 229, 0.12) !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -307,7 +324,7 @@ if "history" not in st.session_state:
 # 4. SIDEBAR NAVIGATION & PRESETS
 # -----------------------------------------------------------------------------
 st.sidebar.image("https://img.icons8.com/isometric-folders/100/graduation-cap.png", width=65)
-st.sidebar.title("CampusPredict AI")
+st.sidebar.title("CampusPulse AI")
 st.sidebar.caption("Modern Academic SaaS Platform")
 
 st.sidebar.markdown("---")
@@ -359,7 +376,7 @@ else:
 st.markdown("""
 <div class="hero-container">
     <div class="hero-badge">🎓 Institutional Academic SaaS Portal • v2.4</div>
-    <div class="hero-title">CampusPredict Intelligence Platform</div>
+    <div class="hero-title">CampusPulse Intelligence Platform</div>
     <div class="hero-subtitle">
         Predict student placement probabilities with high-precision calibrated Machine Learning models, domain-engineered metrics, real-time multi-model benchmarks, and institutional analytics.
     </div>

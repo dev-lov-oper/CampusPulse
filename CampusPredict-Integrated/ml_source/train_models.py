@@ -1,8 +1,7 @@
 """
 CampusPredict - Machine Learning Training & Evaluation Pipeline
 ================================================================
-This script implements the complete end-to-end ML training workflow for
-Student Placement Prediction:
+
   1: Data Cleaning & Splitting
   2: Logistic Regression Training & Evaluation
   3: K-Nearest Neighbors (KNN with RobustScaler)

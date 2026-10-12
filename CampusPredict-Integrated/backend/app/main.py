@@ -13,7 +13,7 @@ from .ml_service import predict_one, MODEL_FILES
 
 Base.metadata.create_all(bind=engine)
 
-app = FastAPI(title="CampusPredict API", version="1.0.0")
+app = FastAPI(title="CampusPulse API", version="1.0.0")
 
 cors_origins = [
     origin.strip()
@@ -33,16 +33,26 @@ app.add_middleware(
 )
 
 def current_user(authorization: str | None = Header(default=None), db: Session = Depends(get_db)):
-    if not authorization or not authorization.startswith("Bearer "):
-        raise HTTPException(status_code=401, detail="Authentication required")
-    try:
-        user_id = get_user_id(authorization[7:])
-    except ValueError:
-        raise HTTPException(status_code=401, detail="Invalid or expired token")
-    user = db.get(User, user_id)
-    if not user:
-        raise HTTPException(status_code=401, detail="User not found")
-    return user
+    if authorization and authorization.startswith("Bearer "):
+        try:
+            user_id = get_user_id(authorization[7:])
+            user = db.get(User, user_id)
+            if user:
+                return user
+        except ValueError:
+            pass
+    # Default student account when authentication module is not required
+    guest = db.query(User).filter(User.email == "student@campuspulse.ai").first()
+    if not guest:
+        guest = User(
+            full_name="Student",
+            email="student@campuspulse.ai",
+            password_hash=hash_password("student123")
+        )
+        db.add(guest)
+        db.commit()
+        db.refresh(guest)
+    return guest
 
 @app.get("/api/health")
 def health():
