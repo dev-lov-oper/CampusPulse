@@ -77,6 +77,8 @@ html, body {
   min-width: 320px;
   min-height: 100vh;
   font-family: var(--font-body);
+  font-size: 15.5px;
+  line-height: 1.55;
   background-color: var(--spatial-void);
   color: var(--text-main);
   -webkit-font-smoothing: antialiased;
@@ -134,7 +136,7 @@ button {
 }
 
 .main {
-  margin-left: 296px;
+  margin-left: 304px;
   min-height: 100vh;
   transition: margin-left 0.4s var(--spatial-spring);
   position: relative;
@@ -158,8 +160,8 @@ button {
   left: 16px;
   top: 16px;
   bottom: 16px;
-  width: 260px;
-  padding: 22px 14px;
+  width: 272px;
+  padding: 24px 14px;
   background: var(--glass-canvas);
   backdrop-filter: var(--spatial-blur-panel);
   -webkit-backdrop-filter: var(--spatial-blur-panel);
@@ -199,8 +201,8 @@ button {
 }
 
 .logo {
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border-radius: 14px;
   display: grid;
   place-items: center;
@@ -210,6 +212,7 @@ button {
   border: 1px solid rgba(255, 255, 255, 0.4);
   position: relative;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .logo.small {
@@ -218,7 +221,7 @@ button {
 }
 
 .brand strong {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 800;
   letter-spacing: -0.02em;
   color: #0f172a;
@@ -232,17 +235,17 @@ button {
 
 .brand small {
   display: block;
-  color: var(--text-subtle);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  margin-top: 2px;
+  margin-top: 3px;
 }
 
 .nav-title {
-  font-size: 10.5px;
-  font-weight: 700;
+  font-size: 11.5px;
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.16em;
   color: #64748b;
@@ -261,11 +264,11 @@ button {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 12px 14px;
+  padding: 13px 15px;
   border-radius: 16px;
   text-align: left;
   width: 100%;
-  font-size: 13.5px;
+  font-size: 15px;
   font-weight: 600;
   transition: all 0.28s var(--spatial-spring);
   position: relative;
@@ -314,7 +317,7 @@ button {
 
 .side-card b {
   display: block;
-  font-size: 13px;
+  font-size: 14.5px;
   font-weight: 700;
   margin: 8px 0 4px;
   color: #0f172a;
@@ -323,7 +326,7 @@ button {
 .side-card span {
   display: block;
   color: var(--text-muted);
-  font-size: 11px;
+  font-size: 12.5px;
   line-height: 1.5;
 }
 
@@ -331,7 +334,7 @@ button {
   padding: 8px 0;
   margin-top: 10px;
   color: #4f46e5;
-  font-size: 12px;
+  font-size: 13.5px;
   font-weight: 700;
   display: inline-flex;
   align-items: center;
@@ -354,7 +357,7 @@ button {
    LUMINOUS SPATIAL TOPBAR
    ----------------------------------------------------------------------------- */
 .topbar {
-  height: 72px;
+  height: 76px;
   margin: 16px 24px 0 24px;
   display: flex;
   align-items: center;
@@ -372,8 +375,8 @@ button {
 }
 
 .icon-btn {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border: 1px solid var(--glass-border);
   background: var(--glass-pill);
   color: #475569;
@@ -395,7 +398,7 @@ button {
   align-items: center;
   gap: 8px;
   color: var(--text-subtle);
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 500;
 }
 
@@ -412,14 +415,14 @@ button {
 }
 
 .search {
-  width: 250px;
-  height: 42px;
+  width: 270px;
+  height: 46px;
   border: 1px solid var(--glass-border);
   background: var(--glass-input);
   border-radius: 14px;
   display: flex;
   align-items: center;
-  padding: 0 14px;
+  padding: 0 16px;
   gap: 10px;
   color: var(--text-subtle);
   transition: all 0.28s var(--spatial-spring);
@@ -430,7 +433,7 @@ button {
   border-color: rgba(79, 70, 229, 0.6);
   box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
   background: #ffffff;
-  width: 280px;
+  width: 310px;
 }
 
 .search input {
@@ -439,18 +442,18 @@ button {
   outline: 0;
   color: var(--text-main);
   width: 100%;
-  font-size: 13px;
+  font-size: 14.5px;
 }
 
 .avatar {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 14px;
   border: 1.5px solid rgba(255, 255, 255, 0.8);
   background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
   color: #ffffff;
   font-weight: 800;
-  font-size: 14px;
+  font-size: 15px;
   display: grid;
   place-items: center;
   box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
@@ -466,7 +469,7 @@ button {
    PAGE CONTENT & SPATIAL HEADERS
    ----------------------------------------------------------------------------- */
 .page-wrap {
-  padding: 28px 24px 60px 24px;
+  padding: 30px 26px 64px 26px;
   max-width: 1440px;
   margin: auto;
 }
@@ -476,12 +479,12 @@ button {
   align-items: flex-end;
   justify-content: space-between;
   gap: 24px;
-  margin-bottom: 28px;
+  margin-bottom: 30px;
 }
 
 .page-head h1 {
-  margin: 6px 0 8px;
-  font-size: 34px;
+  margin: 8px 0 8px;
+  font-size: 38px;
   font-weight: 800;
   letter-spacing: -0.03em;
   color: #0f172a;
@@ -490,7 +493,8 @@ button {
 .page-head p {
   margin: 0;
   color: var(--text-muted);
-  font-size: 14.5px;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 .eyebrow {
@@ -498,13 +502,13 @@ button {
   align-items: center;
   gap: 6px;
   color: #4f46e5;
-  font-size: 11px;
+  font-size: 12.5px;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   background: rgba(79, 70, 229, 0.08);
   border: 1px solid rgba(79, 70, 229, 0.2);
-  padding: 4px 10px;
+  padding: 5px 12px;
   border-radius: 999px;
   backdrop-filter: blur(8px);
 }
@@ -515,15 +519,15 @@ button {
 .primary, .ghost {
   border: 1px solid rgba(79, 70, 229, 0.2);
   border-radius: 16px;
-  padding: 12px 20px;
+  padding: 13px 22px;
   background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
   color: #ffffff;
   font-weight: 700;
-  font-size: 13.5px;
+  font-size: 15px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 9px;
   box-shadow: 0 8px 22px -4px rgba(79, 70, 229, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.35);
   transition: all 0.28s var(--spatial-spring);
   position: relative;
@@ -557,8 +561,8 @@ button {
 }
 
 .primary.large, .ghost.large {
-  padding: 15px 26px;
-  font-size: 14.5px;
+  padding: 16px 28px;
+  font-size: 16px;
   border-radius: 18px;
 }
 
@@ -640,14 +644,14 @@ button {
 .stat span {
   display: block;
   color: var(--text-muted);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.02em;
 }
 
 .stat strong {
   display: block;
-  font-size: 30px;
+  font-size: 34px;
   font-weight: 800;
   margin-top: 2px;
   color: #0f172a;
@@ -688,7 +692,7 @@ button {
 }
 
 .card-head h3 {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
   margin: 0;
   color: #0f172a;
@@ -696,11 +700,11 @@ button {
 }
 
 .card-head span {
-  font-size: 11px;
+  font-size: 12.5px;
   color: var(--text-subtle);
   font-weight: 600;
   background: var(--glass-pill);
-  padding: 4px 10px;
+  padding: 5px 12px;
   border-radius: 999px;
   border: 1px solid var(--glass-border);
 }
@@ -718,7 +722,7 @@ button {
 .model-bar div:first-child {
   display: flex;
   justify-content: space-between;
-  font-size: 12.5px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--text-muted);
   margin-bottom: 8px;
@@ -787,8 +791,8 @@ button {
 }
 
 .quick-icon {
-  width: 48px;
-  height: 48px;
+  width: 50px;
+  height: 50px;
   border-radius: 16px;
   background: rgba(79, 70, 229, 0.08);
   color: #4f46e5;
@@ -800,17 +804,17 @@ button {
 
 .quick b {
   display: block;
-  font-size: 14.5px;
+  font-size: 16px;
   font-weight: 700;
   color: #0f172a;
 }
 
 .quick span {
   display: block;
-  font-size: 11.5px;
+  font-size: 13px;
   color: var(--text-muted);
   margin-top: 4px;
-  line-height: 1.4;
+  line-height: 1.45;
 }
 
 /* -----------------------------------------------------------------------------
@@ -1110,16 +1114,16 @@ button {
    ----------------------------------------------------------------------------- */
 .predict-layout {
   display: grid;
-  grid-template-columns: 260px 1fr;
-  gap: 24px;
+  grid-template-columns: 280px 1fr;
+  gap: 28px;
 }
 
 .step-pill {
   background: #ffffff;
   border: 1px solid var(--glass-border);
-  padding: 6px 14px;
+  padding: 7px 16px;
   border-radius: 999px;
-  font-size: 12px;
+  font-size: 13.5px;
   font-weight: 700;
   color: #4f46e5;
   box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
@@ -1129,12 +1133,12 @@ button {
   border: 1px solid var(--glass-border);
   background: var(--glass-surface);
   border-radius: 24px;
-  padding: 12px;
+  padding: 14px;
   align-self: start;
   box-shadow: var(--spatial-shadow-sm);
   backdrop-filter: var(--spatial-blur-base);
   display: grid;
-  gap: 6px;
+  gap: 8px;
 }
 
 .steps button {
@@ -1144,11 +1148,11 @@ button {
   color: #475569;
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 14px;
+  gap: 14px;
+  padding: 13px 16px;
   border-radius: 16px;
   text-align: left;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
   transition: all 0.25s var(--spatial-spring);
 }
@@ -1166,13 +1170,13 @@ button {
 }
 
 .step-number {
-  width: 26px;
-  height: 26px;
+  width: 30px;
+  height: 30px;
   border: 1px solid var(--glass-border);
   border-radius: 50%;
   display: grid;
   place-items: center;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 800;
   background: #ffffff;
   color: #475569;
@@ -1188,8 +1192,8 @@ button {
 .form-card {
   border: 1px solid var(--glass-border);
   background: var(--glass-surface);
-  border-radius: 28px;
-  padding: 32px;
+  border-radius: 30px;
+  padding: 36px;
   box-shadow: var(--spatial-shadow-md);
   backdrop-filter: var(--spatial-blur-base);
 }
@@ -1198,27 +1202,27 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 28px;
+  margin-bottom: 30px;
 }
 
 .form-card-head span {
-  font-size: 11px;
-  font-weight: 700;
+  font-size: 13px;
+  font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #4f46e5;
 }
 
 .form-card-head h2 {
-  margin: 4px 0 0;
-  font-size: 24px;
+  margin: 6px 0 0;
+  font-size: 28px;
   font-weight: 800;
   color: #0f172a;
 }
 
 .progress {
-  width: 140px;
-  height: 8px;
+  width: 160px;
+  height: 10px;
   background: #e2e8f0;
   border-radius: 999px;
   overflow: hidden;
@@ -1237,18 +1241,18 @@ button {
 .form-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  gap: 22px;
 }
 
 .field {
   display: grid;
-  gap: 8px;
+  gap: 10px;
   position: relative;
 }
 
 .field > span {
-  font-size: 11px;
-  color: #475569;
+  font-size: 13px;
+  color: #334155;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1256,14 +1260,14 @@ button {
 
 .field input, .field select {
   width: 100%;
-  height: 48px;
-  border: 1px solid #cbd5e1;
+  height: 52px;
+  border: 1.5px solid #cbd5e1;
   background: #ffffff;
   color: #0f172a;
-  border-radius: 14px;
-  padding: 0 16px;
+  border-radius: 16px;
+  padding: 0 18px;
   outline: none;
-  font-size: 13.5px;
+  font-size: 15.5px;
   transition: all 0.25s var(--spatial-spring);
   box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.03);
 }
@@ -1277,36 +1281,38 @@ button {
 .field select option {
   background: #ffffff;
   color: #0f172a;
+  font-size: 15px;
 }
 
 .field small {
   position: absolute;
-  right: 14px;
-  bottom: 15px;
+  right: 16px;
+  bottom: 16px;
   color: #94a3b8;
-  font-size: 10px;
+  font-size: 12px;
+  font-weight: 600;
 }
 
 .model-select {
-  margin-top: 28px;
-  padding-top: 24px;
+  margin-top: 30px;
+  padding-top: 26px;
   border-top: 1px solid var(--glass-border);
 }
 
 .model-select > span {
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #475569;
+  color: #334155;
   display: block;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .model-options {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 12px;
 }
 
 .model-options button {
@@ -1314,8 +1320,8 @@ button {
   background: #ffffff;
   color: #475569;
   border-radius: 14px;
-  padding: 10px 16px;
-  font-size: 12.5px;
+  padding: 11px 18px;
+  font-size: 14px;
   font-weight: 600;
   transition: all 0.25s var(--spatial-spring);
 }
@@ -1337,22 +1343,22 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 32px;
-  padding-top: 24px;
+  margin-top: 34px;
+  padding-top: 26px;
   border-top: 1px solid var(--glass-border);
 }
 
 .api-note {
-  margin-top: 24px;
+  margin-top: 26px;
   display: flex;
   align-items: flex-start;
-  gap: 12px;
-  padding: 14px 18px;
-  border-radius: 16px;
+  gap: 14px;
+  padding: 16px 20px;
+  border-radius: 18px;
   background: rgba(79, 70, 229, 0.06);
   border: 1px solid rgba(79, 70, 229, 0.18);
   color: #334155;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.6;
 }
 
@@ -1413,9 +1419,9 @@ button {
 }
 
 .result-icon {
-  width: 52px;
-  height: 52px;
-  border-radius: 16px;
+  width: 58px;
+  height: 58px;
+  border-radius: 18px;
   display: grid;
   place-items: center;
   margin-bottom: 16px;
@@ -1435,14 +1441,14 @@ button {
 
 .result-card span {
   display: block;
-  font-size: 12px;
+  font-size: 13.5px;
   font-weight: 600;
   color: var(--text-muted);
 }
 
 .result-card strong {
   display: block;
-  font-size: 26px;
+  font-size: 30px;
   font-weight: 800;
   margin: 4px 0 6px;
   letter-spacing: -0.02em;
@@ -1458,7 +1464,7 @@ button {
 
 .result-card small {
   display: block;
-  font-size: 12px;
+  font-size: 13px;
   color: var(--text-subtle);
   font-weight: 600;
 }
@@ -1471,12 +1477,12 @@ button {
    HISTORY TABLE & SEARCH
    ----------------------------------------------------------------------------- */
 .history-count {
-  font-size: 12px;
+  font-size: 13.5px;
   font-weight: 700;
   color: #0284c7;
   background: rgba(2, 132, 199, 0.08);
   border: 1px solid rgba(2, 132, 199, 0.25);
-  padding: 6px 14px;
+  padding: 7px 16px;
   border-radius: 999px;
 }
 
@@ -1496,21 +1502,22 @@ button {
 }
 
 .table-head b {
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 700;
   color: #0f172a;
   display: block;
 }
 
 .table-head span {
-  font-size: 12px;
+  font-size: 13.5px;
   color: var(--text-muted);
   display: block;
-  margin-top: 2px;
+  margin-top: 3px;
 }
 
 .small-search {
-  width: 220px;
+  width: 250px;
+  height: 44px;
 }
 
 .empty {
@@ -1530,12 +1537,12 @@ button {
 .empty h3 {
   margin: 0;
   color: #0f172a;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .empty p {
   margin: 0;
-  font-size: 13px;
+  font-size: 14.5px;
   color: var(--text-muted);
 }
 
@@ -1549,9 +1556,9 @@ table {
 }
 
 th, td {
-  padding: 16px 24px;
+  padding: 18px 24px;
   border-bottom: 1px solid var(--glass-border);
-  font-size: 13px;
+  font-size: 14.5px;
   text-align: left;
 }
 
@@ -1559,7 +1566,7 @@ th {
   color: #64748b;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  font-size: 10.5px;
+  font-size: 12px;
   font-weight: 700;
   background: #f8fafc;
 }
@@ -1579,8 +1586,8 @@ tbody tr:hover {
 .badge {
   display: inline-flex;
   border-radius: 999px;
-  padding: 5px 12px;
-  font-size: 11px;
+  padding: 6px 14px;
+  font-size: 12.5px;
   font-weight: 700;
   letter-spacing: 0.03em;
 }
@@ -1601,9 +1608,9 @@ tbody tr:hover {
   background: var(--glass-pill);
   border: 1px solid var(--glass-border);
   color: #334155;
-  padding: 6px 14px;
-  border-radius: 10px;
-  font-size: 12px;
+  padding: 7px 16px;
+  border-radius: 12px;
+  font-size: 13.5px;
   font-weight: 600;
   transition: all 0.2s ease;
 }
@@ -1638,7 +1645,7 @@ tbody tr:hover {
   background: #ffffff;
   border: 1px solid var(--glass-border);
   border-radius: 28px;
-  padding: 36px;
+  padding: 40px;
   box-shadow: var(--spatial-shadow-floating);
 }
 
@@ -1646,8 +1653,8 @@ tbody tr:hover {
   position: absolute;
   top: 24px;
   right: 24px;
-  width: 38px;
-  height: 38px;
+  width: 40px;
+  height: 40px;
   border-radius: 12px;
   display: grid;
   place-items: center;
@@ -1673,12 +1680,12 @@ tbody tr:hover {
   background: var(--glass-pill);
   border: 1px solid var(--glass-border);
   border-radius: 16px;
-  padding: 14px;
+  padding: 16px;
 }
 
 .detail-grid span {
   display: block;
-  font-size: 11px;
+  font-size: 12.5px;
   text-transform: capitalize;
   color: var(--text-subtle);
   font-weight: 600;
@@ -1686,8 +1693,8 @@ tbody tr:hover {
 
 .detail-grid b {
   display: block;
-  margin-top: 4px;
-  font-size: 14px;
+  margin-top: 6px;
+  font-size: 15.5px;
   color: #0f172a;
 }
 
@@ -1732,9 +1739,9 @@ tbody tr:hover {
 }
 
 .leader-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
   display: grid;
   place-items: center;
   background: rgba(79, 70, 229, 0.08);
@@ -1743,11 +1750,11 @@ tbody tr:hover {
 }
 
 .leader-badge {
-  font-size: 10px;
+  font-size: 11.5px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  padding: 4px 10px;
+  padding: 5px 12px;
   border-radius: 999px;
   background: #f1f5f9;
   color: #64748b;
@@ -1761,7 +1768,7 @@ tbody tr:hover {
 }
 
 .leader-value {
-  font-size: 30px;
+  font-size: 34px;
   font-weight: 900;
   color: #0f172a;
   letter-spacing: -0.02em;
@@ -1769,16 +1776,16 @@ tbody tr:hover {
 }
 
 .leader-title {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
   color: #334155;
   margin: 0;
 }
 
 .leader-desc {
-  font-size: 11.5px;
+  font-size: 13px;
   color: #64748b;
-  line-height: 1.45;
+  line-height: 1.5;
   margin: 0;
 }
 
@@ -1790,7 +1797,7 @@ tbody tr:hover {
 .benchmark-controls {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
@@ -1798,9 +1805,9 @@ tbody tr:hover {
   border: 1px solid #cbd5e1;
   background: #ffffff;
   color: #475569;
-  padding: 7px 14px;
+  padding: 8px 16px;
   border-radius: 999px;
-  font-size: 12px;
+  font-size: 13.5px;
   font-weight: 600;
   transition: all 0.2s ease;
 }
@@ -1830,7 +1837,7 @@ tbody tr:hover {
   border: 1.5px solid var(--glass-border);
   background: var(--glass-surface);
   border-radius: 20px;
-  padding: 18px 20px;
+  padding: 20px 22px;
   text-align: left;
   cursor: pointer;
   transition: all 0.28s var(--spatial-spring);
@@ -1852,20 +1859,20 @@ tbody tr:hover {
 
 .model-tab-card b {
   display: block;
-  font-size: 14.5px;
+  font-size: 16px;
   font-weight: 700;
   color: #0f172a;
 }
 
 .model-tab-card span {
   display: block;
-  font-size: 11.5px;
+  font-size: 13px;
   color: #64748b;
   margin-top: 4px;
 }
 
 .model-tab-score {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 800;
   color: #4f46e5;
   margin-top: 10px;
@@ -1879,25 +1886,25 @@ tbody tr:hover {
   background: #ffffff;
   border: 1px solid var(--glass-border);
   border-radius: 24px;
-  padding: 26px;
+  padding: 28px;
   box-shadow: var(--spatial-shadow-md);
   margin-bottom: 24px;
 }
 
 .deepdive-bars {
   display: grid;
-  gap: 14px;
+  gap: 16px;
 }
 
 .metric-bar-row {
   display: grid;
-  gap: 6px;
+  gap: 8px;
 }
 
 .metric-bar-label {
   display: flex;
   justify-content: space-between;
-  font-size: 12.5px;
+  font-size: 14px;
   font-weight: 600;
   color: #334155;
 }
@@ -1915,23 +1922,23 @@ tbody tr:hover {
 .deepdive-info {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
   border-left: 1px solid #f1f5f9;
   padding-left: 24px;
 }
 
 .deepdive-info-block b {
-  font-size: 11px;
+  font-size: 12.5px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: #4f46e5;
   display: block;
-  margin-bottom: 4px;
+  margin-bottom: 5px;
 }
 
 .deepdive-info-block p {
-  font-size: 13px;
+  font-size: 14.5px;
   color: #334155;
   line-height: 1.6;
   margin: 0;
@@ -1952,7 +1959,7 @@ tbody tr:hover {
   background: #ffffff;
   border: 1px solid var(--glass-border);
   border-radius: 18px;
-  padding: 18px;
+  padding: 20px;
   box-shadow: var(--spatial-shadow-sm);
 }
 
@@ -1960,28 +1967,28 @@ tbody tr:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .driver-bar-head strong {
-  font-size: 13.5px;
+  font-size: 15px;
   color: #0f172a;
 }
 
 .driver-bar-head span {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   color: #4f46e5;
   background: rgba(79, 70, 229, 0.08);
-  padding: 3px 8px;
+  padding: 4px 10px;
   border-radius: 999px;
 }
 
 .driver-bar-item p {
-  font-size: 11.5px;
+  font-size: 13px;
   color: #64748b;
   margin: 8px 0 0;
-  line-height: 1.45;
+  line-height: 1.5;
 }
 
 /* Plain English Glossary */
@@ -1996,10 +2003,10 @@ tbody tr:hover {
   background: #ffffff;
   border: 1px solid var(--glass-border);
   border-radius: 20px;
-  padding: 20px;
+  padding: 22px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   box-shadow: var(--spatial-shadow-sm);
   transition: all 0.25s ease;
 }
@@ -2017,19 +2024,19 @@ tbody tr:hover {
 }
 
 .glossary-card-head b {
-  font-size: 14px;
+  font-size: 15.5px;
   color: #0f172a;
 }
 
 .glossary-card p {
-  font-size: 12px;
+  font-size: 13.5px;
   color: #475569;
-  line-height: 1.55;
+  line-height: 1.6;
   margin: 0;
 }
 
 .glossary-card small {
-  font-size: 11px;
+  font-size: 12px;
   color: #059669;
   font-weight: 600;
   margin-top: auto;
