@@ -200,7 +200,7 @@ def main():
     X_train_knn = scaler_knn.fit_transform(X_train)
     X_test_knn = scaler_knn.transform(X_test)
 
-    model_knn = KNeighborsClassifier(n_neighbors=13, weights="distance", p=1)
+    model_knn = KNeighborsClassifier(n_neighbors=15, weights="distance", n_jobs=-1)
     model_knn.fit(X_train_knn, y_train)
 
     preds_knn = model_knn.predict(X_test_knn)
@@ -216,9 +216,8 @@ def main():
     # Decision trees are invariant to monotonic feature scaling
     model_dt = DecisionTreeClassifier(
         criterion="entropy",
-        max_depth=6,
-        min_samples_leaf=15,
-        ccp_alpha=0.005,
+        max_depth=8,
+        min_samples_leaf=20,
         random_state=42,
     )
     model_dt.fit(X_train, y_train)
@@ -254,6 +253,11 @@ def main():
     print("=" * 70)
     summary_df = pd.DataFrame(metrics_summary)
     print(summary_df.to_string(index=False))
+
+    # Save metrics CSV for the platform
+    metrics_csv_path = Path(__file__).resolve().parent.parent / "model_metrics.csv"
+    summary_df.to_csv(metrics_csv_path, index=False)
+    print(f"Exported metrics summary to: {metrics_csv_path}")
 
     # ---------------------------------------------------------
     # EXPORT MODELS TO backend/ml_models

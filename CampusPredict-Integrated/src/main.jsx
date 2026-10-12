@@ -582,15 +582,15 @@ function Models() {
   }, []);
 
   const defaultList = [
-    { name: 'KNN', accuracy: 91.667, precision: 88.827, recall: 96.951, f1: 92.711, roc_auc: 96.933 },
-    { name: 'Logistic Regression', accuracy: 90.667, precision: 90.964, recall: 92.073, f1: 91.515, roc_auc: 96.077 },
-    { name: 'Linear SVM', accuracy: 90.667, precision: 91.463, recall: 91.463, f1: 91.463, roc_auc: 96.167 },
-    { name: 'Decision Tree', accuracy: 89.667, precision: 89.349, recall: 92.073, f1: 90.691, roc_auc: 93.728 }
+    { name: 'Logistic Regression', accuracy: 94.050, precision: 94.534, recall: 94.654, f1: 94.594, roc_auc: 98.954 },
+    { name: 'Linear SVM', accuracy: 94.040, precision: 94.541, recall: 94.627, f1: 94.584, roc_auc: 98.954 },
+    { name: 'Decision Tree', accuracy: 91.355, precision: 92.152, recall: 92.127, f1: 92.139, roc_auc: 97.494 },
+    { name: 'KNN', accuracy: 90.380, precision: 90.251, recall: 92.499, f1: 91.361, roc_auc: 97.110 }
   ];
 
   const modelsList = modelData.length ? modelData : defaultList;
   const currentModelStats = modelsList.find(m => m.name === selectedModel) || modelsList[0];
-  const currentSpec = MODEL_SPECS[selectedModel] || MODEL_SPECS['KNN'];
+  const currentSpec = MODEL_SPECS[selectedModel] || MODEL_SPECS['Logistic Regression'] || MODEL_SPECS['KNN'];
 
   const chartData = modelsList.map(m => ({
     name: m.name,
@@ -604,9 +604,9 @@ function Models() {
         <div>
           <div className="eyebrow"><Sparkles size={13} /> Evaluation & Transparency</div>
           <h1>Model Performance</h1>
-          <p>Explore empirical benchmarks, comparison charts, and algorithmic mechanics across the four trained placement classifiers.</p>
+          <p>Explore empirical benchmarks, comparison charts, and algorithmic mechanics across the four placement classifiers trained on 100,000 students.</p>
         </div>
-        <div className="history-count">Champion: KNN (91.67% Acc)</div>
+        <div className="history-count">Champion: Logistic & SVM (94.05% Acc)</div>
       </div>
 
       {/* 1. Leader Highlight Cards */}
@@ -616,9 +616,9 @@ function Models() {
             <div className="leader-icon"><Award size={20} /></div>
             <span className="leader-badge gold">Top Accuracy</span>
           </div>
-          <p className="leader-value">91.67%</p>
-          <p className="leader-title">KNN Classifier</p>
-          <p className="leader-desc">Highest overall test correctness with distance-weighted neighbor scoring.</p>
+          <p className="leader-value">94.05%</p>
+          <p className="leader-title">Logistic Regression</p>
+          <p className="leader-desc">Leading accuracy across 100,000 student profiles with regularized probabilistic margins.</p>
         </div>
 
         <div className="leader-card">
@@ -630,9 +630,9 @@ function Models() {
               Top Recall
             </span>
           </div>
-          <p className="leader-value">96.95%</p>
-          <p className="leader-title">KNN Classifier</p>
-          <p className="leader-desc">Detects 97 of 100 placed students, ensuring nearly zero eligible candidates are missed.</p>
+          <p className="leader-value">94.65%</p>
+          <p className="leader-title">Logistic Regression</p>
+          <p className="leader-desc">Correctly identifies 95 out of 100 placed candidates with minimal false negative loss.</p>
         </div>
 
         <div className="leader-card">
@@ -644,9 +644,9 @@ function Models() {
               Top ROC-AUC
             </span>
           </div>
-          <p className="leader-value">96.17%</p>
-          <p className="leader-title">Linear SVM</p>
-          <p className="leader-desc">Exceptional discriminatory boundary between placed and unplaced candidate profiles.</p>
+          <p className="leader-value">98.95%</p>
+          <p className="leader-title">Linear SVM & Logistic</p>
+          <p className="leader-desc">Exceptional separation strength between placed and unplaced candidate profiles.</p>
         </div>
 
         <div className="leader-card">
@@ -655,12 +655,12 @@ function Models() {
               <Layers size={20} />
             </div>
             <span className="leader-badge" style={{ background: 'rgba(2, 132, 199, 0.1)', color: '#0369a1', borderColor: 'rgba(2, 132, 199, 0.25)' }}>
-              Balanced Fit
+              Auditable Rules
             </span>
           </div>
-          <p className="leader-value">91.52%</p>
-          <p className="leader-title">Logistic Regression</p>
-          <p className="leader-desc">High F1 harmonic score with smooth calibrated probabilities for student guidance.</p>
+          <p className="leader-value">91.36%</p>
+          <p className="leader-title">Decision Tree</p>
+          <p className="leader-desc">Transparent hierarchical logic splits with 92.14% balanced F1 score.</p>
         </div>
       </div>
 
@@ -863,7 +863,7 @@ function Models() {
             <b>Accuracy</b>
           </div>
           <p>The total fraction of predictions (both placed and unplaced) that match true historical outcomes.</p>
-          <small>KNN leads at 91.67%</small>
+          <small>Logistic Regression leads at 94.05%</small>
         </div>
 
         <div className="glossary-card">
@@ -872,7 +872,7 @@ function Models() {
             <b>Recall (Sensitivity)</b>
           </div>
           <p>Out of all students who actually got placed, how many the AI correctly identified. High recall means no student is mistakenly left behind.</p>
-          <small>KNN leads at 96.95%</small>
+          <small>Logistic Regression leads at 94.65%</small>
         </div>
 
         <div className="glossary-card">
@@ -881,7 +881,7 @@ function Models() {
             <b>Precision</b>
           </div>
           <p>When the model predicts "Placed", how often is it right. High precision prevents giving false comfort to candidates needing upskilling.</p>
-          <small>Linear SVM leads at 91.46%</small>
+          <small>Linear SVM leads at 94.54%</small>
         </div>
 
         <div className="glossary-card">
@@ -890,7 +890,7 @@ function Models() {
             <b>ROC-AUC Power</b>
           </div>
           <p>The model's overall separation ability across varying confidence levels (1.0 = perfect distinction).</p>
-          <small>KNN & SVM lead (&gt;96%)</small>
+          <small>Logistic & SVM lead (&gt;98.9%)</small>
         </div>
       </div>
 
@@ -898,8 +898,8 @@ function Models() {
       <section className="card table-card" style={{ marginBottom: 30 }}>
         <div className="table-head">
           <div>
-            <b>Complete Held-Out Evaluation Benchmarks</b>
-            <span>Empirical performance scores from test split validation</span>
+            <b>Complete Held-Out Evaluation Benchmarks (100,000 Students)</b>
+            <span>Empirical performance scores from stratified test split validation</span>
           </div>
         </div>
         <div className="table-wrap">
@@ -921,23 +921,23 @@ function Models() {
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                       <span style={{ width: 8, height: 8, borderRadius: '50%', background: MODEL_SPECS[r.name]?.color || '#4f46e5' }} />
                       <b>{r.name}</b>
-                      {r.name === 'KNN' && <span className="badge green" style={{ padding: '2px 8px', fontSize: 10 }}>Top Model</span>}
+                      {r.name === 'Logistic Regression' && <span className="badge green" style={{ padding: '2px 8px', fontSize: 10 }}>Top Model</span>}
                     </div>
                   </td>
                   <td>
-                    {r.name === 'KNN' ? <strong style={{ color: '#059669' }}>{Number(r.accuracy).toFixed(2)}% ★</strong> : `${Number(r.accuracy).toFixed(2)}%`}
+                    {r.name === 'Logistic Regression' ? <strong style={{ color: '#059669' }}>{Number(r.accuracy).toFixed(2)}% ★</strong> : `${Number(r.accuracy).toFixed(2)}%`}
                   </td>
                   <td>
                     {r.name === 'Linear SVM' ? <strong style={{ color: '#059669' }}>{Number(r.precision).toFixed(2)}% ★</strong> : `${Number(r.precision).toFixed(2)}%`}
                   </td>
                   <td>
-                    {r.name === 'KNN' ? <strong style={{ color: '#059669' }}>{Number(r.recall).toFixed(2)}% ★</strong> : `${Number(r.recall).toFixed(2)}%`}
+                    {r.name === 'Logistic Regression' ? <strong style={{ color: '#059669' }}>{Number(r.recall).toFixed(2)}% ★</strong> : `${Number(r.recall).toFixed(2)}%`}
                   </td>
                   <td>
-                    {r.name === 'KNN' ? <strong style={{ color: '#059669' }}>{Number(r.f1).toFixed(2)}% ★</strong> : `${Number(r.f1).toFixed(2)}%`}
+                    {r.name === 'Logistic Regression' ? <strong style={{ color: '#059669' }}>{Number(r.f1).toFixed(2)}% ★</strong> : `${Number(r.f1).toFixed(2)}%`}
                   </td>
                   <td>
-                    {r.name === 'KNN' ? <strong style={{ color: '#059669' }}>{Number(r.roc_auc).toFixed(2)}% ★</strong> : `${Number(r.roc_auc).toFixed(2)}%`}
+                    {r.name === 'Logistic Regression' || r.name === 'Linear SVM' ? <strong style={{ color: '#059669' }}>{Number(r.roc_auc).toFixed(2)}% ★</strong> : `${Number(r.roc_auc).toFixed(2)}%`}
                   </td>
                 </tr>
               ))}

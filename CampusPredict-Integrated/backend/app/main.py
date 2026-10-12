@@ -60,11 +60,45 @@ def health():
 
 @app.get("/api/models")
 def model_performance():
+    from pathlib import Path
+    import csv
+    metrics_file = Path(__file__).resolve().parent.parent.parent / "model_metrics.csv"
+    if metrics_file.exists():
+        try:
+            name_map = {
+                "Logistic Regression": "logistic_regression",
+                "KNN": "knn",
+                "Decision Tree": "decision_tree",
+                "Linear SVM": "svm_linear"
+            }
+            rows = []
+            with open(metrics_file, newline="", encoding="utf-8") as f:
+                reader = csv.DictReader(f)
+                for r in reader:
+                    m_key = name_map.get(r["Model"], r["Model"].lower().replace(" ", "_"))
+                    item = {
+                        "model_name": m_key,
+                        "label": r["Model"],
+                        "accuracy": float(r["Accuracy"]),
+                        "precision": float(r["Precision"]),
+                        "recall": float(r["Recall"]),
+                        "f1": float(r["F1"]),
+                        "roc_auc": float(r["ROC-AUC"])
+                    }
+                    if m_key == "svm_linear":
+                        item["c"] = 0.01
+                        item["score_type"] = "probability"
+                    rows.append(item)
+            if rows:
+                return rows
+        except Exception:
+            pass
+
     return [
-        {"model_name": "logistic_regression", "label": "Logistic Regression", "accuracy": 90.667, "precision": 90.964, "recall": 92.073, "f1": 91.515, "roc_auc": 96.077},
-        {"model_name": "knn", "label": "KNN", "accuracy": 91.667, "precision": 88.827, "recall": 96.951, "f1": 92.711, "roc_auc": 96.933},
-        {"model_name": "decision_tree", "label": "Decision Tree", "accuracy": 89.667, "precision": 89.349, "recall": 92.073, "f1": 90.691, "roc_auc": 93.728},
-        {"model_name": "svm_linear", "label": "Linear SVM", "accuracy": 90.667, "precision": 91.463, "recall": 91.463, "f1": 91.463, "roc_auc": 96.167, "c": 0.01, "score_type": "probability"},
+        {"model_name": "logistic_regression", "label": "Logistic Regression", "accuracy": 94.050, "precision": 94.534, "recall": 94.654, "f1": 94.594, "roc_auc": 98.954},
+        {"model_name": "knn", "label": "KNN", "accuracy": 90.380, "precision": 90.251, "recall": 92.499, "f1": 91.361, "roc_auc": 97.110},
+        {"model_name": "decision_tree", "label": "Decision Tree", "accuracy": 91.355, "precision": 92.152, "recall": 92.127, "f1": 92.139, "roc_auc": 97.494},
+        {"model_name": "svm_linear", "label": "Linear SVM", "accuracy": 94.040, "precision": 94.541, "recall": 94.627, "f1": 94.584, "roc_auc": 98.954, "c": 0.01, "score_type": "probability"},
     ]
 
 @app.post("/api/auth/register")
