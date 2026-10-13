@@ -1,314 +1,196 @@
-# Student Placement Prediction using Machine Learning
+# CampusPulse — Student Placement Prediction System
 
-A machine learning-based system that predicts whether a student is likely to be placed based on academic performance, technical skills, internships, projects, aptitude, communication skills, and other employability-related factors.
+A comprehensive machine learning-based platform that predicts student campus placement outcomes using academic records, technical proficiencies, internships, projects, hackathons, aptitude scores, communication skills, and engineered employability indices.
 
-The project compares multiple classical machine learning classification algorithms and provides an interactive interface for placement prediction.
+The repository includes both an interactive **Streamlit Application** and a production-ready **Full-Stack Web Platform (React + FastAPI + SQLite/PostgreSQL)**, evaluated across 4 classical machine learning classification algorithms on a dataset of **100,000 student records**.
 
-## Project Overview
+---
 
-Student placement depends on multiple academic and skill-based factors. This project uses historical student data to identify patterns associated with placement outcomes and builds classification models to predict whether a student is likely to be placed.
+## 📊 Benchmark Model Performance (100,000 Records)
 
-The system takes student-related attributes as input and produces:
+All models are trained and evaluated on an 80/20 stratified split (`random_state=42`) using domain-specific feature engineering:
 
-- Placement prediction
-- Estimated prediction probability
-- Model performance comparison
-- Classification metrics
-- Confusion matrices
-- Exploratory data analysis
+| Model | Accuracy | Precision | Recall | F1-Score | ROC-AUC | Champion Status |
+| :--- | :---:| :---:| :---:| :---:| :---:| :---:|
+| **Logistic Regression** | **94.05%** | **94.53%** | **94.65%** | **94.59%** | **98.95%** | 🏆 Co-Champion |
+| **Linear SVM (Calibrated)** | **94.04%** | **94.54%** | **94.63%** | **94.58%** | **98.95%** | 🏆 Co-Champion |
+| **Decision Tree (Pruned)** | **91.36%** | **92.15%** | **92.13%** | **92.14%** | **97.49%** | High Interpretability |
+| **KNN (Robust Distance)** | **90.38%** | **90.25%** | **92.50%** | **91.36%** | **97.11%** | Instance-Based |
 
-## Problem Statement
+*(Metrics sourced directly from [model_metrics.csv](file:///c:/Users/hp/Downloads/CampusPredict-Integrated%20(2)/model_metrics.csv) and reproducible via `CampusPredict-Integrated/ml_source/train_models.py`)*
 
-> Develop a machine learning system capable of predicting student placement outcomes based on academic performance, technical skills, internships, projects, aptitude performance, and other relevant student attributes.
+---
 
-## Objectives
+## 🎯 Key Objectives & Capabilities
 
-- Analyze factors influencing student placement outcomes.
-- Perform exploratory data analysis on student placement data.
-- Preprocess and prepare the dataset for machine learning.
-- Train multiple classification algorithms.
-- Compare model performance using appropriate evaluation metrics.
-- Select a suitable model for deployment.
-- Develop an interactive web application for placement prediction.
+- **Accurate Placement Inference**: Predicts placement likelihood with calibrated confidence probabilities.
+- **Model Comparison**: Real-time cross-comparison across all 4 machine learning models on identical inputs.
+- **Explainable Metrics**: Complete confusion matrices, ROC-AUC curves, classification reports, and feature importance.
+- **Domain Feature Engineering**: Incorporates academic clearance attenuation, technical competency mastery, and composite employability indices.
+- **Dual Applications**:
+  1. Lightweight, self-contained **Streamlit dashboard** (`app.py`).
+  2. Enterprise **React + FastAPI platform** with JWT authentication, user history, and search capabilities.
 
-## Machine Learning Models
+---
 
-The project evaluates the following models:
+## 🧠 Machine Learning Algorithms
 
-### 1. Logistic Regression
+1. **Logistic Regression (`C=0.1`, `max_iter=2000`)**
+   - Baseline linear classifier providing interpretable probability-based predictions via sigmoid activation.
+   - Scaled using `StandardScaler`.
+2. **Support Vector Machine (Linear SVM with Platt Scaling)**
+   - Utilizes `LinearSVC(C=0.01)` wrapped in `CalibratedClassifierCV(cv=5, method='sigmoid')` to output well-calibrated probabilities.
+3. **Decision Tree Classifier (`max_depth=8`, `min_samples_leaf=20`, `criterion='entropy'`)**
+   - Optimized with depth constraining and entropy splitting to balance expressiveness with generalization.
+4. **K-Nearest Neighbors (`k=15`, `weights='distance'`, `RobustScaler`)**
+   - Uses distance-weighted neighborhood voting with `RobustScaler` to neutralize outlier sensitivity.
 
-Used as a baseline classification model and provides interpretable probability-based predictions.
+*(Note: Ensemble methods like Random Forest are intentionally excluded to focus on classical single-model behavior).*
 
-### 2. K-Nearest Neighbors
+---
 
-Classifies a student based on similarities with students in the training dataset.
+## 🔬 Domain-Specific Feature Engineering
 
-### 3. Decision Tree
+The pipeline engineers 5 domain indicators that elevate raw feature signals:
 
-Creates interpretable decision rules based on student attributes.
+1. **Academic Clearance Score**: `cgpa * exp(-0.30 * backlogs)` — Models non-linear academic risk from active backlogs.
+2. **Strict Clearance Flag**: `(backlogs == 0)` — Binary threshold for strict corporate eligibility criteria.
+3. **Technical Mastery Index**: Weighted combination of coding (`40%`), aptitude (`25%`), logical reasoning (`20%`), and mock interview scores (`15%`).
+4. **Experience Index**: Weighted combination of internships (`3.5x`), projects (`1.5x`), hackathons (`1.5x`), and certifications (`0.8x`).
+5. **Placement Readiness Score**: Composite index integrating academic clearance, technical mastery, practical experience, and attendance.
 
-### 4. Support Vector Machine
+---
 
-Finds an optimal decision boundary between placed and non-placed students.
-
-**Random Forest is intentionally not used in this project.**
-
-## Dataset Features
-
-Depending on the dataset used, the model can consider features such as:
-
-| Feature | Description |
-|---|---|
-| CGPA | Student's cumulative academic performance |
-| 10th Percentage | Secondary school percentage |
-| 12th Percentage | Higher secondary percentage |
-| Backlogs | Number of academic backlogs |
-| Internships | Number of internships completed |
-| Projects | Number of academic/personal projects |
-| Certifications | Number of relevant certifications |
-| Coding Score | Technical/coding assessment score |
-| Aptitude Score | Aptitude assessment score |
-| Communication Score | Communication assessment score |
-| Attendance | Academic attendance percentage |
-| Placement Status | Target variable |
-
-### Target Variable
+## 📂 Repository Structure
 
 ```text
-0 → Not Placed
-1 → Placed
+CampusPulse/
+├── app.py                                   # Interactive Streamlit Web Application
+├── model_metrics.csv                        # Benchmark metrics for all 4 trained models
+├── requirements.txt                         # Python dependencies for Streamlit & ML pipeline
+├── README.md                                # Repository documentation
+│
+└── CampusPredict-Integrated/                # Full-Stack Web Platform (React + FastAPI)
+    ├── src/                                 # React (Vite) frontend application
+    │   ├── main.jsx                         # Application UI, dashboards & charts
+    │   ├── styles.css                       # Responsive dark-theme styling
+    │   └── services/api.js                  # Axios REST API client
+    ├── backend/                             # FastAPI backend service
+    │   ├── app/                             # API routes, auth, schemas & database
+    │   ├── ml_models/                       # Exported .pkl model & scaler artifacts
+    │   ├── requirements.txt                 # FastAPI backend dependencies
+    │   └── .env.example                     # Backend environment configuration
+    ├── ml_source/                           # Machine Learning source directory
+    │   ├── student_placement_prediction_dataset_2026.csv  # 100,000 student records
+    │   ├── train_models.py                  # End-to-end training & evaluation pipeline
+    │   ├── artifacts/                       # Pre-trained models and matching scalers
+    │   └── notebooks/                       # Individual model Jupyter Notebooks
+    │       ├── 01_logistic_regression.ipynb
+    │       ├── 02_knn_student_placement.ipynb
+    │       ├── 03_decision_tree_student_placement.ipynb
+    │       └── 04_svm_student_placement_updated.ipynb
+    ├── PROJECT_REPORT.md                    # Detailed ML engineering report
+    ├── package.json                         # Node frontend dependencies
+    └── README.md                            # Integrated platform guide
 ```
 
-## Workflow
+---
 
-```text
-                 Dataset
-                    |
-                    v
-             Data Cleaning
-                    |
-                    v
-             Exploratory Data
-                 Analysis
-                    |
-                    v
-           Feature Engineering
-                    |
-                    v
-          Train/Test Split
-                    |
-          +---------+---------+
-          |         |         |
-          v         v         v
-       Logistic    KNN    Decision Tree
-      Regression
-          |         |         |
-          +---------+---------+
-                    |
-                    v
-                   SVM
-                    |
-                    v
-            Model Evaluation
-                    |
-                    v
-          Best Model Selection
-                    |
-                    v
-             Streamlit App
-                    |
-                    v
-          Placement Prediction
-```
+## 🚀 Getting Started
 
-## Evaluation Metrics
+### Prerequisites
 
-Since this is a classification problem, the models are evaluated using:
+- **Python 3.10+**
+- **Node.js 18+** & npm (for the React frontend)
+- **Git**
 
-- Accuracy
-- Precision
-- Recall
-- F1-Score
-- ROC-AUC
-- Confusion Matrix
+---
 
-### Why multiple metrics?
+### Option A: Run Streamlit Application (Quick Start)
 
-Accuracy alone may not adequately represent model performance if the dataset contains an imbalance between placed and non-placed students.
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/dev-lov-oper/CampusPulse.git
+   cd CampusPulse
+   ```
 
-Precision measures how many predicted placements were actually placed students, while recall measures how many actual placed students were correctly identified.
+2. **Create and activate a virtual environment**:
+   ```bash
+   # Windows
+   python -m venv .venv
+   .venv\Scripts\activate
 
-## Exploratory Data Analysis
+   # Linux / macOS
+   python -m venv .venv
+   source .venv/bin/activate
+   ```
 
-The project includes analysis of relationships between placement outcomes and factors such as:
+3. **Install dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-- CGPA
-- Academic percentages
-- Internships
-- Projects
-- Coding performance
-- Aptitude performance
-- Communication skills
-- Backlogs
-- Attendance
+4. **Launch Streamlit**:
+   ```bash
+   streamlit run app.py
+   ```
+   Open `http://localhost:8501` in your browser.
 
-Visualizations can include:
+---
 
-- Distribution plots
-- Count plots
-- Box plots
-- Correlation heatmaps
-- Feature-wise placement comparisons
-- Confusion matrices
-- ROC curves
+### Option B: Run Integrated Full-Stack Platform (React + FastAPI)
 
-## Application
-
-The project includes an interactive Streamlit application.
-
-### Example Input
-
-```text
-CGPA                  : 8.2
-10th Percentage       : 88
-12th Percentage       : 84
-Internships           : 2
-Projects              : 4
-Coding Score          : 78
-Aptitude Score        : 82
-Communication Score   : 75
-Backlogs              : 0
-```
-
-### Example Output
-
-```text
-Prediction: PLACED
-
-Estimated Model Probability: 82%
-```
-
-The displayed probability represents the model's estimated probability based on the patterns learned from the training data. It is not a guarantee of actual employment.
-
-## Project Structure
-
-```text
-student-placement-prediction/
-│
-├── data/
-│   └── placement.csv
-│
-├── notebooks/
-│   └── analysis.ipynb
-│
-├── models/
-│   ├── logistic_regression.pkl
-│   ├── knn.pkl
-│   ├── decision_tree.pkl
-│   └── svm.pkl
-│
-├── src/
-│   ├── preprocessing.py
-│   ├── train.py
-│   └── predict.py
-│
-├── app.py
-├── requirements.txt
-├── README.md
-└── .gitignore
-```
-
-## Installation
-
-Clone the repository:
+#### 1. Start the FastAPI Backend
 
 ```bash
-git clone https://github.com/your-username/student-placement-prediction.git
-```
-
-Navigate to the project directory:
-
-```bash
-cd student-placement-prediction
-```
-
-Create a virtual environment:
-
-```bash
+cd CampusPredict-Integrated/backend
 python -m venv .venv
-```
 
-Activate the environment.
-
-### Windows
-
-```bash
+# Windows
 .venv\Scripts\activate
-```
-
-### Linux/macOS
-
-```bash
+# Linux / macOS
 source .venv/bin/activate
-```
 
-Install dependencies:
-
-```bash
 pip install -r requirements.txt
+uvicorn app.main:app --reload --port 8000
 ```
+- API Endpoint: `http://127.0.0.1:8000`
+- Interactive Swagger Docs: `http://127.0.0.1:8000/docs`
 
-## Running the Application
+#### 2. Start the React Frontend
 
-Start the Streamlit application:
-
+Open a new terminal:
 ```bash
-streamlit run app.py
+cd CampusPredict-Integrated
+npm install
+npm run dev
+```
+Open `http://localhost:5173` to access the full-stack portal.
+
+---
+
+### Option C: Retrain Models or Run Notebooks
+
+To retrain all models and re-export artifacts:
+```bash
+cd CampusPredict-Integrated/ml_source
+python train_models.py
 ```
 
-The application will open in your browser.
+The standalone notebooks are located in `CampusPredict-Integrated/ml_source/notebooks/`:
+- `01_logistic_regression.ipynb`
+- `02_knn_student_placement.ipynb`
+- `03_decision_tree_student_placement.ipynb`
+- `04_svm_student_placement_updated.ipynb`
 
-## Technologies Used
+---
 
-- **Python**
-- **Pandas**
-- **NumPy**
-- **Matplotlib**
-- **Seaborn**
-- **Scikit-learn**
-- **Streamlit**
-- **Joblib**
+## 🛡️ Responsible Use & Disclaimer
 
-## Model Comparison
+This software is developed for educational, analytical, and research purposes. Predictions reflect probabilistic patterns within historical training datasets and should not be used as the definitive or sole factor in real-world recruitment decisions.
 
-The project compares the trained models based on their performance on the test dataset.
+---
 
-| Model | Accuracy | Precision | Recall | F1-Score | ROC-AUC |
-|---|---:|---:|---:|---:|---:|
-| Logistic Regression | — | — | — | — | — |
-| KNN | — | — | — | — | — |
-| Decision Tree | — | — | — | — | — |
-| SVM | — | — | — | — | — |
+## 📄 License
 
-The values should be populated with the actual results obtained after training the models.
-
-## Future Improvements
-
-- Add more diverse student features.
-- Implement hyperparameter optimization.
-- Handle class imbalance using appropriate techniques.
-- Add explainable AI techniques such as SHAP.
-- Add personalized improvement recommendations.
-- Integrate a database for storing prediction history.
-- Deploy the application using Streamlit Cloud or another cloud platform.
-- Evaluate the model on data from different institutions to assess generalization.
-
-## Disclaimer
-
-This project is intended for educational and research purposes.
-
-Placement predictions are based on patterns present in the dataset and should not be interpreted as a definitive assessment of a student's employability or guarantee of placement.
-
-## License
-
-This project is available under the MIT License.
+This project is licensed under the [MIT License](LICENSE).

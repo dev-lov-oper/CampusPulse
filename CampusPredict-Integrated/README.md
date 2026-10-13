@@ -6,10 +6,10 @@ CampusPredict is a React + FastAPI web application that uses four supplied machi
 
 | Model | Accuracy | Precision | Recall | F1 | ROC-AUC |
 |---|---:|---:|---:|---:|---:|
-| Logistic Regression | 90.67% | 90.96% | 92.07% | 91.52% | 96.08% |
-| KNN (Robust Distance) | 91.67% | 88.83% | 96.95% | 92.71% | 96.93% |
-| Decision Tree (Pruned) | 89.67% | 89.35% | 92.07% | 90.69% | 93.73% |
-| Linear SVM (Calibrated) | 90.67% | 91.46% | 91.46% | 91.46% | 96.17% |
+| Logistic Regression | 94.05% | 94.53% | 94.65% | 94.59% | 98.95% |
+| Linear SVM (Calibrated) | 94.04% | 94.54% | 94.63% | 94.58% | 98.95% |
+| Decision Tree (Pruned) | 91.36% | 92.15% | 92.13% | 92.14% | 97.49% |
+| KNN (Robust Distance) | 90.38% | 90.25% | 92.50% | 91.36% | 97.11% |
 
 Metrics are from the held-out 20% test split (`random_state=42`, stratified). All models expose calibrated probabilities.
 
