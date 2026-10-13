@@ -191,6 +191,5 @@ This software is developed for educational, analytical, and research purposes. P
 
 ---
 
-## 📄 License
-
-This project is licensed under the [MIT License](LICENSE).
+## Take a quick look :
+https://campuspulsegit-rvjdwyybmdkm9deb6dwrxe.streamlit.app/
