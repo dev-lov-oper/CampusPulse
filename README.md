@@ -2,7 +2,7 @@
 
 A comprehensive machine learning-based platform that predicts student campus placement outcomes using academic records, technical proficiencies, internships, projects, hackathons, aptitude scores, communication skills, and engineered employability indices.
 
-The repository includes both an interactive **Streamlit Application** and a production-ready **Full-Stack Web Platform (React + FastAPI + SQLite/PostgreSQL)**, evaluated across 4 classical machine learning classification algorithms on a dataset of **100,000 student records**.
+The repository includes both an interactive **Streamlit Application** and a production-ready **Full-Stack Web Platform (React + FastAPI + SQLite)**, evaluated across 4 classical machine learning classification algorithms on a dataset of **100,000 student records**.
 
 ---
 
