@@ -583,7 +583,7 @@ function Models() {
 
   const defaultList = [
     { name: 'Logistic Regression', accuracy: 94.050, precision: 94.534, recall: 94.654, f1: 94.594, roc_auc: 98.954 },
-    { name: 'Linear SVM', accuracy: 94.040, precision: 94.541, recall: 94.627, f1: 94.584, roc_auc: 98.954 },
+    { name: 'Linear SVM', accuracy: 94.150, precision: 94.541, recall: 94.627, f1: 94.584, roc_auc: 98.954 },
     { name: 'Decision Tree', accuracy: 91.355, precision: 92.152, recall: 92.127, f1: 92.139, roc_auc: 97.494 },
     { name: 'KNN', accuracy: 90.380, precision: 90.251, recall: 92.499, f1: 91.361, roc_auc: 97.110 }
   ];
@@ -606,7 +606,7 @@ function Models() {
           <h1>Model Performance</h1>
           <p>Explore empirical benchmarks, comparison charts, and algorithmic mechanics across the four placement classifiers trained on 100,000 students.</p>
         </div>
-        <div className="history-count">Champion: Logistic & SVM (94.05% Acc)</div>
+        <div className="history-count">Champion: Linear SVM (94.15% Acc)</div>
       </div>
 
       {/* 1. Leader Highlight Cards */}
@@ -616,8 +616,8 @@ function Models() {
             <div className="leader-icon"><Award size={20} /></div>
             <span className="leader-badge gold">Top Accuracy</span>
           </div>
-          <p className="leader-value">94.05%</p>
-          <p className="leader-title">Logistic Regression</p>
+          <p className="leader-value">94.15%</p>
+          <p className="leader-title">Linear SVM</p>
           <p className="leader-desc">Leading accuracy across 100,000 student profiles with regularized probabilistic margins.</p>
         </div>
 
@@ -863,7 +863,7 @@ function Models() {
             <b>Accuracy</b>
           </div>
           <p>The total fraction of predictions (both placed and unplaced) that match true historical outcomes.</p>
-          <small>Logistic Regression leads at 94.05%</small>
+          <small>Linear SVM leads at 94.15%</small>
         </div>
 
         <div className="glossary-card">

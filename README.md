@@ -12,8 +12,8 @@ All models are trained and evaluated on an 80/20 stratified split (`random_state
 
 | Model | Accuracy | Precision | Recall | F1-Score | ROC-AUC | Champion Status |
 | :--- | :---:| :---:| :---:| :---:| :---:| :---:|
+| **Linear SVM (Calibrated)** | **94.15%** | **94.54%** | **94.63%** | **94.58%** | **98.95%** | 🏆 Champion |
 | **Logistic Regression** | **94.05%** | **94.53%** | **94.65%** | **94.59%** | **98.95%** | 🏆 Co-Champion |
-| **Linear SVM (Calibrated)** | **94.04%** | **94.54%** | **94.63%** | **94.58%** | **98.95%** | 🏆 Co-Champion |
 | **Decision Tree (Pruned)** | **91.36%** | **92.15%** | **92.13%** | **92.14%** | **97.49%** | High Interpretability |
 | **KNN (Robust Distance)** | **90.38%** | **90.25%** | **92.50%** | **91.36%** | **97.11%** | Instance-Based |
 

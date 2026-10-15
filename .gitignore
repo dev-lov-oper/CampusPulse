@@ -25,3 +25,6 @@ dist-ssr/
 Thumbs.db
 .vscode/
 .idea/
+
+# Local notebook model dumps
+CampusPredict-Integrated/ml_source/notebooks/*.pkl

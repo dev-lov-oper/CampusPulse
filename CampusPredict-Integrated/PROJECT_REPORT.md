@@ -41,7 +41,7 @@ The same stratified 80/20 train-test split with `random_state=42` is used for co
 | Model | Accuracy | Precision | Recall | F1 Score | ROC-AUC |
 |---|---:|---:|---:|---:|---:|
 | Logistic Regression | 94.05% | 94.53% | 94.65% | 94.59% | 98.95% |
-| Linear SVM (Calibrated) | 94.04% | 94.54% | 94.63% | 94.58% | 98.95% |
+| Linear SVM (Calibrated) | 94.15% | 94.54% | 94.63% | 94.58% | 98.95% |
 | Decision Tree (Pruned) | 91.36% | 92.15% | 92.13% | 92.14% | 97.49% |
 | KNN (Robust Distance) | 90.38% | 90.25% | 92.50% | 91.36% | 97.11% |
 

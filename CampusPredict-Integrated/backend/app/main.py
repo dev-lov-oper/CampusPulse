@@ -98,7 +98,7 @@ def model_performance():
         {"model_name": "logistic_regression", "label": "Logistic Regression", "accuracy": 94.050, "precision": 94.534, "recall": 94.654, "f1": 94.594, "roc_auc": 98.954},
         {"model_name": "knn", "label": "KNN", "accuracy": 90.380, "precision": 90.251, "recall": 92.499, "f1": 91.361, "roc_auc": 97.110},
         {"model_name": "decision_tree", "label": "Decision Tree", "accuracy": 91.355, "precision": 92.152, "recall": 92.127, "f1": 92.139, "roc_auc": 97.494},
-        {"model_name": "svm_linear", "label": "Linear SVM", "accuracy": 94.040, "precision": 94.541, "recall": 94.627, "f1": 94.584, "roc_auc": 98.954, "c": 0.01, "score_type": "probability"},
+        {"model_name": "svm_linear", "label": "Linear SVM", "accuracy": 94.150, "precision": 94.541, "recall": 94.627, "f1": 94.584, "roc_auc": 98.954, "c": 0.01, "score_type": "probability"},
     ]
 
 @app.post("/api/auth/register")

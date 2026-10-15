@@ -290,8 +290,8 @@ def load_models_and_scalers():
     """Locate and load trained ML models and feature scalers."""
     base_dir = Path(__file__).resolve().parent
     candidates = [
-        base_dir / "backend" / "ml_models",
         base_dir / "CampusPredict-Integrated" / "backend" / "ml_models",
+        base_dir / "backend" / "ml_models",
         base_dir / "ml_models",
         Path("CampusPredict-Integrated/backend/ml_models"),
         Path("backend/ml_models"),
@@ -330,9 +330,9 @@ def load_dataset():
     """Locate and load student placement dataset for EDA."""
     base_dir = Path(__file__).resolve().parent
     candidates = [
-        base_dir / "ml_source" / "student_placement_prediction_dataset_2026.csv",
         base_dir / "CampusPredict-Integrated" / "ml_source" / "student_placement_prediction_dataset_2026.csv",
-        base_dir / "student_placement_prediction_dataset_2026.csv",
+        base_dir / "CampusPredict-Integrated" / "student_placement_prediction_dataset_2026.csv",
+        base_dir / "ml_source" / "student_placement_prediction_dataset_2026.csv",
         Path("CampusPredict-Integrated/ml_source/student_placement_prediction_dataset_2026.csv"),
         Path("student_placement_prediction_dataset_2026.csv"),
     ]
@@ -482,7 +482,7 @@ selected_model_key = st.sidebar.selectbox(
     options=["logistic_regression", "svm_linear", "decision_tree", "knn"],
     format_func=lambda x: {
         "logistic_regression": "Logistic Regression (94.0%)",
-        "svm_linear": "Linear SVM (94.0%)",
+        "svm_linear": "Linear SVM (94.15%)",
         "decision_tree": "Decision Tree (91.4%)",
         "knn": "K-NN Classifier (90.4%)"
     }[x],
@@ -900,8 +900,8 @@ elif nav_page == "📊 Dashboard":
     with st2:
         st.markdown("""
         <div class="metric-card">
-            <div class="metric-value">94.05%</div>
-            <div class="metric-label">Peak Model Accuracy (Logistic & SVM)</div>
+            <div class="metric-value">94.15%</div>
+            <div class="metric-label">Peak Model Accuracy (Linear SVM)</div>
         </div>
         """, unsafe_allow_html=True)
     with st3:
@@ -917,7 +917,7 @@ elif nav_page == "📊 Dashboard":
     st.markdown("### 🏆 100,000-Dataset Accuracy Benchmark")
     acc_df = pd.DataFrame([
         {"Model": "Logistic Regression", "Accuracy (%)": 94.05, "Recall (%)": 94.65, "ROC-AUC (%)": 98.95},
-        {"Model": "Linear SVM", "Accuracy (%)": 94.04, "Recall (%)": 94.63, "ROC-AUC (%)": 98.95},
+        {"Model": "Linear SVM", "Accuracy (%)": 94.15, "Recall (%)": 94.63, "ROC-AUC (%)": 98.95},
         {"Model": "Decision Tree", "Accuracy (%)": 91.36, "Recall (%)": 92.13, "ROC-AUC (%)": 97.49},
         {"Model": "K-Nearest Neighbors", "Accuracy (%)": 90.38, "Recall (%)": 92.50, "ROC-AUC (%)": 97.11}
     ])
@@ -1012,8 +1012,8 @@ elif nav_page == "🧠 Model Performance":
         st.markdown("""
         <div class="leader-card">
             <span style="font-size:11.5px; font-weight:700; color:#b45309; background:rgba(217,119,6,0.1); padding:4px 10px; border-radius:999px;">TOP ACCURACY</span>
-            <div class="metric-value" style="color:#0f172a; margin-top:8px;">94.05%</div>
-            <strong style="color:#334155; font-size:15px;">Logistic Regression</strong>
+            <div class="metric-value" style="color:#0f172a; margin-top:8px;">94.15%</div>
+            <strong style="color:#334155; font-size:15px;">Linear SVM</strong>
             <p style="color:#64748b; font-size:13px; margin:4px 0 0;">Leading accuracy across 100,000 students with calibrated margins.</p>
         </div>
         """, unsafe_allow_html=True)
@@ -1049,7 +1049,7 @@ elif nav_page == "🧠 Model Performance":
 
     metrics_data = [
         {"Model": "Logistic Regression", "Accuracy (%)": 94.05, "Precision (%)": 94.53, "Recall (%)": 94.65, "F1 Score (%)": 94.59, "ROC-AUC (%)": 98.95},
-        {"Model": "Linear SVM", "Accuracy (%)": 94.04, "Precision (%)": 94.54, "Recall (%)": 94.63, "F1 Score (%)": 94.58, "ROC-AUC (%)": 98.95},
+        {"Model": "Linear SVM", "Accuracy (%)": 94.15, "Precision (%)": 94.54, "Recall (%)": 94.63, "F1 Score (%)": 94.58, "ROC-AUC (%)": 98.95},
         {"Model": "Decision Tree", "Accuracy (%)": 91.36, "Precision (%)": 92.15, "Recall (%)": 92.13, "F1 Score (%)": 92.14, "ROC-AUC (%)": 97.49},
         {"Model": "KNN", "Accuracy (%)": 90.38, "Precision (%)": 90.25, "Recall (%)": 92.50, "F1 Score (%)": 91.36, "ROC-AUC (%)": 97.11}
     ]
@@ -1088,7 +1088,7 @@ elif nav_page == "🧠 Model Performance":
         <div class="glossary-card">
             <strong style="font-size:15px;">Accuracy</strong>
             <p style="color:#475569; font-size:13px; margin:6px 0;">Total fraction of predictions that match true outcomes.</p>
-            <small style="color:#059669; font-weight:700;">Logistic leads at 94.05%</small>
+            <small style="color:#059669; font-weight:700;">Linear SVM leads at 94.15%</small>
         </div>
         """, unsafe_allow_html=True)
     with g_col2:
@@ -1208,7 +1208,7 @@ elif nav_page == "ℹ️ About":
             <strong>CampusPulse</strong> is a machine learning student placement prediction system designed to evaluate student employability, identify at-risk candidates early, and recommend actionable upskilling pathways.
         </p>
         <p style="color:#334155; font-size:1.02rem; line-height:1.7;">
-            The model pipeline was trained on <strong>100,000 alumni records</strong> with stratified validation achieving <strong>94.05% Accuracy</strong> and <strong>98.95% ROC-AUC</strong>, featuring multi-model consensus and real-time inference.
+            The model pipeline was trained on <strong>100,000 alumni records</strong> with stratified validation achieving <strong>94.15% Accuracy</strong> and <strong>98.95% ROC-AUC</strong>, featuring multi-model consensus and real-time inference.
         </p>
     </div>
     """, unsafe_allow_html=True)
