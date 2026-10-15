@@ -237,10 +237,10 @@ function Dashboard({ user, go }) {
         </Card>
         <Card title="Model Performance" action="4 models">
           <div className="model-bars">
-            <ModelBar name="Logistic Regression" val={90.67} />
-            <ModelBar name="KNN" val={91.67} />
-            <ModelBar name="Decision Tree" val={89.67} />
-            <ModelBar name="Linear SVM" val={90.67} />
+            <ModelBar name="Linear SVM" val={94.15} />
+            <ModelBar name="Logistic Regression" val={94.05} />
+            <ModelBar name="Decision Tree" val={91.36} />
+            <ModelBar name="KNN" val={90.38} />
           </div>
         </Card>
       </div>

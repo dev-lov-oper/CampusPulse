@@ -26,24 +26,47 @@ st.set_page_config(
 
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+    
+    :root {
+        --bg-void: #090d16;
+        --bg-glass-card: rgba(17, 24, 39, 0.72);
+        --bg-glass-elevated: rgba(26, 34, 52, 0.85);
+        --border-glass: rgba(255, 255, 255, 0.08);
+        --border-glass-specular: rgba(255, 255, 255, 0.16);
+        --border-glow-primary: rgba(99, 102, 241, 0.45);
+        --accent-indigo: #6366f1;
+        --accent-cyan: #06b6d4;
+        --accent-purple: #a855f7;
+        --accent-emerald: #10b981;
+        --accent-rose: #f43f5e;
+        --accent-amber: #f59e0b;
+        --text-primary: #f8fafc;
+        --text-secondary: #cbd5e1;
+        --text-muted: #94a3b8;
+    }
     
     html, body, [class*="css"], .stApp {
         font-family: 'Outfit', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
-        font-size: 16px !important;
-        line-height: 1.55;
+        font-size: 15.5px !important;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
     }
     
+    /* Cosmic Obsidian Mesh Background with Multi-Layer Aurora Orbs */
     .stApp {
-        background-color: #f8fafc !important;
+        background-color: var(--bg-void) !important;
         background-image: 
-            radial-gradient(circle at 14% 10%, rgba(99, 102, 241, 0.08) 0%, transparent 45%),
-            radial-gradient(circle at 86% 14%, rgba(6, 182, 212, 0.07) 0%, transparent 42%),
-            radial-gradient(circle at 50% 88%, rgba(168, 85, 247, 0.06) 0%, transparent 50%),
-            radial-gradient(rgba(148, 163, 184, 0.15) 1px, transparent 1px) !important;
-        background-size: 100% 100%, 100% 100%, 100% 100%, 32px 32px !important;
+            radial-gradient(circle at 12% 12%, rgba(99, 102, 241, 0.18) 0%, transparent 48%),
+            radial-gradient(circle at 88% 16%, rgba(6, 182, 212, 0.14) 0%, transparent 44%),
+            radial-gradient(circle at 50% 85%, rgba(168, 85, 247, 0.12) 0%, transparent 52%),
+            radial-gradient(circle at 30% 60%, rgba(16, 185, 129, 0.08) 0%, transparent 40%),
+            radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px) !important;
+        background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 28px 28px !important;
         background-attachment: fixed !important;
-        color: #0f172a !important;
+        color: var(--text-primary) !important;
     }
 
     /* Hide ugly Streamlit header anchor links */
@@ -51,16 +74,17 @@ st.markdown("""
         display: none !important;
     }
     
-    /* Clean Sidebar Styling */
+    /* Sleek Obsidian Sidebar */
     [data-testid="stSidebar"] {
-        background: rgba(255, 255, 255, 0.88) !important;
-        backdrop-filter: blur(28px) !important;
-        -webkit-backdrop-filter: blur(28px) !important;
-        border-right: 1px solid rgba(226, 232, 240, 0.9) !important;
-        min-width: 300px !important;
+        background: rgba(10, 14, 23, 0.95) !important;
+        backdrop-filter: blur(32px) !important;
+        -webkit-backdrop-filter: blur(32px) !important;
+        border-right: 1px solid var(--border-glass) !important;
+        box-shadow: 6px 0 35px rgba(0, 0, 0, 0.5) !important;
+        min-width: 310px !important;
     }
     
-    /* Transform Sidebar Radio into Modern Crystal Nav Dock */
+    /* Ultra-Sleek Crystal Nav Dock */
     [data-testid="stSidebar"] [data-baseweb="radio"] input {
         display: none !important;
     }
@@ -70,213 +94,292 @@ st.markdown("""
     [data-testid="stSidebar"] [data-baseweb="radio"] {
         background: transparent !important;
         padding: 10px 14px !important;
-        border-radius: 14px !important;
+        border-radius: 12px !important;
         margin-bottom: 5px !important;
         border: 1px solid transparent !important;
-        transition: all 0.25s ease !important;
+        transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
         width: 100% !important;
     }
     [data-testid="stSidebar"] [data-baseweb="radio"]:hover {
-        background: rgba(241, 245, 249, 0.85) !important;
-        border-color: rgba(203, 213, 225, 0.8) !important;
-        transform: translateX(3px) !important;
+        background: rgba(255, 255, 255, 0.05) !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+        transform: translateX(4px) !important;
     }
     [data-testid="stSidebar"] [data-baseweb="radio"] p {
-        font-size: 0.95rem !important;
+        font-size: 0.94rem !important;
         font-weight: 600 !important;
-        color: #334155 !important;
+        color: var(--text-muted) !important;
+        letter-spacing: -0.01em !important;
     }
     [data-testid="stSidebar"] [data-baseweb="radio"][aria-checked="true"],
     [data-testid="stSidebar"] div[data-checked="true"] {
-        background: linear-gradient(135deg, rgba(79, 70, 229, 0.12) 0%, rgba(147, 51, 234, 0.08) 100%) !important;
-        border: 1px solid rgba(99, 102, 241, 0.35) !important;
-        box-shadow: 0 4px 14px rgba(79, 70, 229, 0.1) !important;
+        background: linear-gradient(135deg, rgba(99, 102, 241, 0.25) 0%, rgba(168, 85, 247, 0.18) 100%) !important;
+        border: 1px solid rgba(129, 140, 248, 0.55) !important;
+        box-shadow: 0 4px 20px rgba(99, 102, 241, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.2) !important;
     }
     [data-testid="stSidebar"] [data-baseweb="radio"][aria-checked="true"] p,
     [data-testid="stSidebar"] div[data-checked="true"] p {
-        color: #4338ca !important;
-        font-weight: 700 !important;
+        color: #ffffff !important;
+        font-weight: 750 !important;
+        text-shadow: 0 0 12px rgba(129, 140, 248, 0.6) !important;
     }
 
-    /* Container Border Wrappers -> True White Crystal Cards */
+    /* Container Border Wrappers -> Deep Translucent Frosted Glass Cards */
     div[data-testid="stVerticalBlockBorderWrapper"] {
-        background: #ffffff !important;
-        border: 1px solid rgba(226, 232, 240, 0.95) !important;
-        border-radius: 24px !important;
-        box-shadow: 0 14px 34px -6px rgba(15, 23, 42, 0.06), inset 0 1px 1px rgba(255, 255, 255, 1) !important;
-        padding: 26px 30px !important;
-        margin-bottom: 20px !important;
+        background: var(--bg-glass-card) !important;
+        border: 1px solid var(--border-glass) !important;
+        border-radius: 20px !important;
+        box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.6), inset 0 1px 1px var(--border-glass-specular) !important;
+        backdrop-filter: blur(28px) !important;
+        -webkit-backdrop-filter: blur(28px) !important;
+        padding: 24px 28px !important;
+        margin-bottom: 22px !important;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    div[data-testid="stVerticalBlockBorderWrapper"]:hover {
+        border-color: rgba(99, 102, 241, 0.35) !important;
+        box-shadow: 0 22px 50px -10px rgba(0, 0, 0, 0.7), 0 0 30px rgba(99, 102, 241, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.2) !important;
     }
 
-    /* Typography & Contrast */
+    /* High-Impact Typography & Gradient Headings */
+    h1, h2, h3, h4 {
+        font-family: 'Outfit', sans-serif !important;
+        letter-spacing: -0.025em !important;
+        color: var(--text-primary) !important;
+    }
     h1 {
-        font-size: 2.35rem !important;
+        font-size: 2.45rem !important;
         font-weight: 850 !important;
-        color: #0f172a !important;
-        letter-spacing: -0.03em !important;
+        background: linear-gradient(135deg, #ffffff 40%, #94a3b8 100%) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
     }
     h2 {
         font-size: 1.75rem !important;
         font-weight: 800 !important;
-        color: #0f172a !important;
-        letter-spacing: -0.02em !important;
+        color: #f1f5f9 !important;
     }
     h3 {
         font-size: 1.35rem !important;
         font-weight: 750 !important;
-        color: #0f172a !important;
+        color: #e2e8f0 !important;
     }
     h4 {
-        font-size: 1.12rem !important;
+        font-size: 1.1rem !important;
         font-weight: 700 !important;
-        color: #334155 !important;
+        color: #cbd5e1 !important;
+    }
+    p, span, div {
+        color: var(--text-secondary);
     }
     
-    /* Form Label Enlargement */
+    /* Input Labels */
     .stNumberInput label, .stSelectbox label, .stSlider label, .stTextInput label, .stRadio label {
-        font-size: 0.92rem !important;
+        font-size: 0.88rem !important;
         font-weight: 700 !important;
-        color: #334155 !important;
-        letter-spacing: 0.04em !important;
+        color: #94a3b8 !important;
+        letter-spacing: 0.05em !important;
         text-transform: uppercase !important;
     }
     
     /* Input Elements */
     input, select, .stSelectbox div[data-baseweb="select"] {
-        font-size: 1.02rem !important;
-        border-radius: 14px !important;
+        font-size: 1rem !important;
+        background: rgba(15, 23, 42, 0.8) !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        color: #f8fafc !important;
+        border-radius: 12px !important;
+        transition: all 0.2s ease !important;
+    }
+    input:focus, .stSelectbox div[data-baseweb="select"]:focus-within {
+        border-color: #6366f1 !important;
+        box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.45) !important;
+    }
+    
+    /* Slider Custom Accent */
+    div[data-baseweb="slider"] div[role="slider"] {
+        background: #6366f1 !important;
+        border: 2px solid #ffffff !important;
+        box-shadow: 0 0 14px rgba(99, 102, 241, 0.8) !important;
     }
     
     /* Luminous Glass Hero Banner */
     .hero-container {
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
+        background: linear-gradient(135deg, rgba(26, 34, 52, 0.85) 0%, rgba(17, 24, 39, 0.85) 100%);
         padding: 2.2rem 2.6rem;
-        border-radius: 1.8rem;
-        box-shadow: 0 16px 40px -10px rgba(15, 23, 42, 0.08), inset 0 1px 1px rgba(255, 255, 255, 1);
+        border-radius: 1.6rem;
+        box-shadow: 0 18px 45px -10px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.15);
         margin-bottom: 2rem;
-        border: 1px solid rgba(226, 232, 240, 0.9);
+        border: 1px solid var(--border-glass);
         backdrop-filter: blur(32px);
+        -webkit-backdrop-filter: blur(32px);
         position: relative;
         overflow: hidden;
     }
     .hero-container::before {
         content: "";
         position: absolute;
-        top: 0; left: 0; right: 0; height: 3.5px;
-        background: linear-gradient(90deg, #4f46e5, #0284c7, #9333ea);
+        top: 0; left: 0; right: 0; height: 3px;
+        background: linear-gradient(90deg, #4f46e5, #06b6d4, #a855f7);
     }
     .hero-badge {
         display: inline-flex;
         align-items: center;
         gap: 6px;
-        background: rgba(79, 70, 229, 0.08);
-        color: #4f46e5;
-        border: 1px solid rgba(79, 70, 229, 0.2);
-        padding: 6px 14px;
+        background: rgba(99, 102, 241, 0.16);
+        color: #a5b4fc;
+        border: 1px solid rgba(129, 140, 248, 0.35);
+        padding: 5px 14px;
         border-radius: 999px;
-        font-size: 0.82rem;
-        font-weight: 700;
-        letter-spacing: 0.12em;
+        font-size: 0.78rem;
+        font-weight: 750;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
-        margin-bottom: 0.9rem;
+        margin-bottom: 0.8rem;
+        box-shadow: 0 0 16px rgba(99, 102, 241, 0.18);
     }
     .hero-title {
-        color: #0f172a;
+        color: #ffffff;
         font-size: 2.5rem;
         font-weight: 900;
         margin-bottom: 0.5rem;
         letter-spacing: -0.03em;
     }
     .hero-subtitle {
-        color: #475569;
-        font-size: 1.1rem;
+        color: var(--text-muted);
+        font-size: 1.08rem;
         line-height: 1.65;
         margin-bottom: 0;
         max-width: 900px;
     }
     
-    /* Luminous Spatial Cards */
-    .metric-card, .leader-card, .driver-card, .glossary-card {
-        background: #ffffff;
-        border: 1px solid rgba(226, 232, 240, 0.95);
-        border-radius: 1.4rem;
-        padding: 1.5rem 1.6rem;
-        box-shadow: 0 10px 25px -4px rgba(15, 23, 42, 0.05);
+    /* Luminous Spatial Glass Cards */
+    .metric-card, .leader-card, .driver-card, .glossary-card, .about-card {
+        background: var(--bg-glass-card);
+        border: 1px solid var(--border-glass);
+        border-radius: 1.25rem;
+        padding: 1.4rem 1.6rem;
+        box-shadow: 0 14px 34px -6px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(28px);
+        -webkit-backdrop-filter: blur(28px);
         transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         text-align: left;
+        position: relative;
+        overflow: hidden;
     }
-    .metric-card:hover, .leader-card:hover, .driver-card:hover, .glossary-card:hover {
+    .metric-card:hover, .leader-card:hover, .driver-card:hover, .glossary-card:hover, .about-card:hover {
         transform: translateY(-3px);
-        border-color: rgba(79, 70, 229, 0.3);
-        box-shadow: 0 16px 36px -6px rgba(15, 23, 42, 0.09);
+        border-color: rgba(99, 102, 241, 0.45);
+        box-shadow: 0 20px 45px -8px rgba(0, 0, 0, 0.7), 0 0 30px rgba(99, 102, 241, 0.18);
     }
     .metric-value {
-        font-size: 2.2rem;
+        font-size: 2.25rem;
         font-weight: 900;
-        color: #4f46e5;
+        background: linear-gradient(135deg, #ffffff 30%, #a5b4fc 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
         letter-spacing: -0.02em;
         margin: 0;
     }
     .metric-label {
-        font-size: 0.92rem;
+        font-size: 0.9rem;
         font-weight: 600;
-        color: #64748b;
-        margin-top: 4px;
+        color: var(--text-muted);
+        margin-top: 5px;
         letter-spacing: 0.02em;
     }
 
-    /* Outcome Badges */
+    /* Champion Glowing Card for Linear SVM 94.15% */
+    .champion-card {
+        background: linear-gradient(135deg, rgba(16, 185, 129, 0.14) 0%, rgba(99, 102, 241, 0.12) 100%) !important;
+        border: 1.5px solid rgba(52, 211, 153, 0.5) !important;
+        box-shadow: 0 0 35px rgba(16, 185, 129, 0.22), inset 0 1px 2px rgba(255, 255, 255, 0.25) !important;
+    }
+    .champion-card:hover {
+        border-color: rgba(52, 211, 153, 0.75) !important;
+        box-shadow: 0 0 45px rgba(16, 185, 129, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.35) !important;
+    }
+
+    /* Outcome Badges (Cyber Holographic Style) */
     .status-badge-placed {
-        background: linear-gradient(135deg, rgba(236, 253, 245, 0.95) 0%, rgba(209, 250, 229, 0.95) 100%);
-        color: #065f46;
-        padding: 1.4rem 2.2rem;
-        border-radius: 1.5rem;
-        font-size: 2.2rem;
+        background: linear-gradient(135deg, rgba(6, 78, 59, 0.85) 0%, rgba(4, 120, 87, 0.65) 100%);
+        color: #6ee7b7;
+        padding: 1.4rem 2rem;
+        border-radius: 1.25rem;
+        font-size: 2.1rem;
         font-weight: 900;
         text-align: center;
-        border: 1.5px solid rgba(5, 150, 105, 0.4);
-        box-shadow: 0 16px 36px -10px rgba(5, 150, 105, 0.15);
+        border: 1.5px solid rgba(52, 211, 153, 0.55);
+        box-shadow: 0 0 35px rgba(16, 185, 129, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.3);
         letter-spacing: 0.04em;
+        text-shadow: 0 0 14px rgba(110, 231, 183, 0.5);
     }
     .status-badge-not-placed {
-        background: linear-gradient(135deg, rgba(255, 241, 242, 0.95) 0%, rgba(254, 226, 226, 0.95) 100%);
-        color: #9f1239;
-        padding: 1.4rem 2.2rem;
-        border-radius: 1.5rem;
-        font-size: 2.2rem;
+        background: linear-gradient(135deg, rgba(136, 19, 55, 0.85) 0%, rgba(190, 18, 60, 0.65) 100%);
+        color: #fda4af;
+        padding: 1.4rem 2rem;
+        border-radius: 1.25rem;
+        font-size: 2.1rem;
         font-weight: 900;
         text-align: center;
-        border: 1.5px solid rgba(225, 29, 72, 0.4);
-        box-shadow: 0 16px 36px -10px rgba(225, 29, 72, 0.15);
+        border: 1.5px solid rgba(251, 113, 133, 0.55);
+        box-shadow: 0 0 35px rgba(244, 63, 94, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.3);
         letter-spacing: 0.04em;
+        text-shadow: 0 0 14px rgba(253, 164, 175, 0.5);
     }
     
     /* Recommendations Box */
     .rec-box {
-        background: #ffffff;
-        border-left: 4px solid #4f46e5;
-        border-right: 1px solid rgba(226, 232, 240, 0.9);
-        border-top: 1px solid rgba(226, 232, 240, 0.9);
-        border-bottom: 1px solid rgba(226, 232, 240, 0.9);
-        padding: 1.3rem;
-        border-radius: 0 1.2rem 1.2rem 0;
-        margin-top: 0.9rem;
-        color: #334155;
+        background: rgba(30, 41, 59, 0.65);
+        border-left: 4px solid var(--accent-indigo);
+        border-right: 1px solid var(--border-glass);
+        border-top: 1px solid var(--border-glass);
+        border-bottom: 1px solid var(--border-glass);
+        padding: 1.2rem 1.4rem;
+        border-radius: 0 1rem 1rem 0;
+        margin-top: 0.85rem;
+        color: var(--text-secondary);
         font-size: 0.98rem;
         line-height: 1.65;
-        box-shadow: 0 6px 18px -4px rgba(15, 23, 42, 0.05);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(20px);
     }
 
-    /* Buttons */
+    /* Gradient Glowing Buttons */
     .stButton>button {
-        font-size: 1.02rem !important;
+        font-size: 0.98rem !important;
         font-weight: 700 !important;
-        padding: 0.65rem 1.4rem !important;
-        border-radius: 14px !important;
-        transition: all 0.25s ease !important;
+        padding: 0.65rem 1.5rem !important;
+        border-radius: 12px !important;
+        background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%) !important;
+        color: #ffffff !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        box-shadow: 0 8px 22px -4px rgba(79, 70, 229, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.3) !important;
+        transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
     }
     .stButton>button:hover {
-        transform: translateY(-2px);
+        transform: translateY(-2px) !important;
+        box-shadow: 0 12px 30px -4px rgba(79, 70, 229, 0.7), 0 0 25px rgba(124, 58, 237, 0.4) !important;
+        border-color: rgba(255, 255, 255, 0.4) !important;
+    }
+    .stButton>button:active {
+        transform: translateY(0) !important;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+        background: rgba(10, 14, 23, 0.8);
+    }
+    ::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.16);
+        border-radius: 999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgba(99, 102, 241, 0.55);
     }
 </style>
 """, unsafe_allow_html=True)
@@ -447,17 +550,17 @@ if "last_result" not in st.session_state:
 # 5. SIDEBAR NAVIGATION & CANDIDATE PRESETS
 # -----------------------------------------------------------------------------
 st.sidebar.markdown("""
-<div style="display:flex; align-items:center; gap:12px; margin-bottom:18px;">
-    <div style="width:44px; height:44px; border-radius:14px; background:linear-gradient(135deg,#4f46e5,#0284c7); display:grid; place-items:center; color:#fff; font-size:22px; font-weight:800; box-shadow:0 8px 20px rgba(79,70,229,0.3);">🎓</div>
+<div style="display:flex; align-items:center; gap:12px; margin-bottom:20px;">
+    <div style="width:46px; height:46px; border-radius:14px; background:linear-gradient(135deg,#6366f1,#06b6d4); display:grid; place-items:center; color:#fff; font-size:24px; font-weight:800; box-shadow:0 8px 24px rgba(99,102,241,0.4), inset 0 1px 1px rgba(255,255,255,0.4);">🎓</div>
     <div>
-        <strong style="font-size:1.25rem; color:#0f172a; display:block; letter-spacing:-0.02em;">CampusPulse</strong>
-        <span style="font-size:0.75rem; color:#64748b; font-weight:700; letter-spacing:0.08em; text-transform:uppercase;">PLACEMENT INTELLIGENCE</span>
+        <strong style="font-size:1.3rem; color:#ffffff; display:block; letter-spacing:-0.02em; font-family:'Outfit',sans-serif;">CampusPulse</strong>
+        <span style="font-size:0.75rem; color:#a5b4fc; font-weight:750; letter-spacing:0.1em; text-transform:uppercase;">PLACEMENT INTELLIGENCE</span>
     </div>
 </div>
 """, unsafe_allow_html=True)
 
 st.sidebar.markdown("---")
-st.sidebar.markdown("<p style='font-size:0.8rem; font-weight:800; color:#64748b; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:6px;'>WORKSPACE</p>", unsafe_allow_html=True)
+st.sidebar.markdown("<p style='font-size:0.8rem; font-weight:800; color:#94a3b8; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:6px;'>WORKSPACE</p>", unsafe_allow_html=True)
 
 nav_page = st.sidebar.radio(
     "Navigation Menu",
@@ -475,7 +578,7 @@ nav_page = st.sidebar.radio(
 )
 
 st.sidebar.markdown("---")
-st.sidebar.markdown("<p style='font-size:0.8rem; font-weight:800; color:#64748b; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:6px;'>ACTIVE CLASSIFIER</p>", unsafe_allow_html=True)
+st.sidebar.markdown("<p style='font-size:0.8rem; font-weight:800; color:#94a3b8; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:6px;'>ACTIVE CLASSIFIER</p>", unsafe_allow_html=True)
 
 selected_model_key = st.sidebar.selectbox(
     "Classifier Model:",
@@ -490,7 +593,7 @@ selected_model_key = st.sidebar.selectbox(
 )
 
 st.sidebar.markdown("---")
-st.sidebar.markdown("<p style='font-size:0.8rem; font-weight:800; color:#64748b; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:6px;'>PROFILES PRESET</p>", unsafe_allow_html=True)
+st.sidebar.markdown("<p style='font-size:0.8rem; font-weight:800; color:#94a3b8; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:6px;'>PROFILES PRESET</p>", unsafe_allow_html=True)
 
 preset_choice = st.sidebar.radio(
     "Autofill Candidate Profile:",
@@ -543,7 +646,7 @@ if nav_page == "🔮 Predict Placement":
     <div style="margin-bottom: 22px;">
         <span class="hero-badge">PREDICTION WORKSPACE</span>
         <h1 style="margin: 6px 0 8px;">Predict Placement</h1>
-        <p style="color: #475569; font-size: 1.08rem; margin: 0;">Enter the 23 student attributes used by the supplied trained models.</p>
+        <p style="color: #94a3b8; font-size: 1.05rem; margin: 0; line-height: 1.6;">Enter the 23 student attributes used by the supplied trained models.</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -563,7 +666,7 @@ if nav_page == "🔮 Predict Placement":
 
     # Column 1: Step Navigation List (matches React UI sidebar dock)
     with col_nav:
-        st.markdown("<p style='font-size:0.8rem; font-weight:800; color:#64748b; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:10px;'>STEPS</p>", unsafe_allow_html=True)
+        st.markdown("<p style='font-size:0.8rem; font-weight:800; color:#94a3b8; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:10px;'>STEPS</p>", unsafe_allow_html=True)
         for idx, (short_name, _) in enumerate(step_info, start=1):
             is_active = (idx == current_step)
             btn_label = f"{'👉 ' if is_active else '     '}{idx}.  {short_name}"
@@ -579,7 +682,7 @@ if nav_page == "🔮 Predict Placement":
             h_left, h_right = st.columns([3, 1])
             with h_left:
                 st.markdown(f"<span style='font-size:0.82rem; font-weight:800; color:#4f46e5; letter-spacing:0.12em; text-transform:uppercase;'>STEP {current_step}</span>", unsafe_allow_html=True)
-                st.markdown(f"<h2 style='margin:4px 0 12px; font-size:1.75rem; color:#0f172a;'>{step_info[current_step - 1][1]}</h2>", unsafe_allow_html=True)
+                st.markdown(f"<h2 style='margin:4px 0 12px; font-size:1.75rem; color:#f8fafc;'>{step_info[current_step - 1][1]}</h2>", unsafe_allow_html=True)
             with h_right:
                 st.markdown(f"<div style='text-align:right; font-size:0.95rem; font-weight:700; color:#64748b; margin-top:12px;'>{current_step} / 6</div>", unsafe_allow_html=True)
                 st.progress(current_step / 6.0)
@@ -813,14 +916,14 @@ if nav_page == "🔮 Predict Placement":
             fig_gauge = go.Figure(go.Indicator(
                 mode="gauge+number",
                 value=res["prob"],
-                number={'suffix': '%', 'font': {'size': 42, 'color': '#0f172a', 'family': 'Outfit'}},
+                number={'suffix': '%', 'font': {'size': 42, 'color': '#ffffff', 'family': 'Outfit'}},
                 title={'text': f"Placement Likelihood ({res['model'].replace('_',' ').title()})", 'font': {'size': 17, 'color': '#334155', 'family': 'Outfit'}},
                 gauge={
-                    'axis': {'range': [0, 100], 'tickwidth': 1, 'tickcolor': "#94a3b8", 'tickfont': {'color': '#475569', 'size': 13}},
+                    'axis': {'range': [0, 100], 'tickwidth': 1, 'tickcolor': "#94a3b8", 'tickfont': {'color': '#94a3b8', 'size': 13}},
                     'bar': {'color': "#4f46e5" if res["prob"] >= 50 else "#e11d48"},
-                    'bgcolor': "#ffffff",
+                    'bgcolor': "rgba(15, 23, 42, 0.6)",
                     'borderwidth': 1,
-                    'bordercolor': "#e2e8f0",
+                    'bordercolor': "rgba(255, 255, 255, 0.1)",
                     'steps': [
                         {'range': [0, 50], 'color': 'rgba(225, 29, 72, 0.08)'},
                         {'range': [50, 75], 'color': 'rgba(2, 132, 199, 0.08)'},
@@ -885,7 +988,7 @@ elif nav_page == "📊 Dashboard":
     <div style="margin-bottom: 24px;">
         <span class="hero-badge">WORKSPACE TELEMETRY</span>
         <h1 style="margin: 6px 0 8px;">Workspace Dashboard</h1>
-        <p style="color: #475569; font-size: 1.08rem; margin: 0;">High-level placement analytics, calibrated machine learning telemetry, and model benchmarks.</p>
+        <p style="color: #94a3b8; font-size: 1.05rem; margin: 0; line-height: 1.6;">High-level placement analytics, calibrated machine learning telemetry, and model benchmarks.</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -931,11 +1034,13 @@ elif nav_page == "📊 Dashboard":
         color_discrete_sequence=["#4f46e5", "#0284c7", "#059669", "#7c3aed"]
     )
     fig_acc.update_layout(
-        paper_bgcolor="rgba(255,255,255,0.7)",
-        plot_bgcolor="rgba(248,250,252,0.5)",
-        font_color="#0f172a",
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
+        font_color="#f8fafc",
+        font_family="Outfit",
         font_size=14,
-        yaxis=dict(range=[85, 100])
+        xaxis=dict(gridcolor="rgba(255,255,255,0.06)", tickfont=dict(color="#cbd5e1")),
+        yaxis=dict(gridcolor="rgba(255,255,255,0.06)", tickfont=dict(color="#cbd5e1"), range=[85, 100])
     )
     st.plotly_chart(fig_acc, use_container_width=True)
 
@@ -948,7 +1053,7 @@ elif nav_page == "⚖️ Model Consensus":
     <div style="margin-bottom: 24px;">
         <span class="hero-badge">MULTI-MODEL MATRIX</span>
         <h1 style="margin: 6px 0 8px;">Consensus Matrix</h1>
-        <p style="color: #475569; font-size: 1.08rem; margin: 0;">Simultaneously evaluate student qualifications across all 4 machine learning models.</p>
+        <p style="color: #94a3b8; font-size: 1.05rem; margin: 0; line-height: 1.6;">Simultaneously evaluate student qualifications across all 4 machine learning models.</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -986,11 +1091,13 @@ elif nav_page == "⚖️ Model Consensus":
             title="Estimated Probability Spectrum Across Classifiers"
         )
         fig_bar.update_layout(
-            paper_bgcolor="rgba(255,255,255,0.7)",
-            plot_bgcolor="rgba(248,250,252,0.5)",
-            font_color="#0f172a",
+            paper_bgcolor="rgba(0,0,0,0)",
+            plot_bgcolor="rgba(0,0,0,0)",
+            font_color="#f8fafc",
+            font_family="Outfit",
             font_size=14,
-            yaxis=dict(range=[0, 105])
+            xaxis=dict(gridcolor="rgba(255,255,255,0.06)", tickfont=dict(color="#cbd5e1")),
+            yaxis=dict(gridcolor="rgba(255,255,255,0.06)", tickfont=dict(color="#cbd5e1"), range=[0, 105])
         )
         st.plotly_chart(fig_bar, use_container_width=True)
 
@@ -1003,45 +1110,45 @@ elif nav_page == "🧠 Model Performance":
     <div style="margin-bottom: 24px;">
         <span class="hero-badge">CALIBRATED ML BENCHMARKS</span>
         <h1 style="margin: 6px 0 8px;">Model Performance & Telemetry</h1>
-        <p style="color: #475569; font-size: 1.08rem; margin: 0;">Validation metrics evaluated on a stratified 80/20 test split (20,000 test instances out of 100,000 students).</p>
+        <p style="color: #94a3b8; font-size: 1.05rem; margin: 0; line-height: 1.6;">Validation metrics evaluated on a stratified 80/20 test split (20,000 test instances out of 100,000 students).</p>
     </div>
     """, unsafe_allow_html=True)
 
     l_col1, l_col2, l_col3, l_col4 = st.columns(4)
     with l_col1:
         st.markdown("""
-        <div class="leader-card">
-            <span style="font-size:11.5px; font-weight:700; color:#b45309; background:rgba(217,119,6,0.1); padding:4px 10px; border-radius:999px;">TOP ACCURACY</span>
-            <div class="metric-value" style="color:#0f172a; margin-top:8px;">94.15%</div>
-            <strong style="color:#334155; font-size:15px;">Linear SVM</strong>
-            <p style="color:#64748b; font-size:13px; margin:4px 0 0;">Leading accuracy across 100,000 students with calibrated margins.</p>
+        <div class="leader-card champion-card">
+            <span style="font-size:11px; font-weight:800; color:#34d399; background:rgba(16,185,129,0.18); border:1px solid rgba(52,211,153,0.3); padding:4px 10px; border-radius:999px; letter-spacing:0.04em;">👑 TOP ACCURACY CHAMPION</span>
+            <div class="metric-value" style="margin-top:10px;">94.15%</div>
+            <strong style="color:#ffffff; font-size:15px; display:block; margin-top:4px;">Linear SVM</strong>
+            <p style="color:#94a3b8; font-size:13px; margin:4px 0 0; line-height:1.5;">Leading accuracy across 100,000 students with regularized probabilistic margins.</p>
         </div>
         """, unsafe_allow_html=True)
     with l_col2:
         st.markdown("""
         <div class="leader-card">
-            <span style="font-size:11.5px; font-weight:700; color:#065f46; background:rgba(5,150,105,0.1); padding:4px 10px; border-radius:999px;">TOP RECALL</span>
-            <div class="metric-value" style="color:#0f172a; margin-top:8px;">94.65%</div>
-            <strong style="color:#334155; font-size:15px;">Logistic Regression</strong>
-            <p style="color:#64748b; font-size:13px; margin:4px 0 0;">Catches 95 of 100 placed candidates with minimal false negative loss.</p>
+            <span style="font-size:11px; font-weight:800; color:#38bdf8; background:rgba(56,189,248,0.15); border:1px solid rgba(56,189,248,0.3); padding:4px 10px; border-radius:999px; letter-spacing:0.04em;">🎯 TOP RECALL</span>
+            <div class="metric-value" style="margin-top:10px;">94.65%</div>
+            <strong style="color:#ffffff; font-size:15px; display:block; margin-top:4px;">Logistic Regression</strong>
+            <p style="color:#94a3b8; font-size:13px; margin:4px 0 0; line-height:1.5;">Catches 95 of 100 placed candidates with minimal false negative loss.</p>
         </div>
         """, unsafe_allow_html=True)
     with l_col3:
         st.markdown("""
         <div class="leader-card">
-            <span style="font-size:11.5px; font-weight:700; color:#6d28d9; background:rgba(124,58,237,0.1); padding:4px 10px; border-radius:999px;">TOP ROC-AUC</span>
-            <div class="metric-value" style="color:#0f172a; margin-top:8px;">98.95%</div>
-            <strong style="color:#334155; font-size:15px;">Linear SVM & Logistic</strong>
-            <p style="color:#64748b; font-size:13px; margin:4px 0 0;">Near-perfect distinction between placed and unplaced profiles.</p>
+            <span style="font-size:11px; font-weight:800; color:#c084fc; background:rgba(192,132,252,0.15); border:1px solid rgba(192,132,252,0.3); padding:4px 10px; border-radius:999px; letter-spacing:0.04em;">⚡ TOP ROC-AUC</span>
+            <div class="metric-value" style="margin-top:10px;">98.95%</div>
+            <strong style="color:#ffffff; font-size:15px; display:block; margin-top:4px;">Linear SVM & Logistic</strong>
+            <p style="color:#94a3b8; font-size:13px; margin:4px 0 0; line-height:1.5;">Near-perfect distinction between placed and unplaced profiles.</p>
         </div>
         """, unsafe_allow_html=True)
     with l_col4:
         st.markdown("""
         <div class="leader-card">
-            <span style="font-size:11.5px; font-weight:700; color:#0369a1; background:rgba(2,132,199,0.1); padding:4px 10px; border-radius:999px;">AUDITABLE RULES</span>
-            <div class="metric-value" style="color:#0f172a; margin-top:8px;">91.36%</div>
-            <strong style="color:#334155; font-size:15px;">Decision Tree</strong>
-            <p style="color:#64748b; font-size:13px; margin:4px 0 0;">Transparent hierarchical rule splits with 92.14% balanced F1.</p>
+            <span style="font-size:11px; font-weight:800; color:#fbbf24; background:rgba(251,191,36,0.15); border:1px solid rgba(251,191,36,0.3); padding:4px 10px; border-radius:999px; letter-spacing:0.04em;">🔍 AUDITABLE RULES</span>
+            <div class="metric-value" style="margin-top:10px;">91.36%</div>
+            <strong style="color:#ffffff; font-size:15px; display:block; margin-top:4px;">Decision Tree</strong>
+            <p style="color:#94a3b8; font-size:13px; margin:4px 0 0; line-height:1.5;">Transparent hierarchical rule splits with 92.14% balanced F1.</p>
         </div>
         """, unsafe_allow_html=True)
 
@@ -1072,11 +1179,13 @@ elif nav_page == "🧠 Model Performance":
         color_discrete_sequence=["#4f46e5", "#0284c7", "#059669", "#7c3aed"]
     )
     fig_metrics.update_layout(
-        paper_bgcolor="rgba(255,255,255,0.7)",
-        plot_bgcolor="rgba(248,250,252,0.5)",
-        font_color="#0f172a",
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
+        font_color="#f8fafc",
+        font_family="Outfit",
         font_size=14,
-        yaxis=dict(range=[80, 102])
+        xaxis=dict(gridcolor="rgba(255,255,255,0.06)", tickfont=dict(color="#cbd5e1")),
+        yaxis=dict(gridcolor="rgba(255,255,255,0.06)", tickfont=dict(color="#cbd5e1"), range=[80, 102])
     )
     st.plotly_chart(fig_metrics, use_container_width=True)
 
@@ -1086,32 +1195,32 @@ elif nav_page == "🧠 Model Performance":
     with g_col1:
         st.markdown("""
         <div class="glossary-card">
-            <strong style="font-size:15px;">Accuracy</strong>
-            <p style="color:#475569; font-size:13px; margin:6px 0;">Total fraction of predictions that match true outcomes.</p>
+            <strong style="font-size:15px; color:#ffffff;">Accuracy</strong>
+            <p style="color:#94a3b8; font-size:13px; margin:6px 0; line-height:1.5;">Total fraction of predictions that match true outcomes.</p>
             <small style="color:#059669; font-weight:700;">Linear SVM leads at 94.15%</small>
         </div>
         """, unsafe_allow_html=True)
     with g_col2:
         st.markdown("""
         <div class="glossary-card">
-            <strong style="font-size:15px;">Recall</strong>
-            <p style="color:#475569; font-size:13px; margin:6px 0;">Out of all placed students, what fraction the AI identified.</p>
+            <strong style="font-size:15px; color:#ffffff;">Recall</strong>
+            <p style="color:#94a3b8; font-size:13px; margin:6px 0; line-height:1.5;">Out of all placed students, what fraction the AI identified.</p>
             <small style="color:#059669; font-weight:700;">Logistic leads at 94.65%</small>
         </div>
         """, unsafe_allow_html=True)
     with g_col3:
         st.markdown("""
         <div class="glossary-card">
-            <strong style="font-size:15px;">Precision</strong>
-            <p style="color:#475569; font-size:13px; margin:6px 0;">When model says "Placed", how often is it truly correct.</p>
+            <strong style="font-size:15px; color:#ffffff;">Precision</strong>
+            <p style="color:#94a3b8; font-size:13px; margin:6px 0; line-height:1.5;">When model says "Placed", how often is it truly correct.</p>
             <small style="color:#059669; font-weight:700;">Linear SVM leads at 94.54%</small>
         </div>
         """, unsafe_allow_html=True)
     with g_col4:
         st.markdown("""
         <div class="glossary-card">
-            <strong style="font-size:15px;">ROC-AUC</strong>
-            <p style="color:#475569; font-size:13px; margin:6px 0;">Separation ability across all confidence levels (100% is flawless).</p>
+            <strong style="font-size:15px; color:#ffffff;">ROC-AUC</strong>
+            <p style="color:#94a3b8; font-size:13px; margin:6px 0; line-height:1.5;">Separation ability across all confidence levels (100% is flawless).</p>
             <small style="color:#059669; font-weight:700;">SVM & Logistic lead at 98.95%</small>
         </div>
         """, unsafe_allow_html=True)
@@ -1125,7 +1234,7 @@ elif nav_page == "📜 History":
     <div style="margin-bottom: 24px;">
         <span class="hero-badge">SESSION PREDICTIONS</span>
         <h1 style="margin: 6px 0 8px;">Placement Prediction History</h1>
-        <p style="color: #475569; font-size: 1.08rem; margin: 0;">Audit log of candidate profiles evaluated during this active session.</p>
+        <p style="color: #94a3b8; font-size: 1.05rem; margin: 0; line-height: 1.6;">Audit log of candidate profiles evaluated during this active session.</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -1153,7 +1262,7 @@ elif nav_page == "🏢 Institutional Analytics":
     <div style="margin-bottom: 24px;">
         <span class="hero-badge">EXPLORATORY DATA ANALYSIS</span>
         <h1 style="margin: 6px 0 8px;">Institutional Placement Analytics</h1>
-        <p style="color: #475569; font-size: 1.08rem; margin: 0;">Empirical distribution of 100,000 alumni across academic branches and qualification gates.</p>
+        <p style="color: #94a3b8; font-size: 1.05rem; margin: 0; line-height: 1.6;">Empirical distribution of 100,000 alumni across academic branches and qualification gates.</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -1170,7 +1279,7 @@ elif nav_page == "🏢 Institutional Analytics":
                 title="CGPA Distribution by Placement Outcome",
                 color_discrete_map={"Placed": "#059669", "Not Placed": "#e11d48"}
             )
-            fig_box1.update_layout(paper_bgcolor="rgba(255,255,255,0.7)", plot_bgcolor="rgba(248,250,252,0.5)", font_color="#0f172a", font_size=14)
+            fig_box1.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)", font_color="#f8fafc", font_family="Outfit", font_size=14, xaxis=dict(gridcolor="rgba(255,255,255,0.06)"), yaxis=dict(gridcolor="rgba(255,255,255,0.06)"))
             st.plotly_chart(fig_box1, use_container_width=True)
 
         with eda_c2:
@@ -1183,7 +1292,7 @@ elif nav_page == "🏢 Institutional Analytics":
                 color_discrete_map={"Placed": "#059669", "Not Placed": "#e11d48"},
                 opacity=0.6
             )
-            fig_scat.update_layout(paper_bgcolor="rgba(255,255,255,0.7)", plot_bgcolor="rgba(248,250,252,0.5)", font_color="#0f172a", font_size=14)
+            fig_scat.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)", font_color="#f8fafc", font_family="Outfit", font_size=14, xaxis=dict(gridcolor="rgba(255,255,255,0.06)"), yaxis=dict(gridcolor="rgba(255,255,255,0.06)"))
             st.plotly_chart(fig_scat, use_container_width=True)
     else:
         st.info("Loading student dataset...")
@@ -1197,18 +1306,18 @@ elif nav_page == "ℹ️ About":
     <div style="margin-bottom: 24px;">
         <span class="hero-badge">PLATFORM ARCHITECTURE</span>
         <h1 style="margin: 6px 0 8px;">About CampusPulse AI</h1>
-        <p style="color: #475569; font-size: 1.08rem; margin: 0;">Enterprise-grade placement intelligence combining machine learning and recruitment science.</p>
+        <p style="color: #94a3b8; font-size: 1.05rem; margin: 0; line-height: 1.6;">Enterprise-grade placement intelligence combining machine learning and recruitment science.</p>
     </div>
     """, unsafe_allow_html=True)
 
     st.markdown("""
-    <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:24px; padding:32px; box-shadow:0 10px 25px -4px rgba(15,23,42,0.05);">
-        <h3>System Overview</h3>
-        <p style="color:#334155; font-size:1.02rem; line-height:1.7;">
-            <strong>CampusPulse</strong> is a machine learning student placement prediction system designed to evaluate student employability, identify at-risk candidates early, and recommend actionable upskilling pathways.
+    <div class="about-card" style="padding: 2.2rem 2.6rem;">
+        <h3 style="margin-top:0;">System Overview</h3>
+        <p style="color:#cbd5e1; font-size:1.02rem; line-height:1.75;">
+            <strong style="color:#ffffff;">CampusPulse</strong> is a machine learning student placement prediction system designed to evaluate student employability, identify at-risk candidates early, and recommend actionable upskilling pathways.
         </p>
-        <p style="color:#334155; font-size:1.02rem; line-height:1.7;">
-            The model pipeline was trained on <strong>100,000 alumni records</strong> with stratified validation achieving <strong>94.15% Accuracy</strong> and <strong>98.95% ROC-AUC</strong>, featuring multi-model consensus and real-time inference.
+        <p style="color:#cbd5e1; font-size:1.02rem; line-height:1.75; margin-bottom:0;">
+            The model pipeline was trained on <strong style="color:#a5b4fc;">100,000 alumni records</strong> with stratified validation achieving <strong style="color:#34d399;">94.15% Accuracy</strong> and <strong style="color:#c084fc;">98.95% ROC-AUC</strong>, featuring multi-model consensus and real-time inference.
         </p>
     </div>
     """, unsafe_allow_html=True)

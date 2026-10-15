@@ -7,32 +7,32 @@
   --font-sans: 'Outfit', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
-  /* Luminous Spatial Canvas */
-  --spatial-void: #f8fafc;
-  --spatial-space: #f1f5f9;
+  /* Luminous Spatial Canvas - Clean Floating Porcelain */
+  --spatial-void: #f4f6fb;
+  --spatial-space: #edf2f9;
   --spatial-depth: #e2e8f0;
   
-  /* VisionOS Frosted Crystal Glass Materials */
-  --glass-canvas: rgba(255, 255, 255, 0.76);
-  --glass-surface: rgba(255, 255, 255, 0.82);
-  --glass-surface-elevated: rgba(255, 255, 255, 0.94);
-  --glass-card: rgba(255, 255, 255, 0.86);
-  --glass-input: rgba(255, 255, 255, 0.95);
-  --glass-pill: rgba(241, 245, 249, 0.85);
-  --glass-pill-hover: rgba(226, 232, 240, 0.95);
+  /* Floating Pure White Crystal Cards & Surfaces */
+  --glass-canvas: rgba(255, 255, 255, 0.85);
+  --glass-surface: #ffffff;
+  --glass-surface-elevated: #ffffff;
+  --glass-card: #ffffff;
+  --glass-input: #ffffff;
+  --glass-pill: #ede9fe;
+  --glass-pill-hover: #e0e7ff;
 
-  /* Specular Highlights & Luminous Crystal Rims */
-  --glass-border: rgba(226, 232, 240, 0.9);
-  --glass-border-subtle: rgba(241, 245, 249, 0.9);
-  --glass-border-specular: rgba(255, 255, 255, 0.98);
-  --glass-border-focus: rgba(79, 70, 229, 0.6);
-  --glass-border-glow: rgba(79, 70, 229, 0.25);
+  /* Specular Highlights & Hairline Borders */
+  --glass-border: rgba(226, 232, 240, 0.85);
+  --glass-border-subtle: #f1f5f9;
+  --glass-border-specular: rgba(255, 255, 255, 1);
+  --glass-border-focus: rgba(99, 102, 241, 0.6);
+  --glass-border-glow: rgba(99, 102, 241, 0.2);
 
   /* Vibrant Accents */
   --primary: #4f46e5;
   --primary-hover: #4338ca;
   --primary-light: #6366f1;
-  --primary-glow: rgba(79, 70, 229, 0.22);
+  --primary-glow: rgba(79, 70, 229, 0.25);
   
   --accent-cyan: #0284c7;
   --accent-cyan-glow: rgba(2, 132, 199, 0.22);
@@ -44,22 +44,23 @@
   --accent-rose-glow: rgba(225, 29, 72, 0.22);
   --accent-amber: #d97706;
 
-  /* High-Contrast Typography */
+  /* High-Contrast Modern Typography */
   --text-main: #0f172a;
-  --text-muted: #475569;
-  --text-subtle: #64748b;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --text-subtle: #94a3b8;
   --text-specular: #020617;
 
-  /* Spatial Elevation Shadows */
-  --spatial-shadow-sm: 0 2px 10px -2px rgba(15, 23, 42, 0.05), 0 0 1px 1px rgba(226, 232, 240, 0.8);
-  --spatial-shadow-md: 0 12px 32px -6px rgba(15, 23, 42, 0.07), 0 0 1px 1px rgba(226, 232, 240, 0.9), inset 0 1px 1px rgba(255, 255, 255, 0.95);
-  --spatial-shadow-lg: 0 22px 50px -10px rgba(15, 23, 42, 0.1), 0 0 1px 1.5px rgba(226, 232, 240, 0.95), inset 0 1px 1px rgba(255, 255, 255, 1);
-  --spatial-shadow-floating: 0 28px 70px -14px rgba(15, 23, 42, 0.12), 0 0 1px 2px rgba(226, 232, 240, 0.95), inset 0 1px 2px rgba(255, 255, 255, 1);
+  /* Spatial Elevation Shadows (Soft, Diffused, Floating) */
+  --spatial-shadow-sm: 0 4px 14px -2px rgba(15, 23, 42, 0.04), 0 0 1px 1px rgba(226, 232, 240, 0.7);
+  --spatial-shadow-md: 0 12px 32px -6px rgba(15, 23, 42, 0.05), 0 0 1px 1px rgba(226, 232, 240, 0.8), inset 0 1px 1px rgba(255, 255, 255, 0.95);
+  --spatial-shadow-lg: 0 20px 48px -10px rgba(15, 23, 42, 0.08), 0 0 1px 1.5px rgba(226, 232, 240, 0.85), inset 0 1px 1px rgba(255, 255, 255, 1);
+  --spatial-shadow-floating: 0 26px 65px -12px rgba(15, 23, 42, 0.1), 0 0 1px 2px rgba(226, 232, 240, 0.9), inset 0 1px 2px rgba(255, 255, 255, 1);
 
   /* Frosted Glass Filters */
-  --spatial-blur-base: blur(24px) saturate(180%);
-  --spatial-blur-panel: blur(32px) saturate(190%);
-  --spatial-blur-popover: blur(36px) saturate(200%);
+  --spatial-blur-base: blur(20px);
+  --spatial-blur-panel: blur(28px);
+  --spatial-blur-popover: blur(32px);
   
   --spatial-spring: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -79,7 +80,14 @@ html, body {
   font-family: var(--font-body);
   font-size: 15.5px;
   line-height: 1.55;
-  background-color: var(--spatial-void);
+  background-color: #f4f6fb;
+  background-image: 
+    radial-gradient(circle at 14% 10%, rgba(99, 102, 241, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 86% 14%, rgba(6, 182, 212, 0.07) 0%, transparent 42%),
+    radial-gradient(circle at 50% 88%, rgba(168, 85, 247, 0.06) 0%, transparent 50%),
+    radial-gradient(rgba(148, 163, 184, 0.15) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 32px 32px;
+  background-attachment: fixed;
   color: var(--text-main);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -224,7 +232,7 @@ button {
   font-size: 20px;
   font-weight: 800;
   letter-spacing: -0.02em;
-  color: #0f172a;
+  color: var(--text-main);
 }
 
 .brand strong span {
@@ -260,7 +268,7 @@ button {
 .sidebar button, .side-bottom button {
   border: 1px solid transparent;
   background: transparent;
-  color: #475569;
+  color: var(--text-muted);
   display: flex;
   align-items: center;
   gap: 12px;
@@ -320,7 +328,7 @@ button {
   font-size: 14.5px;
   font-weight: 700;
   margin: 8px 0 4px;
-  color: #0f172a;
+  color: var(--text-main);
 }
 
 .side-card span {
@@ -379,7 +387,7 @@ button {
   height: 44px;
   border: 1px solid var(--glass-border);
   background: var(--glass-pill);
-  color: #475569;
+  color: var(--text-muted);
   border-radius: 14px;
   display: grid;
   place-items: center;
@@ -403,7 +411,7 @@ button {
 }
 
 .crumb b {
-  color: #0f172a;
+  color: var(--text-main);
   font-weight: 700;
 }
 
@@ -432,7 +440,7 @@ button {
 .search:focus-within {
   border-color: rgba(79, 70, 229, 0.6);
   box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
-  background: #ffffff;
+  background: var(--glass-card);
   width: 310px;
 }
 
@@ -487,7 +495,7 @@ button {
   font-size: 38px;
   font-weight: 800;
   letter-spacing: -0.03em;
-  color: #0f172a;
+  color: var(--text-main);
 }
 
 .page-head p {
@@ -546,7 +554,7 @@ button {
 
 .ghost {
   background: var(--glass-pill);
-  color: #334155;
+  color: var(--text-secondary);
   border: 1px solid var(--glass-border);
   box-shadow: var(--spatial-shadow-sm);
   backdrop-filter: blur(16px);
@@ -554,7 +562,7 @@ button {
 
 .ghost:hover {
   background: var(--glass-pill-hover);
-  color: #0f172a;
+  color: var(--text-main);
   border-color: rgba(148, 163, 184, 0.5);
   transform: translateY(-2px);
   box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
@@ -608,7 +616,7 @@ button {
   transform: translateY(-5px) scale(1.015);
   border-color: rgba(99, 102, 241, 0.3);
   box-shadow: var(--spatial-shadow-lg);
-  background: #ffffff;
+  background: var(--glass-card);
 }
 
 .stat-icon {
@@ -654,7 +662,7 @@ button {
   font-size: 34px;
   font-weight: 800;
   margin-top: 2px;
-  color: #0f172a;
+  color: var(--text-main);
   letter-spacing: -0.02em;
 }
 
@@ -695,7 +703,7 @@ button {
   font-size: 18px;
   font-weight: 700;
   margin: 0;
-  color: #0f172a;
+  color: var(--text-main);
   letter-spacing: -0.01em;
 }
 
@@ -729,7 +737,7 @@ button {
 }
 
 .model-bar b {
-  color: #0f172a;
+  color: var(--text-main);
 }
 
 .bar-track {
@@ -776,7 +784,7 @@ button {
   border-color: rgba(79, 70, 229, 0.4);
   transform: translateY(-4px) scale(1.015);
   box-shadow: var(--spatial-shadow-lg);
-  background: #ffffff;
+  background: var(--glass-card);
 }
 
 .quick > svg {
@@ -806,7 +814,7 @@ button {
   display: block;
   font-size: 16px;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--text-main);
 }
 
 .quick span {
@@ -862,7 +870,7 @@ button {
 }
 
 .landing-links button:hover {
-  color: #0f172a;
+  color: var(--text-main);
   background: var(--glass-pill);
 }
 
@@ -883,7 +891,7 @@ button {
   line-height: 1.04;
   letter-spacing: -0.04em;
   margin: 24px 0 18px;
-  color: #0f172a;
+  color: var(--text-main);
 }
 
 .hero-copy h1 span {
@@ -915,10 +923,10 @@ button {
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #334155;
+  color: var(--text-secondary);
   font-size: 12.5px;
   font-weight: 600;
-  background: #ffffff;
+  background: var(--glass-card);
   padding: 8px 16px;
   border-radius: 999px;
   border: 1px solid var(--glass-border);
@@ -1035,7 +1043,7 @@ button {
   font-weight: 800;
   display: block;
   margin-top: 2px;
-  color: #0f172a;
+  color: var(--text-main);
 }
 
 .float-card span {
@@ -1080,7 +1088,7 @@ button {
   transform: translateY(-4px);
   border-color: rgba(99, 102, 241, 0.3);
   box-shadow: var(--spatial-shadow-md);
-  background: #ffffff;
+  background: var(--glass-card);
 }
 
 .feature-icon {
@@ -1099,7 +1107,7 @@ button {
 .feature b {
   font-size: 14.5px;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--text-main);
 }
 
 .feature p {
@@ -1119,7 +1127,7 @@ button {
 }
 
 .step-pill {
-  background: #ffffff;
+  background: var(--glass-card);
   border: 1px solid var(--glass-border);
   padding: 7px 16px;
   border-radius: 999px;
@@ -1145,7 +1153,7 @@ button {
   width: 100%;
   border: 1px solid transparent;
   background: transparent;
-  color: #475569;
+  color: var(--text-muted);
   display: flex;
   align-items: center;
   gap: 14px;
@@ -1159,7 +1167,7 @@ button {
 
 .steps button:hover {
   background: var(--glass-pill);
-  color: #0f172a;
+  color: var(--text-main);
 }
 
 .steps button.selected {
@@ -1178,8 +1186,8 @@ button {
   place-items: center;
   font-size: 13px;
   font-weight: 800;
-  background: #ffffff;
-  color: #475569;
+  background: var(--glass-card);
+  color: var(--text-muted);
 }
 
 .steps button.selected .step-number {
@@ -1217,7 +1225,7 @@ button {
   margin: 6px 0 0;
   font-size: 28px;
   font-weight: 800;
-  color: #0f172a;
+  color: var(--text-main);
 }
 
 .progress {
@@ -1252,7 +1260,7 @@ button {
 
 .field > span {
   font-size: 13px;
-  color: #334155;
+  color: var(--text-secondary);
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1262,8 +1270,8 @@ button {
   width: 100%;
   height: 52px;
   border: 1.5px solid #cbd5e1;
-  background: #ffffff;
-  color: #0f172a;
+  background: var(--glass-card);
+  color: var(--text-main);
   border-radius: 16px;
   padding: 0 18px;
   outline: none;
@@ -1275,12 +1283,12 @@ button {
 .field input:focus, .field select:focus {
   border-color: #4f46e5;
   box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
-  background: #ffffff;
+  background: var(--glass-card);
 }
 
 .field select option {
-  background: #ffffff;
-  color: #0f172a;
+  background: var(--glass-card);
+  color: var(--text-main);
   font-size: 15px;
 }
 
@@ -1304,7 +1312,7 @@ button {
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #334155;
+  color: var(--text-secondary);
   display: block;
   margin-bottom: 14px;
 }
@@ -1317,8 +1325,8 @@ button {
 
 .model-options button {
   border: 1px solid #cbd5e1;
-  background: #ffffff;
-  color: #475569;
+  background: var(--glass-card);
+  color: var(--text-muted);
   border-radius: 14px;
   padding: 11px 18px;
   font-size: 14px;
@@ -1328,7 +1336,7 @@ button {
 
 .model-options button:hover {
   background: #f8fafc;
-  color: #0f172a;
+  color: var(--text-main);
   border-color: #94a3b8;
 }
 
@@ -1357,7 +1365,7 @@ button {
   border-radius: 18px;
   background: rgba(79, 70, 229, 0.06);
   border: 1px solid rgba(79, 70, 229, 0.18);
-  color: #334155;
+  color: var(--text-secondary);
   font-size: 14px;
   line-height: 1.6;
 }
@@ -1380,7 +1388,7 @@ button {
 
 .result-card {
   border: 1px solid var(--glass-border);
-  background: #ffffff;
+  background: var(--glass-card);
   border-radius: 26px;
   padding: 26px;
   min-height: 180px;
@@ -1504,7 +1512,7 @@ button {
 .table-head b {
   font-size: 17px;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--text-main);
   display: block;
 }
 
@@ -1536,7 +1544,7 @@ button {
 
 .empty h3 {
   margin: 0;
-  color: #0f172a;
+  color: var(--text-main);
   font-size: 18px;
 }
 
@@ -1572,7 +1580,7 @@ th {
 }
 
 td {
-  color: #334155;
+  color: var(--text-secondary);
 }
 
 tbody tr {
@@ -1607,7 +1615,7 @@ tbody tr:hover {
 .view {
   background: var(--glass-pill);
   border: 1px solid var(--glass-border);
-  color: #334155;
+  color: var(--text-secondary);
   padding: 7px 16px;
   border-radius: 12px;
   font-size: 13.5px;
@@ -1616,8 +1624,8 @@ tbody tr:hover {
 }
 
 .view:hover {
-  background: #ffffff;
-  color: #0f172a;
+  background: var(--glass-card);
+  color: var(--text-main);
   border-color: #cbd5e1;
   transform: scale(1.05);
 }
@@ -1642,7 +1650,7 @@ tbody tr:hover {
   width: min(840px, 100%);
   max-height: 85vh;
   overflow-y: auto;
-  background: #ffffff;
+  background: var(--glass-card);
   border: 1px solid var(--glass-border);
   border-radius: 28px;
   padding: 40px;
@@ -1695,7 +1703,7 @@ tbody tr:hover {
   display: block;
   margin-top: 6px;
   font-size: 15.5px;
-  color: #0f172a;
+  color: var(--text-main);
 }
 
 /* -----------------------------------------------------------------------------
@@ -1729,7 +1737,7 @@ tbody tr:hover {
   transform: translateY(-4px);
   border-color: rgba(79, 70, 229, 0.4);
   box-shadow: var(--spatial-shadow-md);
-  background: #ffffff;
+  background: var(--glass-card);
 }
 
 .leader-card-head {
@@ -1770,7 +1778,7 @@ tbody tr:hover {
 .leader-value {
   font-size: 34px;
   font-weight: 900;
-  color: #0f172a;
+  color: var(--text-main);
   letter-spacing: -0.02em;
   margin: 0;
 }
@@ -1778,7 +1786,7 @@ tbody tr:hover {
 .leader-title {
   font-size: 15px;
   font-weight: 700;
-  color: #334155;
+  color: var(--text-secondary);
   margin: 0;
 }
 
@@ -1803,8 +1811,8 @@ tbody tr:hover {
 
 .metric-pill-btn {
   border: 1px solid #cbd5e1;
-  background: #ffffff;
-  color: #475569;
+  background: var(--glass-card);
+  color: var(--text-muted);
   padding: 8px 16px;
   border-radius: 999px;
   font-size: 13.5px;
@@ -1814,7 +1822,7 @@ tbody tr:hover {
 
 .metric-pill-btn:hover {
   background: #f8fafc;
-  color: #0f172a;
+  color: var(--text-main);
   border-color: #94a3b8;
 }
 
@@ -1848,12 +1856,12 @@ tbody tr:hover {
   transform: translateY(-3px);
   border-color: rgba(79, 70, 229, 0.35);
   box-shadow: var(--spatial-shadow-md);
-  background: #ffffff;
+  background: var(--glass-card);
 }
 
 .model-tab-card.active {
   border-color: #4f46e5;
-  background: #ffffff;
+  background: var(--glass-card);
   box-shadow: 0 8px 24px -4px rgba(79, 70, 229, 0.16), 0 0 0 1px #4f46e5;
 }
 
@@ -1861,7 +1869,7 @@ tbody tr:hover {
   display: block;
   font-size: 16px;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--text-main);
 }
 
 .model-tab-card span {
@@ -1883,7 +1891,7 @@ tbody tr:hover {
   display: grid;
   grid-template-columns: 1.3fr 1fr;
   gap: 24px;
-  background: #ffffff;
+  background: var(--glass-card);
   border: 1px solid var(--glass-border);
   border-radius: 24px;
   padding: 28px;
@@ -1906,7 +1914,7 @@ tbody tr:hover {
   justify-content: space-between;
   font-size: 14px;
   font-weight: 600;
-  color: #334155;
+  color: var(--text-secondary);
 }
 
 .metric-bar-label span {
@@ -1916,7 +1924,7 @@ tbody tr:hover {
 }
 
 .metric-bar-label b {
-  color: #0f172a;
+  color: var(--text-main);
 }
 
 .deepdive-info {
@@ -1939,7 +1947,7 @@ tbody tr:hover {
 
 .deepdive-info-block p {
   font-size: 14.5px;
-  color: #334155;
+  color: var(--text-secondary);
   line-height: 1.6;
   margin: 0;
 }
@@ -1956,7 +1964,7 @@ tbody tr:hover {
 }
 
 .driver-bar-item {
-  background: #ffffff;
+  background: var(--glass-card);
   border: 1px solid var(--glass-border);
   border-radius: 18px;
   padding: 20px;
@@ -1972,7 +1980,7 @@ tbody tr:hover {
 
 .driver-bar-head strong {
   font-size: 15px;
-  color: #0f172a;
+  color: var(--text-main);
 }
 
 .driver-bar-head span {
@@ -2000,7 +2008,7 @@ tbody tr:hover {
 }
 
 .glossary-card {
-  background: #ffffff;
+  background: var(--glass-card);
   border: 1px solid var(--glass-border);
   border-radius: 20px;
   padding: 22px;
@@ -2025,12 +2033,12 @@ tbody tr:hover {
 
 .glossary-card-head b {
   font-size: 15.5px;
-  color: #0f172a;
+  color: var(--text-main);
 }
 
 .glossary-card p {
   font-size: 13.5px;
-  color: #475569;
+  color: var(--text-muted);
   line-height: 1.6;
   margin: 0;
 }
@@ -2115,11 +2123,11 @@ tbody tr:hover {
   gap: 12px;
   padding: 14px 22px;
   border-radius: 999px;
-  background: #ffffff;
+  background: var(--glass-card);
   border: 1px solid var(--glass-border);
   backdrop-filter: var(--spatial-blur-popover);
   box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12), 0 0 20px rgba(5, 150, 105, 0.15);
-  color: #0f172a;
+  color: var(--text-main);
   font-size: 13.5px;
   font-weight: 600;
   animation: toastSlide 0.35s var(--spatial-spring);
